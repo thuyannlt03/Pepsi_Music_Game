@@ -1,6 +1,9 @@
 import { StackNavigationProp, StackScreenProps } from "@react-navigation/stack";
 
-type SplashProps = {
+type SplashScreenProps = {
+    id: number;
+};
+type OnBoardingProps = {
     userID: number;
 };
 
@@ -13,7 +16,8 @@ type SignInOTPProps = {
 };
 
 export type MainStackParamList = {
-    Splash: SplashProps | undefined;
+    SplashScreen: SplashScreenProps | undefined;
+    OnBoarding: OnBoardingProps | undefined;
     SignIn: SignInProps | undefined;
     SignInOTP: SignInOTPProps | undefined;
 };

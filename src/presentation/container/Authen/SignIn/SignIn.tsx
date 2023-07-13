@@ -45,11 +45,11 @@ const SignIn: React.FC<MainStackScreenProps<'SignIn'>> = ({ navigation, route })
             <Text style={styles.textOr}>hoặc</Text>
             <View style={styles.line} />
           </View>
-          {/* <Button 
+          <Button 
             containerStyle = {styles.buttonSignUp}
             title='Đăng ký'
-            onPress={}
-            titleStyle = {styles.title}/> */}
+            // onPress={SignUp}
+            titleStyle = {styles.title}/>
         </View>
       </Background>
     </ScrollView>
@@ -81,6 +81,7 @@ const styles = StyleSheet.create({
     width: '90%',
     height: '5.4%',
     backgroundColor: Colors.BACKGROUND_FORM,
+    
   },
   title: {
     color: Colors.WHITE,
@@ -90,7 +91,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginVertical: '8%',
+    marginVertical: '5%',
   },
   line: {
     width: '45%',

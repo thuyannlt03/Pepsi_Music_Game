@@ -3,8 +3,12 @@ import React from 'react'
 import Background from '../../../component/background/Background'
 import { CENTER_BUTTON, HEADLINE_2, LEFT_BUTTON, RIGHT_BUTTON, TALEN } from '../../../../../assets'
 import { Colors } from '../../../resource/value/Colors'
+import { MainStackScreenProps } from '../../../navigation/stack/Navigation'
 
-const Splash = () => {
+const OnBoarding: React.FC<MainStackScreenProps<'OnBoarding'>> = ({ navigation, route }) => {
+        const onClick = () => {
+          navigation.navigate('SignIn');
+        }
     return (
         <Background>
             <View style={styles.container}>
@@ -19,7 +23,7 @@ const Splash = () => {
                                 <Text style={styles.textButton}>THỂ LỆ</Text>
                             </ImageBackground>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.btn}>
+                        <TouchableOpacity style={styles.btn} onPress={onClick}>
                             <Image source={CENTER_BUTTON} style={styles.imageButton} />
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.btn}>
@@ -34,7 +38,7 @@ const Splash = () => {
     )
 }
 
-export default Splash
+export default OnBoarding
 
 const styles = StyleSheet.create({
     container: {

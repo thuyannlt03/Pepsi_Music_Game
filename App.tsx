@@ -4,11 +4,12 @@
  *
  * @format
  */
+// npx react-native run-android
 
 import React from 'react';
-import SignIn from './src/presentation/container/Authen/SignIn/SignIn.view';
-import SignInOTP from './src/presentation/container/Authen/SignIn/SignInOTP.view';
-import Splash from './src/presentation/container/Authen/SignIn/Splash';
+import SignIn from './src/presentation/container/Authen/SignIn/SignIn';
+import SignInOTP from './src/presentation/container/Authen/SignIn/SignInOTP';
+import OnBoarding from './src/presentation/container/Authen/SplashScreen/OnBoarding';
 import SplashScreen from './src/presentation/container/Authen/SplashScreen/SplashScreen';
 
 import { NavigationContainer } from '@react-navigation/native'
@@ -18,7 +19,8 @@ import { MainStackParamList } from './src/presentation/navigation/stack/Navigati
 
 const Stack = createStackNavigator<MainStackParamList>();
 
-import type {PropsWithChildren} from 'react';
+
+import type { PropsWithChildren } from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -41,7 +43,7 @@ type SectionProps = PropsWithChildren<{
   title: string;
 }>;
 
-function Section({children, title}: SectionProps): JSX.Element {
+function Section({ children, title }: SectionProps): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
   return (
     <View style={styles.sectionContainer}>
@@ -75,19 +77,18 @@ function App(): JSX.Element {
   };
 
   return (
-     //<SplashScreen></SplashScreen>
+    //<SplashScreen></SplashScreen>
     //<Splash></Splash>
     <NavigationContainer>
-    <Stack.Navigator screenOptions={{headerShown: false}}>
-      <Stack.Screen name='Splash' component={Splash}/>
-      <Stack.Screen name='SignIn' component={SignIn}/>
-      <Stack.Screen name='SignInOTP' component={SignInOTP}/>
-      
-  </Stack.Navigator>
-</NavigationContainer>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name='OnBoarding' component={OnBoarding} />
+        <Stack.Screen name='SignIn' component={SignIn} />
+        <Stack.Screen name='SignInOTP' component={SignInOTP} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-// npx react-native run-android
+
 
 const styles = StyleSheet.create({
   sectionContainer: {
