@@ -8,6 +8,7 @@ export const Colors = {
     PINK: '#ee4e9b96',
     LIGHT_ORANGE: '#d06767d6',
     BLUE_PEPSI: '#215EAC',
+    BLUE_TITLE: '#06F',
     BACKGROUND_FORM: 'rgba(122, 0, 38, 0.3)',
   };
   

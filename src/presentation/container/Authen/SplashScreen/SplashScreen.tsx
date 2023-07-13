@@ -1,7 +1,7 @@
-import { StyleSheet, Text, View, Image, Dimensions, TouchableOpacity, ImageBackground } from 'react-native'
+import { StyleSheet, Text, View, Image, Dimensions, ImageBackground } from 'react-native'
 import React from 'react'
 import Background from '../../../component/background/Background'
-import { CENTER_BUTTON, HEADLINE_2, LEFT_BUTTON, RIGHT_BUTTON, TALEN } from '../../../../../assets'
+import { HEADLINE_2,TALEN } from '../../../../../assets'
 import { Colors } from '../../../resource/value/Colors'
 
 const SplashScreen = () => {
@@ -20,12 +20,12 @@ const SplashScreen = () => {
                                     <Text style={styles.text1}>SĂN QUÀ HẤP DẪN</Text>
                                 </View>
                             </View>
-                            <View style = {[{flexDirection: 'row'},{justifyContent:'center'} ,{marginTop:10}]}>
-                            <View style = {[{flexDirection: 'column'},{justifyContent:'center'},]}>
-                            <Text style={styles.text2}>QUAY LẠI</Text>
-                            <Text style={styles.text2}>VÀO NGÀY</Text>
-                            </View>
-                            <Text style={styles.text3}>20.3.2020</Text>
+                            <View style={[{ flexDirection: 'row' }, { justifyContent: 'center' }, { marginTop: 10 }]}>
+                                <View style={[{ flexDirection: 'column' }, { justifyContent: 'center' },]}>
+                                    <Text style={styles.text2}>QUAY LẠI</Text>
+                                    <Text style={styles.text2}>VÀO NGÀY</Text>
+                                </View>
+                                <Text style={styles.text3}>20.3.2020</Text>
                             </View>
                         </View>
                     </ImageBackground>
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
 
     text: {
         textAlign: 'center',
-        color: '#06F',
+        color: Colors.BLUE_TITLE,
         textShadowColor: 'rgba(0, 0, 0, 0.25)',
         textShadowOffset: { width: 0, height: 2 },
         textShadowRadius: 0,
@@ -82,15 +82,14 @@ const styles = StyleSheet.create({
 
     },
     bg: {
-
-        backgroundColor: '#fff',
+        backgroundColor: Colors.WHITE,
         width: Dimensions.get('window').width * 0.67,
         alignItems: 'center',
         marginHorizontal: '16%',
     },
     text1: {
         textAlign: 'center',
-        color: '#06F',
+        color: Colors.BLUE_TITLE,
         textShadowColor: 'rgba(0, 0, 0, 0.25)',
         textShadowOffset: { width: 0, height: 2 },
         textShadowRadius: 0,
@@ -101,9 +100,9 @@ const styles = StyleSheet.create({
         fontWeight: '600',
 
     },
-    text2:{
+    text2: {
         textAlign: 'center',
-        color: '#fff',
+        color: Colors.WHITE,
         textShadowColor: 'rgba(0, 0, 0, 0.25)',
         textShadowOffset: { width: 0, height: 4.973383903503418 },
         textShadowRadius: 0,
@@ -113,9 +112,9 @@ const styles = StyleSheet.create({
         fontSize: 14,
         fontWeight: '500',
     },
-    text3:{
+    text3: {
         textAlign: 'center',
-        color: '#fff',
+        color: Colors.WHITE,
         textShadowColor: 'rgba(0, 0, 0, 0.25)',
         textShadowOffset: { width: 0, height: 5 },
         textShadowRadius: 0,

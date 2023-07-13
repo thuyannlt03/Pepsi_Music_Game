@@ -1,15 +1,15 @@
-import { Dimensions, Image, ImageBackground, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { Dimensions, Image, ScrollView, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import Button from '../../../component/button/Button'
 import Background from '../../../component/background/Background'
 import { Colors } from '../../../resource/value/Colors'
 import Header from '../../../component/header/Header'
 import { LOGO_PEPSI } from '../../../../../assets'
-import { SignInField, SignUpField } from '../../../component/input/TextField'
+import { SignInField } from '../../../component/input/TextField'
 import Form from '../../../component/form/Form'
 import { MainStackScreenProps } from '../../../navigation/stack/Navigation'
 
-const SignIn: React.FC<MainStackScreenProps<'SignIn'>>= ({navigation,route}) => {
+const SignIn: React.FC<MainStackScreenProps<'SignIn'>> = ({ navigation, route }) => {
 
   const [edt, setedt] = React.useState<string>('');
   console.log(edt)
@@ -21,7 +21,7 @@ const SignIn: React.FC<MainStackScreenProps<'SignIn'>>= ({navigation,route}) => 
   const headerCenter = () => {
     return (
       <View >
-        <Image source={LOGO_PEPSI} style = {styles.image}/>
+        <Image source={LOGO_PEPSI} style={styles.image} />
       </View>
     );
   }
@@ -31,25 +31,25 @@ const SignIn: React.FC<MainStackScreenProps<'SignIn'>>= ({navigation,route}) => 
       <Background>
         <View style={styles.container} >
           <Header
-            centerHeader={headerCenter()} 
-            containerStyle = {styles.header}/>
+            centerHeader={headerCenter()}
+            containerStyle={styles.header} />
           <Form>
             <SignInField />
           </Form>
-          <Button 
-            containerStyle = {styles.buttonSignIn}
+          <Button
+            containerStyle={styles.buttonSignIn}
             title='Đăng nhập'
-            onPress={signIn}/>
-          <View style = {styles.viewOr}>
-            <View style = {styles.line}/>
-            <Text style = {styles.textOr}>hoặc</Text>
-            <View style = {styles.line}/>
+            onPress={signIn} />
+          <View style={styles.viewOr}>
+            <View style={styles.line} />
+            <Text style={styles.textOr}>hoặc</Text>
+            <View style={styles.line} />
           </View>
-          <Button 
+          {/* <Button 
             containerStyle = {styles.buttonSignUp}
             title='Đăng ký'
-            onPress={signIn}
-            titleStyle = {styles.title}/>
+            onPress={}
+            titleStyle = {styles.title}/> */}
         </View>
       </Background>
     </ScrollView>
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
   },
   image: {
     resizeMode: 'contain',
-    height: 48
+    height: 48,
   },
   buttonSignIn: {
     width: '90%',
@@ -88,19 +88,19 @@ const styles = StyleSheet.create({
   viewOr: {
     width: '90%',
     flexDirection: 'row',
-    justifyContent:'space-between',
+    justifyContent: 'space-between',
     alignItems: 'center',
     marginVertical: '8%',
   },
-  line : {
+  line: {
     width: '45%',
     borderTopWidth: 0.5,
-    borderColor: Colors.WHITE
+    borderColor: Colors.WHITE,
   },
   textOr: {
     width: '10%',
     textAlign: 'center',
     fontWeight: '700',
-    color: Colors.WHITE
+    color: Colors.WHITE,
   },
 })

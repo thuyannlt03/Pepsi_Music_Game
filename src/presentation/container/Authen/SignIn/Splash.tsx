@@ -13,18 +13,18 @@ const Splash = () => {
                 </View>
                 <View style={styles.main}>
                     <Image source={TALEN} style={styles.imageTalen} />
-                    <View style = {styles.boxButton}>
-                        <TouchableOpacity style = {styles.btn}>
-                            <ImageBackground  source={LEFT_BUTTON} style = {styles.imageButton}>
-                                <Text style = {styles.textButton}>THỂ LỆ</Text>
+                    <View style={styles.boxButton}>
+                        <TouchableOpacity style={styles.btn}>
+                            <ImageBackground source={LEFT_BUTTON} style={styles.imageButton}>
+                                <Text style={styles.textButton}>THỂ LỆ</Text>
                             </ImageBackground>
                         </TouchableOpacity>
-                        <TouchableOpacity style = {styles.btn}>
-                            <Image source={CENTER_BUTTON} style = {styles.imageButton}/>
+                        <TouchableOpacity style={styles.btn}>
+                            <Image source={CENTER_BUTTON} style={styles.imageButton} />
                         </TouchableOpacity>
-                        <TouchableOpacity style = {styles.btn}>
-                            <ImageBackground  source={RIGHT_BUTTON} style = {styles.imageButton}>
-                                <Text style = {styles.textButton}>HƯỚNG DẪN</Text>
+                        <TouchableOpacity style={styles.btn}>
+                            <ImageBackground source={RIGHT_BUTTON} style={styles.imageButton}>
+                                <Text style={styles.textButton}>HƯỚNG DẪN</Text>
                             </ImageBackground>
                         </TouchableOpacity>
                     </View>
@@ -45,10 +45,10 @@ const styles = StyleSheet.create({
         height: '30%',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: Dimensions.get('window').height*0.1,
+        marginTop: Dimensions.get('window').height * 0.1,
     },
     main: {
-        marginTop: - Dimensions.get('window').height*0.30,
+        marginTop: - Dimensions.get('window').height * 0.30,
         alignItems: 'center',
     },
     image: {
@@ -61,9 +61,9 @@ const styles = StyleSheet.create({
     },
     boxButton: {
         flexDirection: 'row',
-        width: Dimensions.get('window').width*0.9,
+        width: Dimensions.get('window').width * 0.9,
         justifyContent: 'space-between',
-        marginTop: '-120%'
+        marginTop: '-120%',
     },
     btn: {
         width: '33.33%',
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     },
     imageButton: {
         resizeMode: 'contain',
-        width: Dimensions.get('window').width * 0.8 /2.3
+        width: Dimensions.get('window').width * 0.8 / 2.3,
     },
     textButton: {
         color: Colors.WHITE,

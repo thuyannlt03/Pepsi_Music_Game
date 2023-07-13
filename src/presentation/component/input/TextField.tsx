@@ -1,7 +1,5 @@
 import { StyleSheet, Text, View, TextInputProps, TextInput, Touchable, TouchableOpacity } from 'react-native'
 import React from 'react'
-import SignIn from '../../container/Authen/SignIn/SignIn.view';
-import Button from '../button/Button'
 import { Colors } from '../../resource/value/Colors';
 
 export interface SignInFieldProps {

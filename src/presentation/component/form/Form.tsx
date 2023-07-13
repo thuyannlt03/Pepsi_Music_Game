@@ -1,6 +1,5 @@
-import { StyleSheet, Image, Text, View, TextInputProps, TextStyle, TextProps, StyleProp} from 'react-native'
+import { StyleSheet, Image, Text, View, TextStyle, TextProps, StyleProp} from 'react-native'
 import React from 'react'
-import { SignInField, SignUpField } from '../input/TextField';
 import { Colors } from '../../resource/value/Colors';
 import { LOGO_PEPSI, TEXT_PEPSI_MUSIC } from '../../../../assets';
 

@@ -4,18 +4,18 @@ type SplashProps = {
     userID: number;
 };
 
-type LoginProps = {
+type SignInProps = {
     id: number;
 };
 
-type LoginOTPProps = {
+type SignInOTPProps = {
     id: number;
 };
 
 export type MainStackParamList = {
     Splash: SplashProps | undefined;
-    SignIn: LoginProps | undefined;
-    SignInOTP: LoginOTPProps | undefined;
+    SignIn: SignInProps | undefined;
+    SignInOTP: SignInOTPProps | undefined;
 };
 
 export type MainStackNavigation = StackNavigationProp<MainStackParamList>;
