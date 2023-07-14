@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TextInputProps, TextInput, Touchable, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, TextInputProps, TextInput, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { Colors } from '../../resource/value/Colors';
 
@@ -12,6 +12,13 @@ export interface SignUpFieldProps {
 }
 
 export interface OTPFieldProps {
+  inputProps_1?: TextInputProps;
+  inputProps_2?: TextInputProps;
+  inputProps_3?: TextInputProps;
+  inputProps_4?: TextInputProps;
+}
+
+export interface OTPFailProps {
   inputProps_1?: TextInputProps;
   inputProps_2?: TextInputProps;
   inputProps_3?: TextInputProps;
@@ -62,6 +69,26 @@ export const OTPField: React.FC<OTPFieldProps> = (props) => {
   )
 }
 
+export const OTPFail: React.FC<OTPFailProps> = (props) => {
+  const { inputProps_1, inputProps_2, inputProps_3, inputProps_4 } = props;
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title_1}>Nhập OTP</Text>
+      <Text style={styles.desFail}>Mã OTP bạn vừa nhập không chính xác. Vui lòng nhập lại.</Text>
+      <View style = {styles.boxOTP}>
+        <TextInput {...inputProps_1} style={styles.textInputOTP} />
+        <TextInput {...inputProps_2} style={styles.textInputOTP} />
+        <TextInput {...inputProps_1} style={styles.textInputOTP} />
+        <TextInput {...inputProps_2} style={styles.textInputOTP} />
+      </View>
+      <Text style={[styles.desFail, {marginBottom: '0%'}]}>Bạn chưa nhận được mã?</Text>
+      <TouchableOpacity>
+        <Text style = {styles.textbtn}>Gửi lại mã</Text>
+      </TouchableOpacity>
+    </View>
+  )
+}
+
 
 const styles = StyleSheet.create({
   container: {
@@ -69,7 +96,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    color: '#fff',
+    color: Colors.WHITE,
     fontSize: 24,
     fontStyle: 'italic',
     fontWeight: '700',
@@ -79,7 +106,7 @@ const styles = StyleSheet.create({
   textInputSignIn: {
     width: 300,
     height: 50,
-    color: '#000',
+    color: Colors.BLACK,
     backgroundColor: Colors.WHITE,
     fontWeight: '700',
     borderRadius: 6,
@@ -87,24 +114,32 @@ const styles = StyleSheet.create({
   textInputSignUp: {
     width: 300,
     height: 40,
-    color: '#000',
-    backgroundColor: 'white',
+    color:Colors.BLACK,
+    backgroundColor:Colors.WHITE,
     fontWeight: '700',
     borderRadius: 6,
     marginBottom: '3%',
   },
   title_1: {
-    color: '#fff',
+    color: Colors.WHITE,
     fontSize: 24,
     fontStyle: 'italic',
     fontWeight: '700',
     lineHeight: 36,
   },
   des: {
-    color: '#fff',
+    color: Colors.WHITE,
     fontSize: 14,
-    lineHeight: 36,
+    lineHeight: 21,
     marginBottom: '5%',
+  },
+  desFail: {
+    color: Colors.WHITE,
+    fontSize: 14,
+    lineHeight: 21,
+    marginBottom: '5%',
+    textAlign: 'center',
+    width: '75%',
   },
   boxOTP: {
     width: '100%',
@@ -117,11 +152,11 @@ const styles = StyleSheet.create({
     height: 50,
     borderRadius: 6,
     backgroundColor: Colors.WHITE,
-    color:'#000',
+    color:Colors.BLACK,
     textAlign: 'center',
   },
   textbtn: {
-    color: '#fff',
+    color: Colors.WHITE,
     fontSize: 14,
     fontWeight: '700',
     lineHeight: 21,

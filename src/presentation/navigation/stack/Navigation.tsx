@@ -3,7 +3,7 @@ import { StackNavigationProp, StackScreenProps } from "@react-navigation/stack";
 type SplashScreenProps = {
     id: number;
 };
-type OnBoardingProps = {
+type SigInScreenProps = {
     userID: number;
 };
 
@@ -14,12 +14,27 @@ type SignInProps = {
 type SignInOTPProps = {
     id: number;
 };
+type SignUpScreenProps = {
+    id: number;
+};
+
+type SignUpProps = {
+    id: number;
+};
+
+type SignUpOTPProps = {
+    id: number;
+};
+
 
 export type MainStackParamList = {
     SplashScreen: SplashScreenProps | undefined;
-    OnBoarding: OnBoardingProps | undefined;
+    SigInScreen: SigInScreenProps | undefined;
     SignIn: SignInProps | undefined;
     SignInOTP: SignInOTPProps | undefined;
+    SignUp: SignUpProps | undefined;
+    SignUpOTP: SignUpOTPProps | undefined;
+    SignUpScreen: SignUpScreenProps | undefined;
 };
 
 export type MainStackNavigation = StackNavigationProp<MainStackParamList>;

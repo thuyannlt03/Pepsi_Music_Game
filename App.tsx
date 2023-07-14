@@ -9,8 +9,13 @@
 import React from 'react';
 import SignIn from './src/presentation/container/Authen/SignIn/SignIn';
 import SignInOTP from './src/presentation/container/Authen/SignIn/SignInOTP';
-import OnBoarding from './src/presentation/container/Authen/SplashScreen/OnBoarding';
+import SigInScreen from './src/presentation/container/Authen/SplashScreen/SigInScreen';
 import SplashScreen from './src/presentation/container/Authen/SplashScreen/SplashScreen';
+import SignUp from './src/presentation/container/Authen/SignUp/SignUp';
+import SignUpOTP from './src/presentation/container/Authen/SignUp/SignUpOTP';
+import SignUpScreen from './src/presentation/container/Authen/SplashScreen/SignUpScreen';
+
+
 
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack';
@@ -81,8 +86,13 @@ function App(): JSX.Element {
     //<Splash></Splash>
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name='OnBoarding' component={OnBoarding} />
+
+        <Stack.Screen name='SplashScreen' component={SplashScreen} />
+        <Stack.Screen name='SigInScreen' component={SigInScreen} />
         <Stack.Screen name='SignIn' component={SignIn} />
+        <Stack.Screen name='SignUpScreen' component={SignUpScreen} />
+        <Stack.Screen name='SignUp' component={SignUp} />
+        <Stack.Screen name='SignUpOTP' component={SignUpOTP} />
         <Stack.Screen name='SignInOTP' component={SignInOTP} />
       </Stack.Navigator>
     </NavigationContainer>

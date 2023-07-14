@@ -1,10 +1,21 @@
+import React, { useEffect } from 'react'; 
 import { StyleSheet, Text, View, Image, Dimensions, ImageBackground } from 'react-native'
-import React from 'react'
 import Background from '../../../component/background/Background'
-import { HEADLINE_2,TALEN } from '../../../../../assets'
 import { Colors } from '../../../resource/value/Colors'
+import { HEADLINE_2, TALEN } from '../../../../../assets'
+import { MainStackScreenProps } from '../../../navigation/stack/Navigation'
 
-const SplashScreen = () => {
+
+const SplashScreen: React.FC<MainStackScreenProps<'SplashScreen'>>= ({navigation,route}) => {
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      navigation.replace('SigInScreen');
+    }, 5000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [navigation]);
     return (
         <Background>
             <View style={styles.container}>

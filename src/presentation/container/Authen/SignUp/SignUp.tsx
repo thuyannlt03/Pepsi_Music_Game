@@ -4,27 +4,31 @@ import Button from '../../../component/button/Button'
 import Background from '../../../component/background/Background'
 import { Colors } from '../../../resource/value/Colors'
 import Header from '../../../component/header/Header'
-import { LOGO_PEPSI } from '../../../../../assets'
-import {SignInField} from '../../../component/input/TextField'
+import {LOGO_PEPSI } from '../../../../../assets'
+import {SignUpField} from '../../../component/input/TextField'
 import Form from '../../../component/form/Form'
 import { MainStackScreenProps } from '../../../navigation/stack/Navigation'
+import SignIn from '../SignIn/SignIn'
 
-const SignIn: React.FC<MainStackScreenProps<'SignIn'>> = ({ navigation, route }) => {
+
+
+
+const SignUp: React.FC<MainStackScreenProps<'SignUp'>>= ({navigation,route}) => {
 
   const [edt, setedt] = React.useState<string>('');
   console.log(edt)
 
-  const signIn = () => {
-    navigation.navigate('SignInOTP');
+  const SignIn = () => {
+    navigation.navigate('SignIn');
   }
-  const SignUpScreen = () => {
-    navigation.navigate('SignUpScreen');
+  const SignUpOTP = () => {
+    navigation.navigate('SignUpOTP');
   }
 
   const headerCenter = () => {
     return (
       <View >
-        <Image source={LOGO_PEPSI} style={styles.image} />
+        <Image source={LOGO_PEPSI} style = {styles.image}/>
       </View>
     );
   }
@@ -34,24 +38,24 @@ const SignIn: React.FC<MainStackScreenProps<'SignIn'>> = ({ navigation, route })
       <Background>
         <View style={styles.container} >
           <Header
-            centerHeader={headerCenter()}
-            containerStyle={styles.header} />
+            centerHeader={headerCenter()} 
+            containerStyle = {styles.header}/>
           <Form>
-            <SignInField/>
+            <SignUpField/>
           </Form>
-          <Button
-            containerStyle={styles.buttonSignIn}
-            title='Đăng nhập'
-            onPress={signIn} />
-          <View style={styles.viewOr}>
-            <View style={styles.line} />
-            <Text style={styles.textOr}>hoặc</Text>
-            <View style={styles.line} />
+          <Button 
+            containerStyle = {styles.buttonLogIn}
+            title='Lấy mã OTP'
+            onPress={SignUpOTP}/>
+          <View style = {styles.viewOr}>
+            <View style = {styles.line}/>
+            <Text style = {styles.textOr}>hoặc</Text>
+            <View style = {styles.line}/>
           </View>
           <Button 
-            containerStyle = {styles.buttonSignUp}
-            title='Đăng ký'
-             onPress={SignUpScreen}
+            containerStyle = {styles.buttonRegister}
+            title='Đăng nhập'
+            onPress={SignIn}
             titleStyle = {styles.title}/>
         </View>
       </Background>
@@ -59,7 +63,7 @@ const SignIn: React.FC<MainStackScreenProps<'SignIn'>> = ({ navigation, route })
   )
 }
 
-export default SignIn
+export default SignUp
 
 const styles = StyleSheet.create({
   container: {
@@ -73,18 +77,17 @@ const styles = StyleSheet.create({
   },
   image: {
     resizeMode: 'contain',
-    height: 48,
+    height: 48
   },
-  buttonSignIn: {
+  buttonLogIn: {
     width: '90%',
     height: '5.4%',
     marginTop: '10%',
   },
-  buttonSignUp: {
+  buttonRegister: {
     width: '90%',
     height: '5.4%',
     backgroundColor: Colors.BACKGROUND_FORM,
-    
   },
   title: {
     color: Colors.WHITE,
@@ -92,19 +95,19 @@ const styles = StyleSheet.create({
   viewOr: {
     width: '90%',
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent:'space-between',
     alignItems: 'center',
-    marginVertical: '5%',
+    marginVertical: '3%',
   },
-  line: {
+  line : {
     width: '45%',
     borderTopWidth: 0.5,
-    borderColor: Colors.WHITE,
+    borderColor: Colors.WHITE
   },
   textOr: {
     width: '10%',
     textAlign: 'center',
     fontWeight: '700',
-    color: Colors.WHITE,
+    color: Colors.WHITE
   },
 })

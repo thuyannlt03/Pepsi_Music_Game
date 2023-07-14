@@ -5,7 +5,7 @@ import { CENTER_BUTTON, HEADLINE_2, LEFT_BUTTON, RIGHT_BUTTON, TALEN } from '../
 import { Colors } from '../../../resource/value/Colors'
 import { MainStackScreenProps } from '../../../navigation/stack/Navigation'
 
-const OnBoarding: React.FC<MainStackScreenProps<'OnBoarding'>> = ({ navigation, route }) => {
+const SigInScreen: React.FC<MainStackScreenProps<'SigInScreen'>> = ({ navigation, route }) => {
         const onClick = () => {
           navigation.navigate('SignIn');
         }
@@ -38,7 +38,7 @@ const OnBoarding: React.FC<MainStackScreenProps<'OnBoarding'>> = ({ navigation, 
     )
 }
 
-export default OnBoarding
+export default SigInScreen
 
 const styles = StyleSheet.create({
     container: {

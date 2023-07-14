@@ -1,4 +1,4 @@
-import { StyleSheet, View, ScrollView, Dimensions, Image } from 'react-native'
+import { StyleSheet, Text, View, ScrollView, Dimensions, Image } from 'react-native'
 import React from 'react'
 import Background from '../../../component/background/Background'
 import Header from '../../../component/header/Header'
@@ -9,7 +9,7 @@ import { LOGO_PEPSI } from '../../../../../assets'
 import { MainStackScreenProps } from '../../../navigation/stack/Navigation'
 
 
-const SignInOTP: React.FC<MainStackScreenProps<'SignInOTP'>>= ({navigation,route}) => {
+const SignUpOTP: React.FC<MainStackScreenProps<'SignUpOTP'>>= ({navigation,route}) => {
 
   const [edt, setedt] = React.useState<string>('');
   console.log(edt)
@@ -25,46 +25,45 @@ const SignInOTP: React.FC<MainStackScreenProps<'SignInOTP'>>= ({navigation,route
       </View>
     );
   }
-
   return (
     <ScrollView>
       <Background>
         <View style={styles.container} >
           <Header
-            centerHeader={headerCenter()}
-            containerStyle={styles.header} />
+            centerHeader={headerCenter()} 
+            containerStyle = {styles.header}/>
           <Form>
-            <OTPField />
+            <OTPField/>
           </Form>
-          <Button
-            containerStyle={styles.buttonSignIn}
+          <Button 
+            containerStyle = {styles.buttonLogIn}
             title='Xác nhận'
-            onPress={SigInScreen} />
+            onPress={SigInScreen}/>
         </View>
       </Background>
     </ScrollView>
   )
 }
 
-export default SignInOTP
+export default SignUpOTP
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    width: Dimensions.get('screen').width,
-    height: Dimensions.get('screen').height,
-    alignItems: 'center',
-  },
-  header: {
-    marginVertical: '8.3%',
-  },
-  image: {
-    resizeMode: 'contain',
-    height: 48
-  },
-  buttonSignIn: {
-    width: '90%',
-    height: '5.4%',
-    marginTop: '10%',
-  },
+      container: {
+        flex: 1,
+        width: Dimensions.get('screen').width,
+        height: Dimensions.get('screen').height,
+        alignItems: 'center',
+      },
+      header: {
+        marginVertical: '8.3%',
+      },
+      image: {
+        resizeMode: 'contain',
+        height: 48
+      },
+      buttonLogIn: {
+        width: '90%',
+        height: '5.4%',
+        marginTop: '10%',
+      },
 })
