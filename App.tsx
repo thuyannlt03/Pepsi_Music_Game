@@ -14,6 +14,9 @@ import SplashScreen from './src/presentation/container/Authen/SplashScreen/Splas
 import SignUp from './src/presentation/container/Authen/SignUp/SignUp';
 import SignUpOTP from './src/presentation/container/Authen/SignUp/SignUpOTP';
 import SignUpScreen from './src/presentation/container/Authen/SplashScreen/SignUpScreen';
+import Rules from './src/presentation/container/Authen/Intro/Rules';
+import Intro from './src/presentation/container/Authen/Intro/OnBoarding';
+import Beat from './src/presentation/container/Author/Home/Beat';
 
 
 
@@ -82,23 +85,27 @@ function App(): JSX.Element {
   };
 
   return (
+
+   // <Intro></Intro>
+    <Beat></Beat>
     //<SplashScreen></SplashScreen>
     //<Splash></Splash>
-    <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
+    // <NavigationContainer>
+    //   <Stack.Navigator screenOptions={{ headerShown: false }}>
 
-        <Stack.Screen name='SplashScreen' component={SplashScreen} />
-        <Stack.Screen name='SigInScreen' component={SigInScreen} />
-        <Stack.Screen name='SignIn' component={SignIn} />
-        <Stack.Screen name='SignUpScreen' component={SignUpScreen} />
-        <Stack.Screen name='SignUp' component={SignUp} />
-        <Stack.Screen name='SignUpOTP' component={SignUpOTP} />
-        <Stack.Screen name='SignInOTP' component={SignInOTP} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    //     <Stack.Screen name='SplashScreen' component={SplashScreen} />
+    //     <Stack.Screen name='SigInScreen' component={SigInScreen} />
+    //     <Stack.Screen name='SignIn' component={SignIn} />
+    //     <Stack.Screen name='SignUpScreen' component={SignUpScreen} />
+    //     <Stack.Screen name='SignUp' component={SignUp} />
+    //     <Stack.Screen name='SignUpOTP' component={SignUpOTP} />
+    //     <Stack.Screen name='SignInOTP' component={SignInOTP} />
+    //     <Stack.Screen name='Intro' component={Intro} />
+    //   </Stack.Navigator>
+    // </NavigationContainer>
   );
 }
-
+// npx react-native run-android
 
 const styles = StyleSheet.create({
   sectionContainer: {

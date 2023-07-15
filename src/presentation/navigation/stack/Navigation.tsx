@@ -25,6 +25,9 @@ type SignUpProps = {
 type SignUpOTPProps = {
     id: number;
 };
+type OnBoardingProps = {
+    id: number;
+};
 
 
 export type MainStackParamList = {
@@ -35,6 +38,7 @@ export type MainStackParamList = {
     SignUp: SignUpProps | undefined;
     SignUpOTP: SignUpOTPProps | undefined;
     SignUpScreen: SignUpScreenProps | undefined;
+    OnBoarding: OnBoardingProps | undefined;
 };
 
 export type MainStackNavigation = StackNavigationProp<MainStackParamList>;

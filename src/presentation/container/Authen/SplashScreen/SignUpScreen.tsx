@@ -1,4 +1,4 @@
-import { Dimensions, Image, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { Dimensions, Image, ScrollView, StyleSheet, Text, View, } from 'react-native'
 import React from 'react'
 import Button from '../../../component/button/Button'
 import Background from '../../../component/background/Background'

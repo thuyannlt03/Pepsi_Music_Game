@@ -9,6 +9,9 @@ const SigInScreen: React.FC<MainStackScreenProps<'SigInScreen'>> = ({ navigation
         const onClick = () => {
           navigation.navigate('SignIn');
         }
+        const   HuongDan = () => {
+            navigation.navigate('OnBoarding');
+          }
     return (
         <Background>
             <View style={styles.container}>
@@ -26,7 +29,7 @@ const SigInScreen: React.FC<MainStackScreenProps<'SigInScreen'>> = ({ navigation
                         <TouchableOpacity style={styles.btn} onPress={onClick}>
                             <Image source={CENTER_BUTTON} style={styles.imageButton} />
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.btn}>
+                        <TouchableOpacity style={styles.btn} onPress={HuongDan}>
                             <ImageBackground source={RIGHT_BUTTON} style={styles.imageButton}>
                                 <Text style={styles.textButton}>HƯỚNG DẪN</Text>
                             </ImageBackground>
