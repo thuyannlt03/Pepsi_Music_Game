@@ -46,6 +46,7 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import OnBoarding from './src/presentation/container/Authen/Intro/OnBoarding';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -87,22 +88,24 @@ function App(): JSX.Element {
   return (
 
    // <Intro></Intro>
-    <Beat></Beat>
+    // <Beat></Beat>
     //<SplashScreen></SplashScreen>
     //<Splash></Splash>
-    // <NavigationContainer>
-    //   <Stack.Navigator screenOptions={{ headerShown: false }}>
 
-    //     <Stack.Screen name='SplashScreen' component={SplashScreen} />
-    //     <Stack.Screen name='SigInScreen' component={SigInScreen} />
-    //     <Stack.Screen name='SignIn' component={SignIn} />
-    //     <Stack.Screen name='SignUpScreen' component={SignUpScreen} />
-    //     <Stack.Screen name='SignUp' component={SignUp} />
-    //     <Stack.Screen name='SignUpOTP' component={SignUpOTP} />
-    //     <Stack.Screen name='SignInOTP' component={SignInOTP} />
-    //     <Stack.Screen name='Intro' component={Intro} />
-    //   </Stack.Navigator>
-    // </NavigationContainer>
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+
+        <Stack.Screen name='SplashScreen' component={SplashScreen} />
+        <Stack.Screen name='SigInScreen' component={SigInScreen} />
+        <Stack.Screen name='SignIn' component={SignIn} />
+        <Stack.Screen name='SignUpScreen' component={SignUpScreen} />
+        <Stack.Screen name='SignUp' component={SignUp} />
+        <Stack.Screen name='SignUpOTP' component={SignUpOTP} />
+        <Stack.Screen name='SignInOTP' component={SignInOTP} />
+        <Stack.Screen name='OnBoarding' component={OnBoarding} />
+        <Stack.Screen name='Rules' component={Rules} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 // npx react-native run-android

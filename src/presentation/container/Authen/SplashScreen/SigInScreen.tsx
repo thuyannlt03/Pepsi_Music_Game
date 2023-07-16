@@ -12,6 +12,9 @@ const SigInScreen: React.FC<MainStackScreenProps<'SigInScreen'>> = ({ navigation
         const   HuongDan = () => {
             navigation.navigate('OnBoarding');
           }
+          const   TheLe = () => {
+            navigation.navigate('Rules');
+          }
     return (
         <Background>
             <View style={styles.container}>
@@ -21,7 +24,7 @@ const SigInScreen: React.FC<MainStackScreenProps<'SigInScreen'>> = ({ navigation
                 <View style={styles.main}>
                     <Image source={TALEN} style={styles.imageTalen} />
                     <View style={styles.boxButton}>
-                        <TouchableOpacity style={styles.btn}>
+                        <TouchableOpacity style={styles.btn}  onPress={TheLe}>
                             <ImageBackground source={LEFT_BUTTON} style={styles.imageButton}>
                                 <Text style={styles.textButton}>THỂ LỆ</Text>
                             </ImageBackground>

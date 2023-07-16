@@ -13,6 +13,7 @@ export const Colors = {
     YELLOW : 'yellow',
     BLUE_CARD: '#005cb2',
     BACKGROUND_VIEW: '#104CE7',
+    BLUE_DARK: 'rgba(19, 66, 125, 0.50)',
     
   };
   
