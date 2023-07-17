@@ -6,7 +6,7 @@ import { MainStackScreenProps } from '../../../navigation/stack/Navigation'
 
 import {BACKGROUND_TAB, BACK, CARD_PEPSI, ICON_MIC, MIC, PEPSI_BLACK_CARD, PEPSI_CARD, PEPSI_BLACK } from '../../../../../assets'
 
-const Beat : React.FC<MainStackScreenProps<'Rules'>> = ({ navigation, route }) => {
+const Beat : React.FC<MainStackScreenProps<'Beat'>> = ({ navigation, route }) => {
 
     const [edt, setedt] = React.useState<string>('');
     console.log(edt)

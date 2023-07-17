@@ -15,7 +15,7 @@ import SignUp from './src/presentation/container/Authen/SignUp/SignUp';
 import SignUpOTP from './src/presentation/container/Authen/SignUp/SignUpOTP';
 import SignUpScreen from './src/presentation/container/Authen/SplashScreen/SignUpScreen';
 import Rules from './src/presentation/container/Authen/Intro/Rules';
-import Intro from './src/presentation/container/Authen/Intro/OnBoarding';
+import OnBoarding from './src/presentation/container/Authen/Intro/OnBoarding';
 import Beat from './src/presentation/container/Author/Home/Beat';
 
 
@@ -46,7 +46,7 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import OnBoarding from './src/presentation/container/Authen/Intro/OnBoarding';
+
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -103,7 +103,9 @@ function App(): JSX.Element {
         <Stack.Screen name='SignUpOTP' component={SignUpOTP} />
         <Stack.Screen name='SignInOTP' component={SignInOTP} />
         <Stack.Screen name='OnBoarding' component={OnBoarding} />
-        <Stack.Screen name='Rules' component={Rules} />
+        <Stack.Screen name='Rules' component={Rules}/>
+        <Stack.Screen name='Beat' component={Beat}/>
+        
       </Stack.Navigator>
     </NavigationContainer>
   );

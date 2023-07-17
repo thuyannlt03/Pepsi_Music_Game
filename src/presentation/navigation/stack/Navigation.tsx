@@ -31,6 +31,9 @@ type OnBoardingProps = {
 type RulesProps = {
     id: number;
 };
+type BeatProps = {
+    id: number;
+};
 
 
 export type MainStackParamList = {
@@ -43,6 +46,7 @@ export type MainStackParamList = {
     SignUpScreen: SignUpScreenProps | undefined;
     OnBoarding: OnBoardingProps | undefined;
     Rules: RulesProps | undefined;
+    Beat: BeatProps | undefined;
 };
 
 export type MainStackNavigation = StackNavigationProp<MainStackParamList>;
