@@ -12,7 +12,7 @@ const Rules: React.FC<MainStackScreenProps<'Rules'>> = ({ navigation, route }) =
     console.log(edt)
 
     const SigInScreen = () => {
-        navigation.navigate('SigInScreen');
+        navigation.navigate('SignInScreen');
     }
 
     const a1 = "\"SPVB\"";

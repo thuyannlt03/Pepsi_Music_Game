@@ -50,13 +50,13 @@ const renderItem = ({ item }: { item: Item }) => (
   </View>
 );
 
-const Beat = () => {
+const New = () => {
   return (
     <Background>
       <View style={styles.container}>
         <ImageBackground source={BACKGROUND_TAB} style={styles.headline}>
           <Image source={BACK} style={styles.iconBack} />
-          <Text style={styles.rule}>Beat nổi bật</Text>
+          <Text style={styles.rule}>Beat mới nhất</Text>
         </ImageBackground>
         <FlatList
           data={DATA}
@@ -158,4 +158,4 @@ borderRadius:4,
   },
 });
 
-export default Beat;
+export default New;

@@ -14,6 +14,20 @@ export const Colors = {
     BLUE_CARD: '#005cb2',
     BACKGROUND_VIEW: '#104CE7',
     BLUE_DARK: 'rgba(19, 66, 125, 0.50)',
+    BOTTOM_BAR: 'rgba(119, 174, 240, 1)',
+    BLUE_BACKGROUND:'rgba(19, 66, 125, 0.70)',
+    BORDER:'rgba(255, 255, 255, 0.40)',
+    SHADOW_TEXT:('rgba(0, 0, 0, 0.25)'),
+    BLUE_SHADOW:'#004A98',
+    BLUE_CASI: '#66C3E9',
+    LOI:'rgba(255, 255, 255, 0.80)',
+    BLUE:'rgba(0, 92, 178, 0.50)',
+    BACKGROUND_VOLUME: 'rgba(77, 115, 167, 0.30)',
+    BUTTON_VOLUME: 'rgba(20, 69, 194, 0.60)',
+    RED: '#ed1941',
+    BACKGROUND_BOX:'rgba(19, 66, 125, 0.3)',
+    BAR_RED: 'rgba(237, 25, 65, 1)',
+    BACKGROUND_HEART:  'rgba(16, 76, 231, 1)',
     
   };
   

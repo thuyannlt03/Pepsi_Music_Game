@@ -9,7 +9,7 @@ import { MainStackScreenProps } from '../../../navigation/stack/Navigation'
 const SplashScreen: React.FC<MainStackScreenProps<'SplashScreen'>>= ({navigation,route}) => {
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigation.replace('SigInScreen');
+      navigation.replace('SignInScreen');
     }, 5000);
 
     return () => {
