@@ -34,7 +34,7 @@ import AnimationOne from './src/presentation/container/Author/Remix/AnimationOne
 import AnimationTwo from './src/presentation/container/Author/Remix/AnimationTwo';
 import AnimationThree from './src/presentation/container/Author/Remix/AnimationThree';
 import Search from './src/presentation/container/Author/Remix/Search';
-
+import ProfileA from './src/presentation/container/Author/LeaderBoard/ProfileA';
 
 
 import { AuthorNavigation } from './src/presentation/navigation/stack/AuthorNavigation';
@@ -106,27 +106,34 @@ function App(): JSX.Element {
   return (
 
    // <Intro></Intro>
-     //<Beat></Beat>
+    
     //<SplashScreen></SplashScreen>
     //<Splash></Splash>
     //<Rules></Rules>
-    //<Thanks></Thanks>
     
-    //<Notification></Notification>
-    //<BeatList></BeatList>
-    //<Gift></Gift>
+    
+   
     // <NavigationContainer>
     //   <AuthorNavigation/>
     // </NavigationContainer>
+     //<Beat></Beat>
+    //<BeatList></BeatList>
    //<New></New>
-   //<Recording></Recording>
+   //<Use></Use>
+  //<Recorded></Recorded>
+   //<Recommen></Recommen>
+    //<Recording></Recording>
    //<NewBeat></NewBeat>
-   //<BeatList></BeatList>
+   // <Remix></Remix>
    //<AnimationOne></AnimationOne>
    //<AnimationTwo></AnimationTwo>
    //<AnimationThree></AnimationThree>
-   <Search></Search>
+   //<Search></Search>
+   //<Thanks></Thanks>
+    //<Notification></Notification>
+    //<Gift></Gift>
 
+    <ProfileA></ProfileA>
     // <NavigationContainer> 
       
     //   <Stack.Navigator screenOptions={{ headerShown: false }}>

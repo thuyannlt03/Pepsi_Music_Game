@@ -10,7 +10,7 @@ import Record from "../../container/Author/Home/Record";
 import VideoList from "../../container/Author/Home/VideoList";
 import Chart from "../../container/Author/Home/Chart";
 import Profile from "../../container/Author/Home/Profile";
-import BeatList from "../../container/Author/Home/BeatList";
+import BeatList from "../../container/Author/BeatList/BeatList";
 
 
 

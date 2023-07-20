@@ -30,6 +30,8 @@ export const Colors = {
     BACKGROUND_HEART:  'rgba(16, 76, 231, 1)',
     SEARCH: '#0074A4',
     SEARCH1: '#99B7D6',
+    TEXT_TONG: '#CCEBF8',
+    
     
   };
   

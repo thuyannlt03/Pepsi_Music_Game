@@ -51,6 +51,8 @@ export const COVER_2 = require('./Cover_2.png');
 export const CHECK = require('./Check.png');
 export const PEN = require('./Pen.png');
 export const SHARE = require('./Img_share.png');
+export const DOWN = require('./Download.png');
+export const ICON_SHARE = require('./Share.png');
 export const EYE = require('./Icon-Eye.png');
 export const HEART = require('./Icon-Heart.png');
 export const BANER = require('./Image-Banner.png');
@@ -60,6 +62,7 @@ export const CANCEL = require('./Icon_cancel.png');
 export const FREESTYLE = require('./Freestyle.png');
 export const MODERN = require('./Modern.png');
 export const OLD_SCHOOL = require('./Old_School.png');
+export const AVT = require('./Profile_avt.png');
 
 
 
