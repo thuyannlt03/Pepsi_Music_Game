@@ -18,7 +18,7 @@ import Rules from './src/presentation/container/Authen/Intro/Rules';
 import OnBoarding from './src/presentation/container/Authen/Intro/OnBoarding';
 import Beat from './src/presentation/container/Author/Home/Beat';
 
-import Thanks from './src/presentation/container/Author/Remix/Thanks'
+import Thanks from './src/presentation/container/Author/Remix/ThankYou'
 import Record from './src/presentation/container/Author/Home/Record';
 import Notification from './src/presentation/container/Author/Notification/Notification';
 import Gift from './src/presentation/container/Author/Notification/Gift';
@@ -30,6 +30,10 @@ import Use from './src/presentation/container/Author/BeatList/Use';
 import Recording from './src/presentation/container/Author/Remix/Recording';
 import NewBeat from './src/presentation/container/Author/Remix/NewBeat';
 import Remix from './src/presentation/container/Author/Remix/Remix';
+import AnimationOne from './src/presentation/container/Author/Remix/AnimationOne';
+import AnimationTwo from './src/presentation/container/Author/Remix/AnimationTwo';
+import AnimationThree from './src/presentation/container/Author/Remix/AnimationThree';
+import Search from './src/presentation/container/Author/Remix/Search';
 
 
 
@@ -117,7 +121,11 @@ function App(): JSX.Element {
    //<New></New>
    //<Recording></Recording>
    //<NewBeat></NewBeat>
-   <BeatList></BeatList>
+   //<BeatList></BeatList>
+   //<AnimationOne></AnimationOne>
+   //<AnimationTwo></AnimationTwo>
+   //<AnimationThree></AnimationThree>
+   <Search></Search>
 
     // <NavigationContainer> 
       

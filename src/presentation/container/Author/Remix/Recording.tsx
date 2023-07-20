@@ -46,14 +46,14 @@ const Recording = () => {
         <Background>
 
             <ImageBackground source={BACKGROUND_TAB} style={styles.headline}>
-                <Pressable >
+                <Pressable>
                     <Image source={BACK} style={styles.iconBack} />
                 </Pressable>
                 <View style={styles.beat}>
                     <Text style={styles.baihat}>Tiền nhiều để làm gì</Text>
                     <Text style={styles.casi}>GDucky ft.Lưu Hiền Trinh</Text>
                 </View>
-                <Pressable  >
+                <Pressable>
                     <Image source={SUBTRACT} style={styles.iconSubTract} />
                 </Pressable>
             </ImageBackground>

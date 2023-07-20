@@ -41,6 +41,7 @@ export const SAMSUNG = require('./Samsung_Galaxy_TabS7+.png');
 export const SUBTRACT = require('./Subtract.png');
 export const SUBTRACT_HIDE = require('./Subtract_Hide.png');
 export const TIME = require('./Time.png');
+export const TIME_RED = require('./Time_Red.png');
 export const PLAY = require('./Play.png');
 export const PERFORM = require('./perform.png');
 export const RECORD_BACK = require('./Record_Back.png');
@@ -53,6 +54,7 @@ export const SHARE = require('./Img_share.png');
 export const EYE = require('./Icon-Eye.png');
 export const HEART = require('./Icon-Heart.png');
 export const BANER = require('./Image-Banner.png');
+export const CANCEL = require('./Icon_cancel.png');
 
 
 export const FREESTYLE = require('./Freestyle.png');

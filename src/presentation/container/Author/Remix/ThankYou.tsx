@@ -6,7 +6,7 @@ import { HEADLINE_2, TALEN } from '../../../../../assets'
 import { Colors } from '../../../resource/value/Colors'
 
 
-const Thanks = () => {
+const ThankYou = () => {
     return (
         <Background>
             <View style={styles.container}>
@@ -35,7 +35,7 @@ const Thanks = () => {
     )
 }
 
-export default Thanks
+export default ThankYou
 
 const styles = StyleSheet.create({
     container: {
