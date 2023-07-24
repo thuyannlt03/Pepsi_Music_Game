@@ -4,7 +4,20 @@ import Background from '../../../component/background/Background'
 import { BACKGROUND_TAB, BACK, COVER_1, TIME_RED, PEN, SHARE } from '../../../../../assets'
 import { Colors } from '../../../resource/value/Colors'
 import Button from '../../../component/button/Button'
-const AnimationThree = () => {
+import { MainStackScreenProps } from '../../../navigation/stack/Navigation'
+const AnimationThree : React.FC<MainStackScreenProps<'AnimationThree'>> = ({ navigation, route }) => {
+
+    const [edt, setedt] = React.useState<string>('');
+    console.log(edt)
+  
+    
+   
+    const Search = () => {
+        navigation.navigate('Search');
+    }
+    const ThankYou = () => {
+        navigation.navigate('ThankYou');
+    }
     return (
         <Background>
             <View style={styles.container}>
@@ -21,7 +34,7 @@ const AnimationThree = () => {
                                 <Text style={styles.textTitle}>Tiền nhiều để làm gì</Text>
                                 <Text style={styles.textMini}>Gducky ft.Lưu Hiền Trinh</Text>
                             </View>
-                            <TouchableOpacity>
+                            <TouchableOpacity onPress={Search}>
                                 <Image source={PEN} style={styles.imgPen}/>
                             </TouchableOpacity>
                         </View>
@@ -32,6 +45,7 @@ const AnimationThree = () => {
                     <Button
                         containerStyle={styles.buttonTao}
                         title='Xong'
+                        onPress={ThankYou}
                     />
                     <Button
                         containerStyle={styles.buttonBo}

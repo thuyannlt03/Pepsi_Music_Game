@@ -14,8 +14,8 @@ const SignInOTP: React.FC<MainStackScreenProps<'SignInOTP'>>= ({navigation,route
   const [edt, setedt] = React.useState<string>('');
   console.log(edt)
 
-  const Record = () => {
-    navigation.navigate('Record');
+  const Home = () => {
+    navigation.navigate('Home');
   }
   
   const headerCenter = () => {
@@ -39,7 +39,7 @@ const SignInOTP: React.FC<MainStackScreenProps<'SignInOTP'>>= ({navigation,route
           <Button
             containerStyle={styles.buttonSignIn}
             title='Xác nhận'
-            onPress={Record} />
+            onPress={Home} />
         </View>
       </Background>
     </ScrollView>

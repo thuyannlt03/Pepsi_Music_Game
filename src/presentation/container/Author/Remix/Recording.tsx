@@ -1,8 +1,9 @@
-import { StyleSheet, Text, View, ImageBackground, Pressable, Image, Dimensions,  TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, ImageBackground, Pressable, Image, Dimensions, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
 import Background from '../../../component/background/Background'
-import { BACKGROUND_TAB, BACK, SUBTRACT, SUBTRACT_HIDE, CENTER_BUTTON, TIME } from '../../../../../assets'
+import { BACKGROUND_TAB, BACK, SUBTRACT, CENTER_BUTTON, TIME } from '../../../../../assets'
 import { Colors } from '../../../resource/value/Colors'
+import { MainStackScreenProps } from '../../../navigation/stack/Navigation'
 
 
 
@@ -16,14 +17,14 @@ const getTextWithBoldAndUpper1 = (text1: string, boldAndUpperTexts1: any) => {
     return parts1.map((part, index) => {
         const isBoldAndUpper1 = boldAndUpperTexts1.includes(part);
         return isBoldAndUpper1 ? (
-            <Text key={index} style={{ fontWeight: 'bold', fontSize:16,  color:'#ffe512' }}>{part}</Text>
+            <Text key={index} style={{ fontWeight: 'bold', fontSize: 16, color: '#ffe512' }}>{part}</Text>
         ) : (
             <Text key={index}>{part}</Text>
         );
     });
 };
 const text2 = "cuốn phăng đi";
-const boldAndUpperTexts2 = [ "cuốn phăng đi"];
+const boldAndUpperTexts2 = ["cuốn phăng đi"];
 const regex2 = new RegExp(`(${boldAndUpperTexts2.join('|')})`, 'gi');
 
 const getTextWithBoldAndUpper2 = (text2: string, boldAndUpperTexts2: any) => {
@@ -31,7 +32,7 @@ const getTextWithBoldAndUpper2 = (text2: string, boldAndUpperTexts2: any) => {
     return parts2.map((part, index) => {
         const isBoldAndUpper2 = boldAndUpperTexts2.includes(part);
         return isBoldAndUpper2 ? (
-            <Text key={index} style={{ fontWeight: 'bold',fontSize: 16,color:'#ffe512' }}>{part}</Text>
+            <Text key={index} style={{ fontWeight: 'bold', fontSize: 16, color: '#ffe512' }}>{part}</Text>
         ) : (
             <Text key={index}>{part}</Text>
         );
@@ -39,7 +40,18 @@ const getTextWithBoldAndUpper2 = (text2: string, boldAndUpperTexts2: any) => {
 };
 
 
-const Recording = () => {
+const Recording: React.FC<MainStackScreenProps<'Recording'>> = ({ navigation, route }) => {
+
+    const [edt, setedt] = React.useState<string>('');
+    console.log(edt)
+
+
+    const Recording2 = () => {
+        navigation.navigate('Recording2');
+    }
+    const NewBeat = () => {
+        navigation.navigate('NewBeat');
+    }
 
 
     return (
@@ -53,36 +65,36 @@ const Recording = () => {
                     <Text style={styles.baihat}>Tiền nhiều để làm gì</Text>
                     <Text style={styles.casi}>GDucky ft.Lưu Hiền Trinh</Text>
                 </View>
-                <Pressable>
+                <Pressable onPress={Recording2}>
                     <Image source={SUBTRACT} style={styles.iconSubTract} />
                 </Pressable>
             </ImageBackground>
-          
-                <View style={styles.gr}>
-            <Text style={styles.loi}>Lại là Ducky và sau nhiều lần </Text>
-            <Text  style={styles.loi}>đã bị trói buộc thì</Text>
-            <Text  style={styles.loi}>Thử đoán xem hôm nay</Text>
-            <Text  style={styles.loi}>thằng Ducky này có thể nói được gì</Text>
-            <Text  style={styles.loi}>Three of them say to me</Text>
-            <Text  style={styles.loi}>"Baby I choose this rhymes"</Text>
-            <Text  style={styles.loi}>Để rồi thì chú vịt vàng</Text>
-            <Text  style={styles.loi}>lại làm cho cả sở thú nhịp nhàng</Text>
-            <Text  style={styles.loi}>{getTextWithBoldAndUpper1(text1, boldAndUpperTexts1)}</Text>
-            <Text  style={styles.loi}>{getTextWithBoldAndUpper2(text2, boldAndUpperTexts2)}</Text>
-            <Text  style={styles.loi}>Quên đi bao yêu thương xung quanh</Text>
-            <Text  style={styles.loi}>chỉ để chạy theo đống money</Text>
-            <Text  style={styles.loi}>Bao nhiêu suy tư, bây giờ, cần đi làm ăn gì</Text>
-            <Text  style={styles.loi}>Ta bay theo hương, bay theo hoa</Text>
-            <Text  style={styles.loi}>just like a bee for honey</Text>
-            <Text  style={styles.loi}>And just like that</Text>
-            <Text  style={styles.loi}>Vịt tự nhủ là bản thân không được nhu mì đi</Text>
-            <Text  style={styles.loi}>Vịt đánh đổi anh em bè bạn lấy bộ đồ Louis V</Text>
-            <Text  style={styles.loi}>Để trở thành người đàn ông tham vọng</Text>
-            <Text  style={styles.loi}>Những thứ xung quanh thật ra</Text>
-            <Text  style={styles.loi}>đều là không quan trọng</Text>
+
+            <View style={styles.gr}>
+                <Text style={styles.loi}>Lại là Ducky và sau nhiều lần </Text>
+                <Text style={styles.loi}>đã bị trói buộc thì</Text>
+                <Text style={styles.loi}>Thử đoán xem hôm nay</Text>
+                <Text style={styles.loi}>thằng Ducky này có thể nói được gì</Text>
+                <Text style={styles.loi}>Three of them say to me</Text>
+                <Text style={styles.loi}>"Baby I choose this rhymes"</Text>
+                <Text style={styles.loi}>Để rồi thì chú vịt vàng</Text>
+                <Text style={styles.loi}>lại làm cho cả sở thú nhịp nhàng</Text>
+                <Text style={styles.loi}>{getTextWithBoldAndUpper1(text1, boldAndUpperTexts1)}</Text>
+                <Text style={styles.loi}>{getTextWithBoldAndUpper2(text2, boldAndUpperTexts2)}</Text>
+                <Text style={styles.loi}>Quên đi bao yêu thương xung quanh</Text>
+                <Text style={styles.loi}>chỉ để chạy theo đống money</Text>
+                <Text style={styles.loi}>Bao nhiêu suy tư, bây giờ, cần đi làm ăn gì</Text>
+                <Text style={styles.loi}>Ta bay theo hương, bay theo hoa</Text>
+                <Text style={styles.loi}>just like a bee for honey</Text>
+                <Text style={styles.loi}>And just like that</Text>
+                <Text style={styles.loi}>Vịt tự nhủ là bản thân không được nhu mì đi</Text>
+                <Text style={styles.loi}>Vịt đánh đổi anh em bè bạn lấy bộ đồ Louis V</Text>
+                <Text style={styles.loi}>Để trở thành người đàn ông tham vọng</Text>
+                <Text style={styles.loi}>Những thứ xung quanh thật ra</Text>
+                <Text style={styles.loi}>đều là không quan trọng</Text>
             </View>
-              
-            
+
+
 
 
             <View style={styles.group}>
@@ -90,8 +102,9 @@ const Recording = () => {
                 <Image source={TIME} style={styles.time} />
                 <Text>05:00</Text>
             </View>
-            <Image source={CENTER_BUTTON} style={styles.center} />
-
+            <Pressable onPress={NewBeat}>
+                <Image source={CENTER_BUTTON} style={styles.center} />
+            </Pressable>
         </Background>
     )
 }
@@ -142,17 +155,17 @@ const styles = StyleSheet.create({
         marginLeft: Dimensions.get('window').height * 0.03,
 
     },
-    gr:{
+    gr: {
         marginTop: Dimensions.get('window').height * 0.02,
-        textAlign:'center'
-        
+        textAlign: 'center'
+
     },
-    loi:{
+    loi: {
         fontFamily: 'Montserrat',
         fontSize: 14,
         fontWeight: '500',
         lineHeight: 21,
-        textAlign:'center',
+        textAlign: 'center',
         color: Colors.LOI
 
     },

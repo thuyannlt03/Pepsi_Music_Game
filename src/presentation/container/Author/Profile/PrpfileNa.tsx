@@ -56,7 +56,7 @@ const renderItem = ({ item }: { item: Item }) => (
   </View>
 );
 
-const Profile = () => {
+const ProfileNa = () => {
   return (
     <Background>
 
@@ -107,7 +107,7 @@ const Profile = () => {
   )
 }
 
-export default Profile
+export default ProfileNa
 
 const styles = StyleSheet.create({
   container: {

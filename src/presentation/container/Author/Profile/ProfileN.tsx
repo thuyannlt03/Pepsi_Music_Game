@@ -56,14 +56,14 @@ const renderItem = ({ item }: { item: Item }) => (
   </View>
 );
 
-const Profile = () => {
+const ProfileN = () => {
   return (
     <Background>
 
       <ImageBackground source={BACKGROUND_TAB} style={styles.headline}>
-      <Image source={BACK} style={styles.iconBack} />
+       
         <Text style={styles.Profile}>Thông tin cá nhân</Text>
-        <Image source={NOTIFICATION_2} style={styles.iconNo} />
+        <Image source={NOTIFICATION_2} style={styles.iconBack} />
       </ImageBackground>
       <ScrollView style={styles.container}>
         <View style={styles.group}>
@@ -97,7 +97,6 @@ const Profile = () => {
             data={DATA}
             renderItem={renderItem}
             keyExtractor={(item) => item.id.toString()}
-            
             numColumns={2}
           />
         </View>
@@ -107,7 +106,7 @@ const Profile = () => {
   )
 }
 
-export default Profile
+export default ProfileN
 
 const styles = StyleSheet.create({
   container: {
@@ -122,11 +121,7 @@ const styles = StyleSheet.create({
   },
   iconBack: {
     marginTop: Dimensions.get('window').height * 0.04,
-    marginLeft: Dimensions.get('window').width * 0.03,
-  },
-  iconNo: {
-    marginTop: Dimensions.get('window').height * 0.04,
-    marginLeft: Dimensions.get('window').width * 0.22,
+    marginLeft: Dimensions.get('window').width * 0.2,
   },
   Profile: {
     fontFamily: 'Montserrat',
@@ -135,7 +130,7 @@ const styles = StyleSheet.create({
     lineHeight: 27,
     color: Colors.WHITE,
     marginTop: Dimensions.get('window').height * 0.04,
-    marginLeft: Dimensions.get('window').width * 0.2,
+    marginLeft: Dimensions.get('window').width * 0.3,
   },
   group: {
     width: Dimensions.get('window').width * 1,
@@ -284,7 +279,7 @@ const styles = StyleSheet.create({
     marginLeft: - Dimensions.get('window').height * 0.018,
     width: '30%',
     flexDirection: 'row',
-    backgroundColor: Colors.BAR_RED,
+    backgroundColor: Colors.BAR_RED, 
     borderTopStartRadius: 5,
     borderBottomStartRadius: 5,
     justifyContent: 'center',

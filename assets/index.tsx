@@ -57,12 +57,14 @@ export const EYE = require('./Icon-Eye.png');
 export const HEART = require('./Icon-Heart.png');
 export const BANER = require('./Image-Banner.png');
 export const CANCEL = require('./Icon_cancel.png');
+export const NOTIFICATION_2 = require('./Notification_2.png');
 
 
 export const FREESTYLE = require('./Freestyle.png');
 export const MODERN = require('./Modern.png');
 export const OLD_SCHOOL = require('./Old_School.png');
 export const AVT = require('./Profile_avt.png');
+export const AVT_1 = require('./Avt_Profile.png');
 
 
 

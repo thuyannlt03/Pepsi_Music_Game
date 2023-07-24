@@ -4,7 +4,19 @@ import Button from '../../../component/button/Button'
 import Background from '../../../component/background/Background'
 import { BACKGROUND_TAB, BACK, COVER_2, OLD_SCHOOL, MODERN, FREESTYLE } from '../../../../../assets'
 import { Colors } from '../../../resource/value/Colors'
-const AnimationTwo = () => {
+import { MainStackScreenProps } from '../../../navigation/stack/Navigation'
+
+
+const AnimationTwo : React.FC<MainStackScreenProps<'AnimationTwo'>> = ({ navigation, route }) => {
+
+    const [edt, setedt] = React.useState<string>('');
+    console.log(edt)
+  
+    
+   
+    const AnimationThree = () => {
+        navigation.navigate('AnimationThree');
+    }
     return (
         <Background>
             <View style={styles.container}>
@@ -37,11 +49,13 @@ const AnimationTwo = () => {
                         containerStyle={styles.buttonTao}
                         title='Bỏ qua'
                         titleStyle={styles.title}
+                        
                     />
                     <Button
                         containerStyle={styles.buttonBo}
                         title='Xác nhận'
-                        //  onPress={SignUpScreen}
+                        onPress={AnimationThree}
+                       
                         titleStyle={styles.title1} />
                 </View>
             </View>

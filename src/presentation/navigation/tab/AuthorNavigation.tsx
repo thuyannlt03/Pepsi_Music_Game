@@ -1,6 +1,6 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import {MainStackParamList} from "../stack/Navigation";
-import { MainTabNavigation, MainTabParamList } from "../stack/TabNavigation";
+import { MainTabNavigation, MainTabParamList } from "./TabNavigation";
 import { Dimensions, Image, StyleSheet, Text, View } from "react-native";
 import { BACKGROUND_TAB, CENTER_BUTTON, VIDEO_SQUARE, VIDEO_SQUARE_FOCUS, CHART, CHART_FOCUS, PROFILE, PROFILE_FOCUS, MUSIC, MUSIC_FOCUS, ICON_HOME } from "../../../../assets";
 
@@ -10,7 +10,7 @@ import Record from "../../container/Author/Home/Record";
 import VideoList from "../../container/Author/Home/VideoList";
 import Chart from "../../container/Author/Home/Chart";
 import Profile from "../../container/Author/Home/Profile";
-import BeatList from "../../container/Author/BeatList/BeatList";
+import BeatList from "../../container/Author/Home/BeatList";
 
 
 
@@ -19,7 +19,7 @@ const Tab = createBottomTabNavigator();
 export const AuthorNavigation = () => {
 
     return (
-        <Tab.Navigator initialRouteName="Record" 
+        <Tab.Navigator initialRouteName="Home" 
             screenOptions={({ route }) => ({
                 tabBarHideOnKeyboard: true,
                 tabBarStyle: {
@@ -43,7 +43,7 @@ export const AuthorNavigation = () => {
                     ),
                     title: 'Video List',
                 }} />
-            <Tab.Screen  name="BeatList" component={BeatList}
+            {/* <Tab.Screen  name="BeatList" component={BeatList}
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <View>
@@ -51,7 +51,7 @@ export const AuthorNavigation = () => {
                         </View>
                     ),
                     title: 'Beat List',
-                }} />
+                }} /> */}
             <Tab.Screen name="Record" component={Record}
                 options={{
                     tabBarIcon: ({ focused }) => (

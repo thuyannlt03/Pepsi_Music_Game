@@ -16,28 +16,32 @@ import SignUpOTP from './src/presentation/container/Authen/SignUp/SignUpOTP';
 import SignUpScreen from './src/presentation/container/Authen/SplashScreen/SignUpScreen';
 import Rules from './src/presentation/container/Authen/Intro/Rules';
 import OnBoarding from './src/presentation/container/Authen/Intro/OnBoarding';
-import Beat from './src/presentation/container/Author/Home/Beat';
+import Beat from './src/presentation/container/Author/BeatList/Beat';
 
 import Thanks from './src/presentation/container/Author/Remix/ThankYou'
 import Record from './src/presentation/container/Author/Home/Record';
 import Notification from './src/presentation/container/Author/Notification/Notification';
 import Gift from './src/presentation/container/Author/Notification/Gift';
-import BeatList from './src/presentation/container/Author/BeatList/BeatList';
+import BeatList from './src/presentation/container/Author/Home/BeatList';
 import New from './src/presentation/container/Author/BeatList/New';
 import Recommen from './src/presentation/container/Author/BeatList/Recommen'
 import Recorded from './src/presentation/container/Author/BeatList/Recorded';
 import Use from './src/presentation/container/Author/BeatList/Use';
 import Recording from './src/presentation/container/Author/Remix/Recording';
+import Recording2 from './src/presentation/container/Author/Remix/Recording2';
 import NewBeat from './src/presentation/container/Author/Remix/NewBeat';
+import NewBeat2 from './src/presentation/container/Author/Remix/NewBeat2';
 import Remix from './src/presentation/container/Author/Remix/Remix';
 import AnimationOne from './src/presentation/container/Author/Remix/AnimationOne';
 import AnimationTwo from './src/presentation/container/Author/Remix/AnimationTwo';
 import AnimationThree from './src/presentation/container/Author/Remix/AnimationThree';
 import Search from './src/presentation/container/Author/Remix/Search';
 import ProfileA from './src/presentation/container/Author/LeaderBoard/ProfileA';
+import ProfileN from './src/presentation/container/Author/Profile/ProfileN';
+import Profile from './src/presentation/container/Author/Home/Profile';
 
 
-import { AuthorNavigation } from './src/presentation/navigation/stack/AuthorNavigation';
+import { AuthorNavigation } from './src/presentation/navigation/tab/AuthorNavigation';
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack';
 import { MainStackParamList } from './src/presentation/navigation/stack/Navigation'
@@ -64,6 +68,7 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import ThankYou from './src/presentation/container/Author/Remix/ThankYou';
 
 
 type SectionProps = PropsWithChildren<{
@@ -117,12 +122,13 @@ function App(): JSX.Element {
     //   <AuthorNavigation/>
     // </NavigationContainer>
      //<Beat></Beat>
-    //<BeatList></BeatList>
+   // <BeatList></BeatList>
    //<New></New>
    //<Use></Use>
   //<Recorded></Recorded>
    //<Recommen></Recommen>
     //<Recording></Recording>
+   // <Recording2></Recording2>
    //<NewBeat></NewBeat>
    // <Remix></Remix>
    //<AnimationOne></AnimationOne>
@@ -131,9 +137,12 @@ function App(): JSX.Element {
    //<Search></Search>
    //<Thanks></Thanks>
     //<Notification></Notification>
-    //<Gift></Gift>
+     //<Gift></Gift>
 
-    <ProfileA></ProfileA>
+    //<ProfileA></ProfileA>
+    //<ProfileN></ProfileN>
+   <Profile></Profile>
+   
     // <NavigationContainer> 
       
     //   <Stack.Navigator screenOptions={{ headerShown: false }}>
@@ -152,6 +161,33 @@ function App(): JSX.Element {
       
     //   </Stack.Navigator>
     // </NavigationContainer>
+
+    //   <NavigationContainer> 
+      
+    //   <Stack.Navigator screenOptions={{ headerShown: false }}>
+
+    //     <Stack.Screen name='BeatList' component={BeatList} />
+    //     <Stack.Screen name='Notification' component={Notification} />
+    //     <Stack.Screen name='Gift' component={Gift} />
+    //     <Stack.Screen name='New' component={New} />
+    //     <Stack.Screen name='Use' component={Use} />
+    //     <Stack.Screen name='Recorded' component={Recorded} />
+    //     <Stack.Screen name='Recommen' component={Recommen} />
+        
+    //     <Stack.Screen name='Recording' component={Recording}/>
+    //     <Stack.Screen name='Recording2' component={Recording2}/>
+    //     <Stack.Screen name='NewBeat' component={NewBeat}/>
+    //     <Stack.Screen name='NewBeat2' component={NewBeat2}/>
+    //     <Stack.Screen name='AnimationOne' component={AnimationOne}/>
+    //     <Stack.Screen name='AnimationTwo' component={AnimationTwo}/>
+    //     <Stack.Screen name='AnimationThree' component={AnimationThree}/>
+    //     <Stack.Screen name='Search' component={Search}/>
+    //     <Stack.Screen name='ThankYou' component={ThankYou}/>
+    //     <Stack.Screen name='Recorded' component={Recorded} />
+      
+    //   </Stack.Navigator>
+    // </NavigationContainer>
+    
   );
 }
 // npx react-native run-android

@@ -37,11 +37,12 @@ function ItemColor({ id, title, titlelitle, button, image }: Item) {
         </View>
     );
 }
+const DATA: Item[] = [
+    { id: 1, title: "Iphone 13 Promax", titlelitle: "Top 1 tuần - 28/11/2021", button: "Chưa nhận", image: require("../../../../../assets/Iphone_13ProMax.png") },
+    { id: 2, title: "Samsung Galaxy Tab S7+", titlelitle: "Top 2 tuần - 21/11/2021", button: "Đã nhận", image: require("../../../../../assets/Samsung_Galaxy_TabS7+.png") },
+];
 const Gift = () => {
-    const DATA: Item[] = [
-        { id: 1, title: "Iphone 13 Promax", titlelitle: "Top 1 tuần - 28/11/2021", button: "Chưa nhận", image: require("../../../../../assets/Iphone_13ProMax.png") },
-        { id: 2, title: "Samsung Galaxy Tab S7+", titlelitle: "Top 2 tuần - 21/11/2021", button: "Đã nhận", image: require("../../../../../assets/Samsung_Galaxy_TabS7+.png") },
-    ];
+   
     return (
         <Background>
             <View style={styles.container}>

@@ -1,8 +1,9 @@
 import { StyleSheet, Text, View, ImageBackground, Pressable, Image, Dimensions, TouchableOpacity } from 'react-native'
-import React, { useState } from 'react'
+import React from 'react'
 import Background from '../../../component/background/Background'
-import { BACKGROUND_TAB, BACK, SUBTRACT, SUBTRACT_HIDE, CENTER_BUTTON, TIME, RECORD_BACK, CHECK } from '../../../../../assets'
+import { BACKGROUND_TAB, BACK, SUBTRACT, CENTER_BUTTON, TIME, RECORD_BACK, CHECK } from '../../../../../assets'
 import { Colors } from '../../../resource/value/Colors'
+import { MainStackScreenProps } from '../../../navigation/stack/Navigation'
 
 
 
@@ -39,7 +40,18 @@ const getTextWithBoldAndUpper2 = (text2: string, boldAndUpperTexts2: any) => {
 };
 
 
-const NewBeat = () => {
+const NewBeat : React.FC<MainStackScreenProps<'NewBeat'>> = ({ navigation, route }) => {
+
+    const [edt, setedt] = React.useState<string>('');
+    console.log(edt)
+  
+    
+    const NewBeat2 = () => {
+      navigation.navigate('NewBeat2');
+    }
+    const AnimationOne = () => {
+        navigation.navigate('AnimationOne');
+      }
 
 
     return (
@@ -53,7 +65,7 @@ const NewBeat = () => {
                     <Text style={styles.baihat}>Tiền nhiều để làm gì</Text>
                     <Text style={styles.casi}>GDucky ft.Lưu Hiền Trinh</Text>
                 </View>
-                <Pressable  >
+                <Pressable  onPress={NewBeat2}>
                     <Image source={SUBTRACT} style={styles.iconSubTract} />
                 </Pressable>
             </ImageBackground>
@@ -93,7 +105,9 @@ const NewBeat = () => {
             <View style={styles.group1}>
                 <Image source={RECORD_BACK} style={styles.RB} />
                 <Image source={CENTER_BUTTON} style={styles.center} />
+                <Pressable  onPress={AnimationOne}>
                 <Image source={CHECK} style={styles.Check} />
+                </Pressable>
             </View>
         </Background>
     )

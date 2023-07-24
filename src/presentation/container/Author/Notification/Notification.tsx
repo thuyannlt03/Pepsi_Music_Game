@@ -1,8 +1,10 @@
 import React from 'react';
-import { FlatList, Image, StyleSheet, Text, View, ImageBackground, Dimensions } from 'react-native';
+import { FlatList, Image, StyleSheet, Text, View, ImageBackground, Dimensions, Pressable } from 'react-native';
 import Background from '../../../component/background/Background'
 import { BACK, BACKGROUND_TAB } from '../../../../../assets'
 import { Colors } from '../../../resource/value/Colors'
+import { MainStackScreenProps } from '../../../navigation/stack/Navigation'
+import Gift from './Gift';
 
 interface Item {
     id: number;
@@ -28,8 +30,10 @@ const DATA: Item[] = [
 
 const renderItem = ({ item }: { item: Item }) => (
     <View style={styles.item}>
+        <Pressable onPress={Gift}>
         <Image source={item.image} style={styles.image} />
-        <View style={styles.card}>
+        </Pressable>
+        <View style={styles.card} >
             <Text style={styles.title}>{item.title}</Text>
             <Text style={styles.titleTime}>{item.titleTime}</Text>
         </View>
@@ -85,7 +89,15 @@ const getTextWithBoldAndUpper3 = (text3: string, boldAndUpperTexts2: any) => {
 };
 
 
-const Notification = () => {
+const Notification  : React.FC<MainStackScreenProps<'Notification'>> = ({ navigation, route }) => {
+
+    const [edt, setedt] = React.useState<string>('');
+    console.log(edt)
+  
+    
+    const Gift = () => {
+      navigation.navigate('Gift');
+    }
     return (
         <Background>
             <View style={styles.container}>

@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, ScrollView, Image, FlatList, Dimensions, TouchableOpacity, ImageBackground, Pressable } from 'react-native'
 import React from 'react'
 import Background from '../../../component/background/Background'
-
+import { MainStackScreenProps } from '../../../navigation/stack/Navigation'
 import { BANER, ICON_HOME, ICON_MUSIC, VOLUME_HIGH, ICON_NOTIFICATION,  BACKGROUND_TAB } from '../../../../../assets'
 import { Colors } from '../../../resource/value/Colors'
 import Button from '../../../component/button/Button'
@@ -95,17 +95,40 @@ const Item = ({ item }: { item: ItemList }) => (
 
 
 
-const BeatList = () => {
+const BeatList : React.FC<MainStackScreenProps<'BeatList'>> = ({ navigation, route }) => {
+
+  const [edt, setedt] = React.useState<string>('');
+  console.log(edt)
+
+  
+  const Notification = () => {
+    navigation.navigate('Notification');
+  }
+  const Use = () => {
+    navigation.navigate('Use');
+  }
+  const New = () => {
+    navigation.navigate('New');
+  }
+  const Recorded = () => {
+    navigation.navigate('Recorded');
+  }
+  const Recommen = () => {
+    navigation.navigate('Recommen');
+  }
+  
+ 
+
   return (
     <Background>
       <ImageBackground source={BACKGROUND_TAB} style={styles.headline}>
-        <Pressable >
+      
           <Image source={ICON_HOME} style={styles.iconHome} />
-        </Pressable>
+        
         <View style={styles.beat}>
           <Text style={styles.beatlist}>Beat List</Text>
         </View>
-        <Pressable  >
+        <Pressable  onPress={Notification}>
           <Image source={ICON_NOTIFICATION} style={styles.iconNo} />
         </Pressable>
       </ImageBackground>
@@ -114,11 +137,14 @@ const BeatList = () => {
         <View style={styles.boxButton}>
           <Button containerStyle={styles.btn}
             title='Beat mới nhất'
+            onPress={New}
             titleStyle={styles.titleStyle}
-            icon={ICON_MUSIC}
+            icon={ICON_MUSIC
+            }
           />
           <Button containerStyle={styles.btn}
             title='Sử dụng nhiều'
+            onPress={Use}
             titleStyle={styles.titleStyle}
             icon={VOLUME_HIGH}
           />
@@ -126,7 +152,7 @@ const BeatList = () => {
         <View style={styles.boxHistory}>
           <View style={styles.boxTitle}>
             <Text style={styles.title}>Đã thu gần đây</Text>
-            <TouchableOpacity style={styles.btnSeeAll}>
+            <TouchableOpacity style={styles.btnSeeAll}  onPress={Recorded}>
               <Text style={styles.seeAll}>Xem tất cả {'>'}</Text>
             </TouchableOpacity>
           </View>
@@ -141,7 +167,7 @@ const BeatList = () => {
         <View style={styles.boxPropose}>
           <View style={styles.boxTitle}>
             <Text style={styles.title}>Đề xuất cho bạn</Text>
-            <TouchableOpacity style={styles.btnSeeAll}>
+            <TouchableOpacity style={styles.btnSeeAll}  onPress={Recommen}>
               <Text style={styles.seeAll}>Xem tất cả {'>'}</Text>
             </TouchableOpacity>
           </View>

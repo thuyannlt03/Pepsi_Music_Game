@@ -4,9 +4,18 @@ import Button from '../../../component/button/Button'
 import Background from '../../../component/background/Background'
 import { HEADLINE_2, TALEN } from '../../../../../assets'
 import { Colors } from '../../../resource/value/Colors'
+import { MainStackScreenProps } from '../../../navigation/stack/Navigation'
 
+const ThankYou : React.FC<MainStackScreenProps<'ThankYou'>> = ({ navigation, route }) => {
 
-const ThankYou = () => {
+    const [edt, setedt] = React.useState<string>('');
+    console.log(edt)
+  
+    
+   
+    const Recorded = () => {
+        navigation.navigate('Recorded');
+    }
     return (
         <Background>
             <View style={styles.container}>
@@ -24,6 +33,7 @@ const ThankYou = () => {
                     <Button
                         containerStyle={styles.buttonXem}
                         title='Xem bản thu'
+                        onPress={Recorded}
                     />
                     <Button
                         containerStyle={styles.buttonPass}

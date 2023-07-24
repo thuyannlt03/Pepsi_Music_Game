@@ -4,7 +4,19 @@ import Button from '../../../component/button/Button'
 import Background from '../../../component/background/Background'
 import { BACKGROUND_TAB, BACK, COVER_1 } from '../../../../../assets'
 import { Colors } from '../../../resource/value/Colors'
-const AnimationOne = () => {
+import { MainStackScreenProps } from '../../../navigation/stack/Navigation'
+
+
+const AnimationOne : React.FC<MainStackScreenProps<'AnimationOne'>> = ({ navigation, route }) => {
+
+    const [edt, setedt] = React.useState<string>('');
+    console.log(edt)
+  
+    
+   
+    const AnimationTwo = () => {
+        navigation.navigate('AnimationTwo');
+    }
     return (
         <Background>
             <View style={styles.container}>
@@ -23,6 +35,7 @@ const AnimationOne = () => {
                     <Button
                         containerStyle={styles.buttonTao}
                         title='Tạo Animation'
+                        onPress={AnimationTwo}
                     />
                     <Button
                         containerStyle={styles.buttonBo}

@@ -1,8 +1,10 @@
 import React from 'react';
-import { FlatList, Image, StyleSheet, Text, View, ImageBackground, Dimensions } from 'react-native';
+import { FlatList, Image, StyleSheet, Text, View, ImageBackground, Dimensions, Pressable } from 'react-native';
 import Background from '../../../component/background/Background'
 import { BACK, BACKGROUND_TAB } from '../../../../../assets'
 import { Colors } from '../../../resource/value/Colors'
+import { MainStackScreenProps } from '../../../navigation/stack/Navigation'
+import Recording from '../Remix/Recording';
 
 interface Item {
   id: number;
@@ -46,22 +48,36 @@ const renderItem = ({ item }: { item: Item }) => (
         </View>
       </View>
     </View>
+    <Pressable onPress={Recording}>
     <Image source={item.imageMic} style={styles.imageMic} />
+    </Pressable>
   </View>
 );
 
-const New = () => {
+const New  : React.FC<MainStackScreenProps<'New'>> = ({ navigation, route }) => {
+
+  const [edt, setedt] = React.useState<string>('');
+  console.log(edt)
+
+ 
+  const Recording = () => {
+    navigation.navigate('Recording');
+  }
   return (
     <Background>
       <View style={styles.container}>
         <ImageBackground source={BACKGROUND_TAB} style={styles.headline}>
+      
           <Image source={BACK} style={styles.iconBack} />
+          
           <Text style={styles.rule}>Beat mới nhất</Text>
         </ImageBackground>
         <FlatList
+        
           data={DATA}
           renderItem={renderItem}
           keyExtractor={(item) => item.id.toString()}
+          
         />
       </View>
     </Background>

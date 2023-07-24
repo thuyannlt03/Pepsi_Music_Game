@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, ImageBackground, Image, Dimensions, FlatList, ScrollView } from 'react-native'
 import React from 'react'
 import Background from '../../../component/background/Background'
-import { AVT, BACK, BACKGROUND_TAB, MODERN } from '../../../../../assets'
+import { AVT, BACK, BACKGROUND_TAB } from '../../../../../assets'
 import { Colors } from '../../../resource/value/Colors'
 
 interface Item {
@@ -96,8 +96,7 @@ const ProfileA = () => {
             data={DATA}
             renderItem={renderItem}
             keyExtractor={(item) => item.id.toString()}
-            // horizontal
-            // showsHorizontalScrollIndicator={false} 
+           
             numColumns={2}
           />
         </View>
@@ -138,7 +137,7 @@ const styles = StyleSheet.create({
     height: Dimensions.get('window').height * 0.16,
     marginHorizontal: -Dimensions.get('window').height * 0.03,
     marginTop: - Dimensions.get('window').height * 0.02,
-    backgroundColor: Colors.BLUE_DARK, //'rgba(19, 66, 125, 0.50)'
+    backgroundColor: Colors.BLUE_DARK, 
   },
   group1: {
     flexDirection: 'row',
@@ -179,7 +178,7 @@ const styles = StyleSheet.create({
     fontSize: 10,
     fontWeight: '400',
     lineHeight: 15,
-    color: Colors.TEXT_TONG, //'#CCEBF8'
+    color: Colors.TEXT_TONG, 
     alignItems: 'center',
 
   },
@@ -280,7 +279,7 @@ const styles = StyleSheet.create({
     marginLeft: - Dimensions.get('window').height * 0.018,
     width: '30%',
     flexDirection: 'row',
-    backgroundColor: Colors.BAR_RED, //rgba(237, 25, 65, 1)
+    backgroundColor: Colors.BAR_RED,
     borderTopStartRadius: 5,
     borderBottomStartRadius: 5,
     justifyContent: 'center',
@@ -291,7 +290,7 @@ const styles = StyleSheet.create({
     marginLeft: - Dimensions.get('window').height * 0.024,
     width: '30%',
     flexDirection: 'row',
-    backgroundColor: Colors.BACKGROUND_HEART, //rgba(16, 76, 231, 1)
+    backgroundColor: Colors.BACKGROUND_HEART, 
     borderTopEndRadius: 4,
     borderBottomEndRadius: 4,
     justifyContent: 'center',
