@@ -4,9 +4,9 @@ import Button from '../../../component/button/Button'
 import Background from '../../../component/background/Background'
 import { HEADLINE_2, TALEN } from '../../../../../assets'
 import { Colors } from '../../../resource/value/Colors'
-import { MainStackScreenProps } from '../../../navigation/stack/Navigation'
+import { RemixStackScreenProps } from '../../../navigation/stack/RemixNavigation'
 
-const ThankYou : React.FC<MainStackScreenProps<'ThankYou'>> = ({ navigation, route }) => {
+const ThankYou : React.FC<RemixStackScreenProps<'ThankYou'>> = ({ navigation, route }) => {
 
     const [edt, setedt] = React.useState<string>('');
     console.log(edt)
@@ -15,6 +15,9 @@ const ThankYou : React.FC<MainStackScreenProps<'ThankYou'>> = ({ navigation, rou
    
     const Recorded = () => {
         navigation.navigate('Recorded');
+    }
+    const ProfileNa = () => {
+        navigation.navigate('ProfileNa');
     }
     return (
         <Background>
@@ -33,11 +36,12 @@ const ThankYou : React.FC<MainStackScreenProps<'ThankYou'>> = ({ navigation, rou
                     <Button
                         containerStyle={styles.buttonXem}
                         title='Xem bản thu'
-                        onPress={Recorded}
+                        onPress={ProfileNa}
                     />
                     <Button
                         containerStyle={styles.buttonPass}
                         title='Bỏ qua'
+                        onPress={Recorded}
                         titleStyle={styles.title} />
                 </View>
             </View>

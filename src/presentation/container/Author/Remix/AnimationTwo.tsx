@@ -4,10 +4,11 @@ import Button from '../../../component/button/Button'
 import Background from '../../../component/background/Background'
 import { BACKGROUND_TAB, BACK, COVER_2, OLD_SCHOOL, MODERN, FREESTYLE } from '../../../../../assets'
 import { Colors } from '../../../resource/value/Colors'
-import { MainStackScreenProps } from '../../../navigation/stack/Navigation'
+import Header from '../../../component/header/Header';
+import { RemixStackScreenProps } from '../../../navigation/stack/RemixNavigation'
 
 
-const AnimationTwo : React.FC<MainStackScreenProps<'AnimationTwo'>> = ({ navigation, route }) => {
+const AnimationTwo : React.FC<RemixStackScreenProps<'AnimationTwo'>> = ({ navigation, route }) => {
 
     const [edt, setedt] = React.useState<string>('');
     console.log(edt)
@@ -17,16 +18,29 @@ const AnimationTwo : React.FC<MainStackScreenProps<'AnimationTwo'>> = ({ navigat
     const AnimationThree = () => {
         navigation.navigate('AnimationThree');
     }
+    const goBack = () => {
+        navigation.navigate('AnimationOne');
+    }
+
+    const centerHeader = () => {
+        return (
+            <View style={styles.header_1}>
+                <View style={styles.centerHeader}>
+                    <Text style={styles.rule}>Tiền nhiều để làm gì</Text>
+                    <Text style={styles.rule2}>Gducky ft.Lưu Hiền Trinh</Text>
+                </View>
+            </View>
+        )
+    }
     return (
         <Background>
             <View style={styles.container}>
-                <ImageBackground source={BACKGROUND_TAB} style={styles.headline}>
-                    <Image source={BACK} style={styles.iconBack} />
-                    <View style={{ flexDirection: 'column', justifyContent:'center', alignItems:'center' }}>
-                        <Text style={styles.rule}>Tiền nhiều để làm gì</Text>
-                        <Text style={styles.rule2}>Gducky ft.Lưu Hiền Trinh</Text>
-                    </View>
-                </ImageBackground>
+            <Header
+                    iconLeft={BACK}
+                    leftHeader={goBack}
+                    centerHeader={centerHeader()}
+                />
+
                 <View style={styles.banner}>
                     <Image source={COVER_2} style={styles.imgCover}/>
                 </View>
@@ -70,28 +84,30 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
-    headline: {
-        height: Dimensions.get('window').height * 0.13,
-        width: '100%',
+    centerHeader: {
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    header_1: {
+        justifyContent: 'center',
         alignItems: 'center',
-        flexDirection: 'row',
     },
-    iconBack: {
-        marginTop: Dimensions.get('window').height * 0.04,
-        marginLeft: Dimensions.get('window').width * 0.03,
+    textHeader: {
+        fontWeight: '600',
+        fontSize: 18,
+        color: Colors.WHITE,
+        textAlign: 'center',
     },
+    
+   
     rule: {
-        fontFamily: 'Montserrat',
         fontSize: 14,
         fontWeight: '600',
         lineHeight: 21,
         color: Colors.WHITE,
-        marginTop: Dimensions.get('window').height * 0.04,
-        marginLeft: Dimensions.get('window').width * 0.25,
     },
-    rule2:{
-        marginLeft: Dimensions.get('window').width * 0.25,
-        fontFamily: 'Montserrat',
+    rule2: {
         fontSize: 12,
         fontWeight: '400',
         lineHeight: 18,

@@ -2,33 +2,47 @@ import { StyleSheet, Text, View, Image, Dimensions, ImageBackground } from 'reac
 import React from 'react'
 import Button from '../../../component/button/Button'
 import Background from '../../../component/background/Background'
+import Header from '../../../component/header/Header';
 import { BACKGROUND_TAB, BACK, COVER_1 } from '../../../../../assets'
 import { Colors } from '../../../resource/value/Colors'
-import { MainStackScreenProps } from '../../../navigation/stack/Navigation'
+import { RemixStackScreenProps } from '../../../navigation/stack/RemixNavigation'
 
 
-const AnimationOne : React.FC<MainStackScreenProps<'AnimationOne'>> = ({ navigation, route }) => {
+const AnimationOne: React.FC<RemixStackScreenProps<'AnimationOne'>> = ({ navigation, route }) => {
 
     const [edt, setedt] = React.useState<string>('');
     console.log(edt)
-  
-    
-   
+
+
+
     const AnimationTwo = () => {
         navigation.navigate('AnimationTwo');
+    }
+    const goBack = () => {
+        navigation.navigate('Remix');
+    }
+
+    const centerHeader = () => {
+        return (
+            <View style={styles.header_1}>
+                <View style={styles.centerHeader}>
+                    <Text style={styles.rule}>Tiền nhiều để làm gì</Text>
+                    <Text style={styles.rule2}>Gducky ft.Lưu Hiền Trinh</Text>
+                </View>
+            </View>
+        )
     }
     return (
         <Background>
             <View style={styles.container}>
-                <ImageBackground source={BACKGROUND_TAB} style={styles.headline}>
-                    <Image source={BACK} style={styles.iconBack} />
-                    <View style={{ flexDirection: 'column', justifyContent:'center', alignItems:'center' }}>
-                        <Text style={styles.rule}>Tiền nhiều để làm gì</Text>
-                        <Text style={styles.rule2}>Gducky ft.Lưu Hiền Trinh</Text>
-                    </View>
-                </ImageBackground>
+                <Header
+                    iconLeft={BACK}
+                    leftHeader={goBack}
+                    centerHeader={centerHeader()}
+                />
+
                 <View style={styles.banner}>
-                    <Image source={COVER_1} style={styles.imgCover}/>
+                    <Image source={COVER_1} style={styles.imgCover} />
                     <Text style={styles.textCover}>Bạn có muốn tạo video animation không?</Text>
                 </View>
                 <View style={styles.boxButton}>
@@ -40,7 +54,6 @@ const AnimationOne : React.FC<MainStackScreenProps<'AnimationOne'>> = ({ navigat
                     <Button
                         containerStyle={styles.buttonBo}
                         title='Hủy Bỏ'
-                        //  onPress={SignUpScreen}
                         titleStyle={styles.title} />
                 </View>
             </View>
@@ -55,53 +68,55 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
-    headline: {
-        height: Dimensions.get('window').height * 0.13,
-        width: '100%',
+    centerHeader: {
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    header_1: {
+        justifyContent: 'center',
         alignItems: 'center',
-        flexDirection: 'row',
     },
-    iconBack: {
-        marginTop: Dimensions.get('window').height * 0.04,
-        marginLeft: Dimensions.get('window').width * 0.03,
+    textHeader: {
+        fontWeight: '600',
+        fontSize: 18,
+        color: Colors.WHITE,
+        textAlign: 'center',
     },
+    
+   
     rule: {
-        fontFamily: 'Montserrat',
         fontSize: 14,
         fontWeight: '600',
         lineHeight: 21,
         color: Colors.WHITE,
-        marginTop: Dimensions.get('window').height * 0.04,
-        marginLeft: Dimensions.get('window').width * 0.25,
     },
-    rule2:{
-        marginLeft: Dimensions.get('window').width * 0.25,
-        fontFamily: 'Montserrat',
+    rule2: {
         fontSize: 12,
         fontWeight: '400',
         lineHeight: 18,
         color: Colors.BLUE_CASI,
     },
-    banner:{
-        marginHorizontal:Dimensions.get("window").width * 0.07,
-        marginTop:Dimensions.get('window').height *0.03,
-        marginBottom:Dimensions.get('window').height *0.05,
+    banner: {
+        marginHorizontal: Dimensions.get("window").width * 0.07,
+        marginTop: Dimensions.get('window').height * 0.03,
+        marginBottom: Dimensions.get('window').height * 0.05,
     },
-    imgCover:{
-        marginBottom:Dimensions.get('window').height *0.015,
-        borderRadius:12,
-        borderWidth:2,
-        borderColor:Colors.BORDER,
+    imgCover: {
+        marginBottom: Dimensions.get('window').height * 0.015,
+        borderRadius: 12,
+        borderWidth: 2,
+        borderColor: Colors.BORDER,
         height: Dimensions.get('window').height * 0.6,
 
     },
-    textCover:{
+    textCover: {
         fontFamily: 'Montserrat',
         fontSize: 16,
         fontWeight: '500',
         lineHeight: 24,
         color: Colors.WHITE,
-        textAlign:'center',
+        textAlign: 'center',
     },
     boxButton: {
         flexDirection: 'row',
@@ -109,7 +124,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         marginTop: -Dimensions.get('window').height * 0.13,
         alignItems: 'center',
-        marginHorizontal:Dimensions.get("window").width * 0.055,
+        marginHorizontal: Dimensions.get("window").width * 0.055,
     },
     buttonTao: {
         width: Dimensions.get('window').width * 0.7,
@@ -125,5 +140,5 @@ const styles = StyleSheet.create({
     title: {
         color: Colors.WHITE,
     },
-   
+
 })

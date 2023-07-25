@@ -4,8 +4,11 @@ import Background from '../../../component/background/Background'
 import { BACKGROUND_TAB, BACK, COVER_1, TIME_RED, PEN, SHARE } from '../../../../../assets'
 import { Colors } from '../../../resource/value/Colors'
 import Button from '../../../component/button/Button'
-import { MainStackScreenProps } from '../../../navigation/stack/Navigation'
-const AnimationThree : React.FC<MainStackScreenProps<'AnimationThree'>> = ({ navigation, route }) => {
+import Header from '../../../component/header/Header';
+import { RemixStackScreenProps } from '../../../navigation/stack/RemixNavigation'
+
+
+const AnimationThree : React.FC<RemixStackScreenProps<'AnimationThree'>> = ({ navigation, route }) => {
 
     const [edt, setedt] = React.useState<string>('');
     console.log(edt)
@@ -18,13 +21,28 @@ const AnimationThree : React.FC<MainStackScreenProps<'AnimationThree'>> = ({ nav
     const ThankYou = () => {
         navigation.navigate('ThankYou');
     }
+    const goBack = () => {
+        navigation.navigate('AnimationTwo');
+      }
+      
+    const centerHeader = () => {
+        return (
+            <View style={styles.header_1}>
+                <View style={styles.centerHeader}>
+                    <Text style={styles.rule}>Tiền nhiều để làm gì</Text>
+                    <Text style={styles.rule2}>Gducky ft.Lưu Hiền Trinh</Text>
+                </View>
+            </View>
+        )
+    }
     return (
         <Background>
             <View style={styles.container}>
-                <ImageBackground source={BACKGROUND_TAB} style={styles.headline}>
-                    <Image source={BACK} style={styles.iconBack} />
-                    <Text style={styles.rule}>Tạo bài đăng</Text>
-                </ImageBackground>
+            <Header
+                    iconLeft={BACK}
+                    leftHeader={goBack}
+                    centerHeader={centerHeader()}
+                />
                 <View style={styles.gr}>
                     <Image source={COVER_1} style={styles.img} />
                     <Image source={TIME_RED} style={styles.imgTime} />
@@ -50,7 +68,6 @@ const AnimationThree : React.FC<MainStackScreenProps<'AnimationThree'>> = ({ nav
                     <Button
                         containerStyle={styles.buttonBo}
                         title='Hủy Bỏ'
-                        //  onPress={SignUpScreen}
                         titleStyle={styles.title} />
                 </View>
             </View>
@@ -65,25 +82,36 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
-    headline: {
-        height: Dimensions.get('window').height * 0.13,
-        width: '100%',
+    centerHeader: {
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    header_1: {
+        justifyContent: 'center',
         alignItems: 'center',
-        flexDirection: 'row',
     },
-    iconBack: {
-        marginTop: Dimensions.get('window').height * 0.04,
-        marginLeft: Dimensions.get('window').width * 0.03,
-    },
-    rule: {
-        fontFamily: 'Montserrat',
-        fontSize: 18,
+    textHeader: {
         fontWeight: '600',
-        lineHeight: 27,
+        fontSize: 18,
         color: Colors.WHITE,
-        marginTop: Dimensions.get('window').height * 0.04,
-        marginLeft: Dimensions.get('window').width * 0.3,
+        textAlign: 'center',
     },
+    
+   
+    rule: {
+        fontSize: 14,
+        fontWeight: '600',
+        lineHeight: 21,
+        color: Colors.WHITE,
+    },
+    rule2: {
+        fontSize: 12,
+        fontWeight: '400',
+        lineHeight: 18,
+        color: Colors.BLUE_CASI,
+    },
+    
     gr: {
         height: Dimensions.get('window').height * 0.63,
         width: Dimensions.get('window').width * 0.9,

@@ -1,8 +1,23 @@
 import React from 'react';
-import { FlatList, Image, StyleSheet, Text, View, ImageBackground, Dimensions } from 'react-native';
+import { FlatList, Image, StyleSheet, Text, View, ImageBackground, Dimensions,TouchableOpacity  } from 'react-native';
 import Background from '../../../component/background/Background'
 import { BACK, BACKGROUND_TAB } from '../../../../../assets'
 import { Colors } from '../../../resource/value/Colors'
+import {  BeatListStackScreenProps} from '../../../navigation/stack/BeatNavigation'
+import Header from '../../../component/header/Header';
+
+const Recorded  : React.FC< BeatListStackScreenProps<'Recorded'>> = ({ navigation, route }) => {
+
+  const [edt, setedt] = React.useState<string>('');
+  console.log(edt)
+
+ 
+  const Recording = () => {
+    navigation.navigate('Recording');
+  }
+  const goBack = () => {
+    navigation.navigate('BeatList');
+  }
 
 interface Item {
   id: number;
@@ -33,6 +48,9 @@ const DATA: Item[] = [
 
 ];
 
+
+
+
 const renderItem = ({ item }: { item: Item }) => (
   <View style={styles.item}>
     <View style={styles.card}>
@@ -46,18 +64,26 @@ const renderItem = ({ item }: { item: Item }) => (
         </View>
       </View>
     </View>
+    <TouchableOpacity onPress={Recording}>
     <Image source={item.imageMic} style={styles.imageMic} />
+    </TouchableOpacity>
   </View>
 );
+const centerHeader = () => {
+  return (
+      <View style={styles.header_1}>
+          <Text style={styles.textHeader}>Đã thu gần đây</Text>
+      </View>
+  )
+}
 
-const Recorded = () => {
   return (
     <Background>
       <View style={styles.container}>
-        <ImageBackground source={BACKGROUND_TAB} style={styles.headline}>
-          <Image source={BACK} style={styles.iconBack} />
-          <Text style={styles.rule}>Đã thu gần đây</Text>
-        </ImageBackground>
+      <Header
+          iconLeft={BACK}
+          leftHeader={goBack}
+          centerHeader={centerHeader()} />
         <FlatList
           data={DATA}
           renderItem={renderItem}
@@ -73,24 +99,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  headline: {
-    height: Dimensions.get('window').height * 0.13,
-    width: '100%',
+  header_1: {
+    justifyContent: 'center',
     alignItems: 'center',
-    flexDirection: 'row',
   },
-  iconBack: {
-    marginTop: Dimensions.get('window').height * 0.04,
-    marginLeft: Dimensions.get('window').width * 0.03,
-  },
-  rule: {
-    fontFamily: 'Montserrat',
-    fontSize: 18,
+  textHeader: {
     fontWeight: '600',
-    lineHeight: 27,
+    fontSize: 18,
     color: Colors.WHITE,
-    marginTop: Dimensions.get('window').height * 0.04,
-    marginLeft: Dimensions.get('window').width * 0.25,
+    textAlign: 'center',
   },
   item: {
     flexDirection: 'row',

@@ -26,7 +26,7 @@ type HomeProps = {
 
 export type MainTabParamList = {
     VideoList: VideoListProps | undefined,
-   // BeatList: BeatListProps | undefined,
+    BeatList: BeatListProps | undefined,
     Record: RecordProps | undefined,
     Chart: ChartProps | undefined,
     Profile: ProfileProps | undefined,

@@ -3,23 +3,37 @@ import React from 'react'
 import Background from '../../../component/background/Background'
 import { BACK, BACKGROUND_TAB, CANCEL } from '../../../../../assets'
 import { Colors } from '../../../resource/value/Colors'
+import { RemixStackScreenProps } from '../../../navigation/stack/RemixNavigation'
+import { TouchableOpacity } from 'react-native-gesture-handler'
+import Header from '../../../component/header/Header'
 
-const Search = () => {
+
+const Search : React.FC<RemixStackScreenProps<'Search'>> = ({ navigation, route }) => {
+    const [edt, setedt] = React.useState<string>('');
+    console.log(edt)
+  
+    
+    const goBack = () => {
+      navigation.navigate('AnimationThree');
+    }
+    const centerHeader = () => {
+        return (
+            <View style={styles.header_1}>
+                <Text style={styles.textHeader}>Beat mới nhất</Text>
+                        <Text style={styles.Luu}>Lưu</Text>
+                    
+            </View>
+        )
+    }
     return (
         <Background>
             <View style={styles.container}>
-                <ImageBackground source={BACKGROUND_TAB} style={styles.headline}>
-                    <Pressable >
-                        <Image source={BACK} style={styles.iconB} />
-                    </Pressable>
-                    <View style={styles.beat}>
-                        <Text style={styles.beatlist}>Tên bài hát</Text>
-                    </View>
-                    <View style={styles.beat}>
-                        <Text style={styles.Luu}>Lưu</Text>
-                    </View>
-
-                </ImageBackground>
+            <Header
+                    iconLeft={BACK}
+                    leftHeader={goBack}
+                    centerHeader={centerHeader()}
+                    rightHeader={goBack} />
+                  
                 <View style={styles.beat}>
                 <TextInput
                     style={styles.text}
@@ -37,13 +51,24 @@ export default Search
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: Dimensions.get('screen').scale * 5,
     },
     headline: {
         height: Dimensions.get('window').height * 0.13,
         width: '100%',
         alignItems: 'center',
-        flexDirection: 'row'
+        flexDirection: 'row',
+       
+    },
+    header_1: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        
+    },
+    textHeader: {
+        fontWeight: '600',
+        fontSize: 18,
+        color: Colors.WHITE,
+        textAlign: 'center',
     },
     iconB: {
         marginTop: Dimensions.get('window').height * 0.04,
@@ -51,27 +76,20 @@ const styles = StyleSheet.create({
     },
     Luu: {
         fontFamily: 'Montserrat',
-        fontSize: 16,
+        fontSize: 14,
         fontWeight: '600',
         lineHeight: 27,
         color: Colors.WHITE,
-        marginTop: Dimensions.get('window').height * 0.04,
-        marginLeft: Dimensions.get('window').width * 0.26,
+        marginTop: - Dimensions.get('window').height * 0.034,
+        marginLeft: Dimensions.get('window').width * 0.64,
     },
     beat: {
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
+        marginTop:  Dimensions.get('window').height * 0.04,
     },
-    beatlist: {
-        fontFamily: 'Montserrat',
-        fontSize: 18,
-        fontWeight: '900',
-        lineHeight: 27,
-        color: Colors.WHITE,
-        marginTop: Dimensions.get('window').height * 0.04,
-        marginLeft: Dimensions.get('window').width * 0.17,
-    },
+   
     text: {
         color: Colors.SEARCH,
         width: 370,

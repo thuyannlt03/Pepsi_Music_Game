@@ -1,10 +1,24 @@
 import React from 'react';
-import { FlatList, Image, StyleSheet, Text, View, ImageBackground, Dimensions, Pressable } from 'react-native';
+import { FlatList, Image, StyleSheet, Text, View, ImageBackground, Dimensions, Pressable, TouchableOpacity } from 'react-native';
 import Background from '../../../component/background/Background'
 import { BACK, BACKGROUND_TAB } from '../../../../../assets'
 import { Colors } from '../../../resource/value/Colors'
-import { MainStackScreenProps } from '../../../navigation/stack/Navigation'
-import Gift from './Gift';
+import {  BeatListStackScreenProps} from '../../../navigation/stack/BeatNavigation'
+import Header from '../../../component/header/Header';
+
+
+const Notification  : React.FC< BeatListStackScreenProps<'Notification'>> = ({ navigation, route }) => {
+
+    const [edt, setedt] = React.useState<string>('');
+    console.log(edt)
+  
+    
+    const Gift = () => {
+      navigation.navigate('Gift');
+    }
+    const goBack = () => {
+        navigation.navigate('BeatList');
+      }
 
 interface Item {
     id: number;
@@ -28,83 +42,35 @@ const DATA: Item[] = [
     { id: 12, title: "Bạn đã đạt TOP 1 người có lượt\nyêu thích cao nhất tuần", titleTime: "21/11/2021", image: require("../../../../../assets/Card_Notification.png") },
 ];
 
+
+
 const renderItem = ({ item }: { item: Item }) => (
+    <TouchableOpacity onPress={Gift}>
     <View style={styles.item}>
-        <Pressable onPress={Gift}>
         <Image source={item.image} style={styles.image} />
-        </Pressable>
         <View style={styles.card} >
             <Text style={styles.title}>{item.title}</Text>
             <Text style={styles.titleTime}>{item.titleTime}</Text>
         </View>
-       
-     
     </View>
+    </TouchableOpacity>
 );
-const text1 = "Bạn đã nhận được IPHONE 13 ProMax\nGiải thưởng cho quán quân tuần";
-const boldAndUpperTexts1 = ["IPHONE 13 ProMax", "quán quân tuần"];
-const regex1 = new RegExp(`(${boldAndUpperTexts1.join('|')})`, 'gi');
 
-const getTextWithBoldAndUpper1 = (text1: string, boldAndUpperTexts1: any) => {
-    const parts1 = text1.split(regex1);
-    return parts1.map((part, index) => {
-        const isBoldAndUpper1 = boldAndUpperTexts1.includes(part);
-        return isBoldAndUpper1 ? (
-            <Text key={index} style={{ fontWeight: 'bold', textTransform: 'uppercase', textDecorationLine: 'underline' }}>{part}</Text>
-        ) : (
-            <Text key={index}>{part}</Text>
-        );
-    });
-};
-const text2 = "Bạn đã đạt TOP 1 người có lượt\nyêu thích cao nhất tuần";
-const boldAndUpperTexts2 = ["TOP 1"];
-const regex2 = new RegExp(`(${boldAndUpperTexts2.join('|')})`, 'gi');
+const centerHeader = () => {
+    return (
+        <View style={styles.header_1}>
+            <Text style={styles.textHeader}>Thông báo</Text>
+        </View>
+    )
+}
 
-const getTextWithBoldAndUpper2 = (text2: string, boldAndUpperTexts2: any) => {
-    const parts2 = text2.split(regex2);
-    return parts2.map((part, index) => {
-        const isBoldAndUpper2 = boldAndUpperTexts2.includes(part);
-        return isBoldAndUpper2 ? (
-            <Text key={index} style={{ fontWeight: 'bold', textTransform: 'uppercase', textDecorationLine: 'underline' }}>{part}</Text>
-        ) : (
-            <Text key={index}>{part}</Text>
-        );
-    });
-};
-
-const text3 = "Bạn đã nhận được Samsung Tab S7+\nGiải thưởng cho quán quân tuần";
-const boldAndUpperTexts3 = [" Samsung Tab S7+","quán quân tuần"];
-const regex3 = new RegExp(`(${boldAndUpperTexts3.join('|')})`, 'gi');
-
-const getTextWithBoldAndUpper3 = (text3: string, boldAndUpperTexts2: any) => {
-    const parts3 = text3.split(regex3);
-    return parts3.map((part, index) => {
-        const isBoldAndUpper3 = boldAndUpperTexts3.includes(part);
-        return isBoldAndUpper3 ? (
-            <Text key={index} style={{ fontWeight: 'bold', textTransform: 'uppercase', textDecorationLine: 'underline' }}>{part}</Text>
-        ) : (
-            <Text key={index}>{part}</Text>
-        );
-    });
-};
-
-
-const Notification  : React.FC<MainStackScreenProps<'Notification'>> = ({ navigation, route }) => {
-
-    const [edt, setedt] = React.useState<string>('');
-    console.log(edt)
-  
-    
-    const Gift = () => {
-      navigation.navigate('Gift');
-    }
     return (
         <Background>
             <View style={styles.container}>
-                <ImageBackground source={BACKGROUND_TAB} style={styles.headline}>
-                    <Image source={BACK} style={styles.iconBack} />
-                    <Text style={styles.rule}>Thông báo</Text>
-                </ImageBackground>
+            <Header
+                    iconLeft={BACK}
+                    leftHeader={goBack}
+                    centerHeader={centerHeader()} />
                 <FlatList
                     data={DATA}
                     renderItem={renderItem}
@@ -120,25 +86,16 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
-    headline: {
-        height: Dimensions.get('window').height * 0.13,
-        width: '100%',
+    header_1: {
+        justifyContent: 'center',
         alignItems: 'center',
-        flexDirection: 'row',
-    },
-    iconBack: {
-        marginTop: Dimensions.get('window').height * 0.04,
-        marginLeft: Dimensions.get('window').width * 0.03,
-    },
-    rule: {
-        fontFamily: 'Montserrat',
-        fontSize: 18,
+      },
+      textHeader: {
         fontWeight: '600',
-        lineHeight: 27,
+        fontSize: 18,
         color: Colors.WHITE,
-        marginTop: Dimensions.get('window').height * 0.04,
-        marginLeft: Dimensions.get('window').width * 0.30,
-    },
+        textAlign: 'center',
+      },
     item: {
         flexDirection: 'row',
         justifyContent: 'flex-start',

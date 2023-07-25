@@ -19,7 +19,7 @@ const Tab = createBottomTabNavigator();
 export const AuthorNavigation = () => {
 
     return (
-        <Tab.Navigator initialRouteName="Home" 
+        <Tab.Navigator initialRouteName="Record" 
             screenOptions={({ route }) => ({
                 tabBarHideOnKeyboard: true,
                 tabBarStyle: {
@@ -43,7 +43,7 @@ export const AuthorNavigation = () => {
                     ),
                     title: 'Video List',
                 }} />
-            {/* <Tab.Screen  name="BeatList" component={BeatList}
+            <Tab.Screen  name="BeatList" component={BeatList}
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <View>
@@ -51,7 +51,7 @@ export const AuthorNavigation = () => {
                         </View>
                     ),
                     title: 'Beat List',
-                }} /> */}
+                }} />
             <Tab.Screen name="Record" component={Record}
                 options={{
                     tabBarIcon: ({ focused }) => (

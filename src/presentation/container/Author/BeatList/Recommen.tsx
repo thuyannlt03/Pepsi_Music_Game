@@ -1,8 +1,24 @@
 import React from 'react';
-import { FlatList, Image, StyleSheet, Text, View, ImageBackground, Dimensions } from 'react-native';
+import { FlatList, Image, StyleSheet, Text, View, ImageBackground, Dimensions, TouchableOpacity } from 'react-native';
 import Background from '../../../component/background/Background'
 import { BACK, BACKGROUND_TAB } from '../../../../../assets'
 import { Colors } from '../../../resource/value/Colors'
+import { BeatListStackScreenProps } from '../../../navigation/stack/BeatNavigation'
+import Header from '../../../component/header/Header';
+
+
+const Recommen: React.FC<BeatListStackScreenProps<'Recommen'>> = ({ navigation, route }) => {
+
+  const [edt, setedt] = React.useState<string>('');
+  console.log(edt)
+
+
+  const Recording = () => {
+    navigation.navigate('Recording');
+  }
+  const goBack = () => {
+    navigation.navigate('BeatList');
+  }
 
 interface Item {
   id: number;
@@ -33,31 +49,41 @@ const DATA: Item[] = [
 
 ];
 
-const renderItem = ({ item }: { item: Item }) => (
-  <View style={styles.item}>
-    <View style={styles.card}>
-      <Image source={item.image} style={styles.image} />
-      <View style={styles.card1}>
-        <Text style={styles.title}>{item.title}</Text>
-        <Text style={styles.titleMini}>{item.titleMini}</Text>
-        <View style={styles.card2}>
-          <Image source={item.imageMiniMicro}/>
-          <Text style={styles.titleWatch}>{item.titleWatch}</Text>
+
+  const renderItem = ({ item }: { item: Item }) => (
+    <View style={styles.item}>
+      <View style={styles.card}>
+        <Image source={item.image} style={styles.image} />
+        <View style={styles.card1}>
+          <Text style={styles.title}>{item.title}</Text>
+          <Text style={styles.titleMini}>{item.titleMini}</Text>
+          <View style={styles.card2}>
+            <Image source={item.imageMiniMicro} />
+            <Text style={styles.titleWatch}>{item.titleWatch}</Text>
+          </View>
         </View>
       </View>
+      <TouchableOpacity onPress={Recording}>
+        <Image source={item.imageMic} style={styles.imageMic} />
+      </TouchableOpacity>
     </View>
-    <Image source={item.imageMic} style={styles.imageMic} />
-  </View>
-);
+  );
 
-const Recommen = () => {
+  const centerHeader = () => {
+    return (
+      <View style={styles.header_1}>
+        <Text style={styles.textHeader}>Đề xuất cho bạn</Text>
+      </View>
+    )
+  }
+
   return (
     <Background>
       <View style={styles.container}>
-        <ImageBackground source={BACKGROUND_TAB} style={styles.headline}>
-          <Image source={BACK} style={styles.iconBack} />
-          <Text style={styles.rule}>Đề xuất cho bạn</Text>
-        </ImageBackground>
+        <Header
+          iconLeft={BACK}
+          leftHeader={goBack}
+          centerHeader={centerHeader()} />
         <FlatList
           data={DATA}
           renderItem={renderItem}
@@ -73,24 +99,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  headline: {
-    height: Dimensions.get('window').height * 0.13,
-    width: '100%',
+  header_1: {
+    justifyContent: 'center',
     alignItems: 'center',
-    flexDirection: 'row',
   },
-  iconBack: {
-    marginTop: Dimensions.get('window').height * 0.04,
-    marginLeft: Dimensions.get('window').width * 0.03,
-  },
-  rule: {
-    fontFamily: 'Montserrat',
-    fontSize: 18,
+  textHeader: {
     fontWeight: '600',
-    lineHeight: 27,
+    fontSize: 18,
     color: Colors.WHITE,
-    marginTop: Dimensions.get('window').height * 0.04,
-    marginLeft: Dimensions.get('window').width * 0.25,
+    textAlign: 'center',
   },
   item: {
     flexDirection: 'row',
@@ -98,59 +115,59 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginVertical: 8,
     marginHorizontal: 16,
-    borderWidth:1,
-    borderRadius:8,
-    borderColor:Colors.WHITE,
-    width:Dimensions.get('window').width * 0.92,
-    backgroundColor:Colors.BLUE_BACKGROUND,
+    borderWidth: 1,
+    borderRadius: 8,
+    borderColor: Colors.WHITE,
+    width: Dimensions.get('window').width * 0.92,
+    backgroundColor: Colors.BLUE_BACKGROUND,
   },
-  card:{
+  card: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
   },
-  card1:{
+  card1: {
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'flex-start',
     marginLeft: Dimensions.get('window').width * 0.04,
   },
-  card2:{
+  card2: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    borderWidth:1,
-    borderColor:Colors.BLUE_TITLE,
-borderRadius:4,
-    backgroundColor:Colors.BLUE_TITLE,
-    padding:Dimensions.get('window').width * 0.01,
+    borderWidth: 1,
+    borderColor: Colors.BLUE_TITLE,
+    borderRadius: 4,
+    backgroundColor: Colors.BLUE_TITLE,
+    padding: Dimensions.get('window').width * 0.01,
   },
   image: {
     marginLeft: -Dimensions.get('window').width * 0.12,
   },
   title: {
-    fontFamily:'Montserrat',
-    color:Colors.WHITE,
-    fontSize:14,
-    fontStyle:'normal',
-    fontWeight:'700',
-    lineHeight:21,
+    fontFamily: 'Montserrat',
+    color: Colors.WHITE,
+    fontSize: 14,
+    fontStyle: 'normal',
+    fontWeight: '700',
+    lineHeight: 21,
   },
   titleMini: {
-    fontFamily:'Montserrat',
-    color:Colors.WHITE,
-    fontSize:10,
-    fontStyle:'normal',
-    fontWeight:'400',
-    lineHeight:15,
+    fontFamily: 'Montserrat',
+    color: Colors.WHITE,
+    fontSize: 10,
+    fontStyle: 'normal',
+    fontWeight: '400',
+    lineHeight: 15,
   },
   titleWatch: {
-    fontFamily:'Montserrat',
-    color:Colors.WHITE,
-    fontSize:8,
-    fontStyle:'normal',
-    fontWeight:'500',
-    lineHeight:9.6,
+    fontFamily: 'Montserrat',
+    color: Colors.WHITE,
+    fontSize: 8,
+    fontStyle: 'normal',
+    fontWeight: '500',
+    lineHeight: 9.6,
   },
   imageMic: {
     marginRight: -Dimensions.get('window').width * 0.08,

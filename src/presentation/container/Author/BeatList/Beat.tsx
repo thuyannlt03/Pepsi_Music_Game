@@ -4,6 +4,11 @@ import Background from '../../../component/background/Background'
 import { BACK, BACKGROUND_TAB } from '../../../../../assets'
 import { Colors } from '../../../resource/value/Colors'
 
+
+
+const Beat = () => {
+
+  
 interface Item {
   id: number;
   title: string;
@@ -50,7 +55,7 @@ const renderItem = ({ item }: { item: Item }) => (
   </View>
 );
 
-const Beat = () => {
+
   return (
     <Background>
       <View style={styles.container}>

@@ -2,31 +2,110 @@ import { StyleSheet, Switch, Text, View, ImageBackground, Pressable, Image, Dime
 import React, { useState } from 'react'
 import Button from '../../../component/button/Button'
 import Background from '../../../component/background/Background'
-import { BACKGROUND_TAB, BACK, SUBTRACT, SUBTRACT_HIDE, CENTER_BUTTON, TIME, RECORD_BACK, CHECK,PERFORM, VOLUME,PLAY } from '../../../../../assets'
+import { BACKGROUND_TAB, BACK, SUBTRACT, SUBTRACT_HIDE, CENTER_BUTTON, TIME, RECORD_BACK, CHECK, PERFORM, VOLUME, PLAY } from '../../../../../assets'
 import { Colors } from '../../../resource/value/Colors'
+import { RemixStackScreenProps } from '../../../navigation/stack/RemixNavigation'
+import Slider from '@react-native-community/slider';
+import DialogNotification from '../../../component/dialog/DialogNotification';
+import Header from '../../../component/header/Header';
 
 
 
-const Remix = () => {
+const Remix: React.FC<RemixStackScreenProps<'Remix'>> = ({navigation, route}) => {
 
-    const [isEnabled, setIsEnabled] = useState(false);
-    const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+   const [isEnabled, setisEnabled] = useState(false);
+   const toggleSwitch = () => setisEnabled (previousState => !previousState);
+    const [modalVisible, setModalVisible] = useState(false);
+
+    const [title, setTitle] = useState<string>();
+    const [btnLeft, setBtnLeft] = useState<string>();
+    const [btnRight, setBtnRight] = useState<string>();
+    const [onHuy, setonHuy] = useState(false);
+    const [onBack, setonBack] = useState(false);
+    const [onSubmit, setonSubmit] = useState(false);
+    const [isExit, setisExit] = useState(false);
+
+  
+    const onClick = (type: string) => {
+        if (type === "cancel") {
+            setTitle("Bạn có chắc muốn xóa bản thu âm này ?");
+            setBtnLeft("Không");
+            setBtnRight("Có");
+            setonHuy(true);
+            setModalVisible(true);
+        }
+        if (type === "back") {
+            setTitle("Nếu bạn trở về bản thu âm này sẽ không được lưu");
+            setBtnLeft("Rời khỏi");
+            setBtnRight("Tiếp tục");
+            setonBack(true);
+            setModalVisible(true);
+        }
+        if (type === "submit") {
+            setTitle("Vui lòng xác nhận nếu bạn đã remix xong");
+            setBtnLeft("Quay lại");
+            setBtnRight("Xác nhận");
+            setonSubmit(true);
+            setisExit(true);
+            setModalVisible(true);
+        }
+    };
+
+    const onDelete = () => {
+        if (onHuy) {
+            setonHuy(false);
+            setModalVisible(false);
+            //navigation
+            navigation.navigate('Recording')
+        }
+        if (onBack) {
+            setonBack(false);
+            setModalVisible(false);
+            //navigation
+            navigation.navigate('Recording')
+        }
+        if (onSubmit) {
+            setonSubmit(false);
+            setisExit(false);
+            setModalVisible(false);
+            navigation.navigate('AnimationOne')
+        }
+    };
+
+    const onCancel = () => {
+        setonHuy(false);
+        setonBack(false);
+        setonSubmit(false);
+        setisExit(false);
+        setModalVisible(false);
+    };
+
+    const onExit = () => {
+        setisExit(false);
+        setModalVisible(false);
+    }
+
+    
+
+    const centerHeader = () => {
+        return (
+            <View style={styles.header_1}>
+                <View style={styles.centerHeader}>
+                    <Text style={styles.rule}>Tiền nhiều để làm gì</Text>
+                    <Text style={styles.rule2}>Gducky ft.Lưu Hiền Trinh</Text>
+                </View>
+            </View>
+        )
+    }
 
     return (
         <Background>
 
-            <ImageBackground source={BACKGROUND_TAB} style={styles.headline}>
-                <Pressable >
-                    <Image source={BACK} style={styles.iconBack} />
-                </Pressable>
-                <View style={styles.beat}>
-                    <Text style={styles.baihat}>Tiền nhiều để làm gì</Text>
-                    <Text style={styles.casi}>GDucky ft.Lưu Hiền Trinh</Text>
-                </View>
-                <Pressable  >
-                    <Image source={SUBTRACT} style={styles.iconSubTract} />
-                </Pressable>
-            </ImageBackground>
+            <Header
+                iconLeft={BACK}
+                leftHeader={() => onClick("back")}
+                centerHeader={centerHeader()}
+            />
 
             <View style={styles.group}>
                 <View style={styles.group1}>
@@ -74,12 +153,29 @@ const Remix = () => {
                 <Button
                     containerStyle={styles.buttonXem}
                     title='Tiếp theo'
+                    onPress={() =>onClick("submit")}
                 />
                 <Button
                     containerStyle={styles.buttonPass}
                     title='Hủy Bỏ'
-                    titleStyle={styles.title} />
+                    titleStyle={styles.title} 
+                    onPress={() => onClick("cancel")}/>
             </View>
+            {
+                    modalVisible ? <DialogNotification
+                        title= {title}
+                        btnLeft= {btnLeft}
+                        btnRight= {btnRight}
+                        isVisibile={modalVisible}
+                        onPressL={onCancel}
+                        onPressR={onDelete}
+                        isExit={isExit}
+                        onPressE={onExit}
+                    />
+                        :
+                        <View></View>
+                }
+
         </Background>
     )
 }
@@ -92,43 +188,34 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
 
-    headline: {
-        height: Dimensions.get('window').height * 0.13,
-        width: '100%',
-        alignItems: 'center',
-        flexDirection: 'row'
-    },
-    iconBack: {
-        marginTop: Dimensions.get('window').height * 0.04,
-        marginLeft: '20%',
-    },
-    iconSubTract: {
-        marginTop: Dimensions.get('window').height * 0.04,
-        marginLeft: '40%',
-    },
-    beat: {
-
+    centerHeader: {
         flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    header_1: {
         justifyContent: 'center',
         alignItems: 'center',
     },
-    baihat: {
-        fontFamily: 'Montserrat',
+    textHeader: {
+        fontWeight: '600',
+        fontSize: 18,
+        color: Colors.WHITE,
+        textAlign: 'center',
+    },
+
+
+    rule: {
         fontSize: 14,
         fontWeight: '600',
         lineHeight: 21,
         color: Colors.WHITE,
-        marginTop: Dimensions.get('window').height * 0.04,
-        marginLeft: Dimensions.get('window').height * 0.03,
     },
-    casi: {
-        fontFamily: 'Montserrat',
+    rule2: {
         fontSize: 12,
         fontWeight: '400',
         lineHeight: 18,
         color: Colors.BLUE_CASI,
-        marginLeft: Dimensions.get('window').height * 0.03,
-
     },
     group: {
         borderWidth: 1,
@@ -149,7 +236,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-evenly',
         alignItems: 'center'
     },
-    
+
     Volume: {
         borderWidth: 1,
         borderColor: Colors.WHITE,
@@ -214,14 +301,14 @@ const styles = StyleSheet.create({
         marginLeft: - Dimensions.get('window').width * 0.01,
 
     },
-    on:{
+    on: {
         marginLeft: Dimensions.get('window').width * 0.1,
-        
+
     },
-    Perform:{
+    Perform: {
         marginTop: Dimensions.get('window').height * 0.03,
     },
-    Play:{
+    Play: {
         marginTop: Dimensions.get('window').height * 0.005,
     },
 

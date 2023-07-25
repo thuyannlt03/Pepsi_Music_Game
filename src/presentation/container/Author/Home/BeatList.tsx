@@ -1,11 +1,44 @@
 import { StyleSheet, Text, View, ScrollView, Image, FlatList, Dimensions, TouchableOpacity, ImageBackground, Pressable } from 'react-native'
 import React from 'react'
 import Background from '../../../component/background/Background'
-import { MainStackScreenProps } from '../../../navigation/stack/Navigation'
+import { BeatListStackScreenProps } from '../../../navigation/stack/BeatNavigation'
 import { BANER, ICON_HOME, ICON_MUSIC, VOLUME_HIGH, ICON_NOTIFICATION,  BACKGROUND_TAB } from '../../../../../assets'
 import { Colors } from '../../../resource/value/Colors'
 import Button from '../../../component/button/Button'
+import Header from '../../../component/header/Header'
 
+
+
+
+
+
+const BeatList : React.FC<BeatListStackScreenProps<'BeatList'>> = ({ navigation, route }) => {
+
+  const [edt, setedt] = React.useState<string>('');
+  console.log(edt)
+
+  
+  const Notification = () => {
+    navigation.navigate('Notification');
+  }
+  const Use = () => {
+    navigation.navigate('Use');
+  }
+  const New = () => {
+    navigation.navigate('New');
+  }
+  const Recorded = () => {
+    navigation.navigate('Recorded');
+  }
+  const Recommen = () => {
+    navigation.navigate('Recommen');
+  }
+  const goBack = () => {
+  };
+
+  const goNotification = () => {
+    navigation.navigate('Notification');
+  };
 
 interface Item {
   id: number,
@@ -91,47 +124,23 @@ const Item = ({ item }: { item: ItemList }) => (
     <Image source={item.imageMic} style={styles.imageMic1} />
   </View>
 );
-
-
-
-
-const BeatList : React.FC<MainStackScreenProps<'BeatList'>> = ({ navigation, route }) => {
-
-  const [edt, setedt] = React.useState<string>('');
-  console.log(edt)
-
-  
-  const Notification = () => {
-    navigation.navigate('Notification');
-  }
-  const Use = () => {
-    navigation.navigate('Use');
-  }
-  const New = () => {
-    navigation.navigate('New');
-  }
-  const Recorded = () => {
-    navigation.navigate('Recorded');
-  }
-  const Recommen = () => {
-    navigation.navigate('Recommen');
-  }
-  
  
-
+const centerHeader = () => {
+  return (
+    <View style={styles.header_1}>
+      <Text style={styles.textHeader}>Beat list</Text>
+    </View>
+  )
+}
   return (
     <Background>
-      <ImageBackground source={BACKGROUND_TAB} style={styles.headline}>
-      
-          <Image source={ICON_HOME} style={styles.iconHome} />
-        
-        <View style={styles.beat}>
-          <Text style={styles.beatlist}>Beat List</Text>
-        </View>
-        <Pressable  onPress={Notification}>
-          <Image source={ICON_NOTIFICATION} style={styles.iconNo} />
-        </Pressable>
-      </ImageBackground>
+      <Header
+        iconLeft={ICON_HOME}
+        leftHeader={goBack}
+        centerHeader={centerHeader()}
+        iconRight={ICON_NOTIFICATION}
+        rightHeader={goNotification}
+      />
       <ScrollView style={styles.container}>
         <Image source={BANER} style={styles.imageBanner} />
         <View style={styles.boxButton}>
@@ -191,26 +200,17 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: Dimensions.get('screen').scale * 5,
   },
-  headline: {
-    height: Dimensions.get('window').height * 0.13,
-    width: '100%',
-    alignItems: 'center',
-    flexDirection: 'row'
-  },
-  iconHome: {
-    marginTop: Dimensions.get('window').height * 0.04,
-    marginLeft: '20%',
-  },
-  iconNo: {
-    marginTop: Dimensions.get('window').height * 0.04,
-    marginLeft: '50%',
-  },
-  beat: {
-
-    flexDirection: 'column',
+  header_1: {
     justifyContent: 'center',
     alignItems: 'center',
   },
+  textHeader: {
+    fontWeight: '600',
+    fontSize: 18,
+    color: Colors.WHITE,
+    textAlign: 'center',
+  },
+ 
   beatlist: {
     fontFamily: 'Montserrat',
     fontSize: 18,

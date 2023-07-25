@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const Rating = () => {
+const Chart = () => {
   return (
     <View>
       <Text>Rating</Text>
@@ -9,6 +9,6 @@ const Rating = () => {
   )
 }
 
-export default Rating
+export default Chart
 
 const styles = StyleSheet.create({})

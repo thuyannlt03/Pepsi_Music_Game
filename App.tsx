@@ -45,7 +45,8 @@ import { AuthorNavigation } from './src/presentation/navigation/tab/AuthorNaviga
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack';
 import { MainStackParamList } from './src/presentation/navigation/stack/Navigation'
-
+import { AuthenNavigation } from './src/presentation/navigation/stack/AuthenNavigation';
+import { AppNavigation } from './src/presentation/navigation/AppNavigation';
 
 const Stack = createStackNavigator<MainStackParamList>();
 
@@ -141,7 +142,7 @@ function App(): JSX.Element {
 
     //<ProfileA></ProfileA>
     //<ProfileN></ProfileN>
-   <Profile></Profile>
+   //<Profile></Profile>
    
     // <NavigationContainer> 
       
@@ -187,6 +188,9 @@ function App(): JSX.Element {
       
     //   </Stack.Navigator>
     // </NavigationContainer>
+
+
+    <AppNavigation></AppNavigation>
     
   );
 }

@@ -4,6 +4,11 @@ import Background from '../../../component/background/Background'
 import { AVT, AVT_1, BACK, BACKGROUND_TAB, NOTIFICATION_2 } from '../../../../../assets'
 import { Colors } from '../../../resource/value/Colors'
 
+
+const Profile = () => {
+
+
+
 interface Item {
   id: number,
   title: string,
@@ -56,7 +61,7 @@ const renderItem = ({ item }: { item: Item }) => (
   </View>
 );
 
-const Profile = () => {
+
   return (
     <Background>
 
@@ -69,7 +74,7 @@ const Profile = () => {
         <View style={styles.group}>
           <View style={styles.group1}>
             <Image source={AVT_1} style={styles.avt} />
-            <Text style={styles.ten}>Annie_2204</Text>
+            <Text style={styles.ten}>AiVan.01</Text>
             <View style={styles.group2}>
               <View style={styles.group3}>
                 <Text style={styles.tong}>Tổng số video</Text>
@@ -311,3 +316,5 @@ const styles = StyleSheet.create({
   },
 
 })
+
+
