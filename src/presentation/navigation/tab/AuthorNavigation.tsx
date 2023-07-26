@@ -11,6 +11,7 @@ import VideoList from "../../container/Author/Home/VideoList";
 import Chart from "../../container/Author/Home/Chart";
 import Profile from "../../container/Author/Home/Profile";
 import BeatList from "../../container/Author/Home/BeatList";
+import Recording from "../../container/Author/Remix/Recording";
 
 
 

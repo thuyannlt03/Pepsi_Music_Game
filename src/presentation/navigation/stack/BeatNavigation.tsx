@@ -28,6 +28,16 @@ type GiftProps = {
 type RecordingProps = {
     
 };
+
+type ChartProps = {
+    
+};
+
+type RecordProps = {
+    
+};
+
+
 export type BeatListStackParamList = {
   
     BeatList: BeatListProps | undefined,
@@ -38,6 +48,10 @@ export type BeatListStackParamList = {
     Notification: NotificationProps | undefined,
     Gift: GiftProps | undefined;
     Recording: RecordingProps | undefined;
+    Record: RecordingProps | undefined;
+    Chart: ChartProps | undefined;
+
+
 };
 
 export type BeatListStackNavigation = StackNavigationProp<BeatListStackParamList>;

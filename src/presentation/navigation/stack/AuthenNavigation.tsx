@@ -20,8 +20,12 @@ import Use from '../../container/Author/BeatList/Use';
 import Notification from '../../container/Author/Notification/Notification';
 import Gift from '../../container/Author/Notification/Gift';
 
-import { RemixStackParamList } from "../../navigation/stack/RemixNavigation";
+import Record from "../../container/Author/Home/Record";
+import Chart from "../../container/Author/Home/Chart";
+
 import { BeatListStackParamList} from "../../navigation/stack/BeatNavigation"
+import { RemixStackParamList } from "../../navigation/stack/RemixNavigation";
+
 import Recording from '../../container/Author/Remix/Recording';
 
 import Remix from '../../container/Author/Remix/Remix';
@@ -61,21 +65,23 @@ export const AuthenNavigation = () => {
 
     
             <Stack.Navigator screenOptions={{ headerShown: false }}>
-                <Stack.Screen name='BeatList' component={BeatList} />
+                {/* <Stack.Screen name='BeatList' component={BeatList} /> */}
+                <Stack.Screen name='Chart' component={Chart} />
                 <Stack.Screen name='Notification' component={Notification} />
                 <Stack.Screen name='Gift' component={Gift} />
-                <Stack.Screen name='New' component={New} />
+                {/* <Stack.Screen name='New' component={New} />
                 <Stack.Screen name='Use' component={Use} />
                 <Stack.Screen name='Recorded' component={Recorded} />
                 <Stack.Screen name='Recommen' component={Recommen} />
-                <Stack.Screen name='Recording' component={Recording} />
+                <Stack.Screen name='Recording' component={Recording} /> */}
+                <Stack.Screen name='Record' component={Record} />
+               
                 {/* <Stack.Screen name='Remix' component={Remix} />
                 <Stack.Screen name='AnimationOne' component={AnimationOne} />
                 <Stack.Screen name='AnimationTwo' component={AnimationTwo} />
                 <Stack.Screen name='AnimationThree' component={AnimationThree} />
                 <Stack.Screen name='Search' component={Search} />
                 <Stack.Screen name='ThankYou' component={ThankYou} />
-                <Stack.Screen name='Recorded' component={Recorded} />
                 <Stack.Screen name='ProfileNa' component={ProfileNa} /> */}
             </Stack.Navigator>
    

@@ -25,13 +25,19 @@ export const Colors = {
     BACKGROUND_VOLUME: 'rgba(77, 115, 167, 0.30)',
     BUTTON_VOLUME: 'rgba(20, 69, 194, 0.60)',
     RED: '#ED1941',
+    RED1:'#D30024',
     BACKGROUND_BOX:'rgba(19, 66, 125, 0.3)',
     BAR_RED: 'rgba(237, 25, 65, 1)',
     BACKGROUND_HEART:  'rgba(16, 76, 231, 1)',
     SEARCH: '#0074A4',
     SEARCH1: '#99B7D6',
     TEXT_TONG: '#CCEBF8',
-    
-    
+    BORDER_WHITE_1: 'rgba(255, 255, 255, 0.20)',
+    SOLID_1:'#1D4FD6',
+    SOLID_2:'#40AFFF',
+    BANNER_1:'#205EFF',
+    BANNER_2:'#40AFFF',
+    TEXT:'#C2C9D1',
+    BLUEH:'#1445C2',
   };
   

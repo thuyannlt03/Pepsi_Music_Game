@@ -28,16 +28,14 @@ import Recommen from './src/presentation/container/Author/BeatList/Recommen'
 import Recorded from './src/presentation/container/Author/BeatList/Recorded';
 import Use from './src/presentation/container/Author/BeatList/Use';
 import Recording from './src/presentation/container/Author/Remix/Recording';
-import Recording2 from './src/presentation/container/Author/Remix/Recording2';
-import NewBeat from './src/presentation/container/Author/Remix/NewBeat';
-import NewBeat2 from './src/presentation/container/Author/Remix/NewBeat2';
+
 import Remix from './src/presentation/container/Author/Remix/Remix';
 import AnimationOne from './src/presentation/container/Author/Remix/AnimationOne';
 import AnimationTwo from './src/presentation/container/Author/Remix/AnimationTwo';
 import AnimationThree from './src/presentation/container/Author/Remix/AnimationThree';
 import Search from './src/presentation/container/Author/Remix/Search';
 import ProfileA from './src/presentation/container/Author/LeaderBoard/ProfileA';
-import ProfileN from './src/presentation/container/Author/Profile/ProfileN';
+
 import Profile from './src/presentation/container/Author/Home/Profile';
 
 
@@ -189,7 +187,7 @@ function App(): JSX.Element {
     //   </Stack.Navigator>
     // </NavigationContainer>
 
-
+    
     <AppNavigation></AppNavigation>
     
   );

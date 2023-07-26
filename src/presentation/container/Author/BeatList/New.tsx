@@ -1,7 +1,7 @@
 import React from 'react';
 import { FlatList, Image, StyleSheet, Text, View, ImageBackground, Dimensions, TouchableOpacity } from 'react-native';
 import Background from '../../../component/background/Background'
-import { BACK, BACKGROUND_TAB } from '../../../../../assets'
+import { BACK } from '../../../../../assets'
 import { Colors } from '../../../resource/value/Colors'
 import { BeatListStackScreenProps } from '../../../navigation/stack/BeatNavigation'
 import Header from '../../../component/header/Header';
