@@ -45,7 +45,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { MainStackParamList } from './src/presentation/navigation/stack/Navigation'
 import { AuthenNavigation } from './src/presentation/navigation/stack/AuthenNavigation';
 import { AppNavigation } from './src/presentation/navigation/AppNavigation';
-
+import Top from './src/presentation/container/Author/Profile/Top';
 const Stack = createStackNavigator<MainStackParamList>();
 
 
@@ -186,9 +186,9 @@ function App(): JSX.Element {
       
     //   </Stack.Navigator>
     // </NavigationContainer>
-
+  //<Top></Top>
     
-    <AppNavigation></AppNavigation>
+     <AppNavigation></AppNavigation>
     
   );
 }

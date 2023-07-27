@@ -3,6 +3,7 @@ import { AuthenNavigation } from "../navigation/stack/AuthenNavigation"
 import { AuthorNavigation } from "../navigation/tab/AuthorNavigation"
 
 
+
 export const AppNavigation = () => {
 
     const authen = () => {
@@ -21,6 +22,8 @@ export const AppNavigation = () => {
         <NavigationContainer>
           {/* <AuthenNavigation/> */}
             <AuthorNavigation/>
+            
+            
         </NavigationContainer>
     )
 }

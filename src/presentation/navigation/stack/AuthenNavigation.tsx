@@ -65,8 +65,9 @@ export const AuthenNavigation = () => {
 
     
             <Stack.Navigator screenOptions={{ headerShown: false }}>
-                {/* <Stack.Screen name='BeatList' component={BeatList} /> */}
                 <Stack.Screen name='Chart' component={Chart} />
+                {/* <Stack.Screen name='BeatList' component={BeatList} /> */}
+              
                 <Stack.Screen name='Notification' component={Notification} />
                 <Stack.Screen name='Gift' component={Gift} />
                 {/* <Stack.Screen name='New' component={New} />

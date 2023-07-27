@@ -26,7 +26,7 @@ export const AuthorNavigation = () => {
                 tabBarStyle: {
                     height: Dimensions.get('screen').height * 0.1,
                     justifyContent: "center",
-                    // backgroundColor: 'black',
+                     backgroundColor: 'rgba(19, 66, 125, 0.7)',
                 },
                 tabBarItemStyle: {
                     marginBottom: Dimensions.get('screen').height * 0.03,
