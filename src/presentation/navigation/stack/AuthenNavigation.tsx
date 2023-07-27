@@ -65,25 +65,25 @@ export const AuthenNavigation = () => {
 
     
             <Stack.Navigator screenOptions={{ headerShown: false }}>
-                <Stack.Screen name='Chart' component={Chart} />
-                {/* <Stack.Screen name='BeatList' component={BeatList} /> */}
+                {/* <Stack.Screen name='Chart' component={Chart} /> */}
+                {/* <Stack.Screen name='BeatList' component={BeatList} />
               
                 <Stack.Screen name='Notification' component={Notification} />
-                <Stack.Screen name='Gift' component={Gift} />
+                <Stack.Screen name='Gift' component={Gift} /> */}
                 {/* <Stack.Screen name='New' component={New} />
                 <Stack.Screen name='Use' component={Use} />
                 <Stack.Screen name='Recorded' component={Recorded} />
-                <Stack.Screen name='Recommen' component={Recommen} />
-                <Stack.Screen name='Recording' component={Recording} /> */}
-                <Stack.Screen name='Record' component={Record} />
+                <Stack.Screen name='Recommen' component={Recommen} /> */}
+                {/* <Stack.Screen name='Recording' component={Recording} />
+                <Stack.Screen name='Record' component={Record} /> */}
                
-                {/* <Stack.Screen name='Remix' component={Remix} />
+                <Stack.Screen name='Remix' component={Remix} />
                 <Stack.Screen name='AnimationOne' component={AnimationOne} />
                 <Stack.Screen name='AnimationTwo' component={AnimationTwo} />
                 <Stack.Screen name='AnimationThree' component={AnimationThree} />
                 <Stack.Screen name='Search' component={Search} />
                 <Stack.Screen name='ThankYou' component={ThankYou} />
-                <Stack.Screen name='ProfileNa' component={ProfileNa} /> */}
+                <Stack.Screen name='ProfileNa' component={ProfileNa} />
             </Stack.Navigator>
    
 

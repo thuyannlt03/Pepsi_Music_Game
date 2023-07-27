@@ -20,8 +20,8 @@ export const AppNavigation = () => {
 
     return (
         <NavigationContainer>
-          {/* <AuthenNavigation/> */}
-            <AuthorNavigation/>
+          <AuthenNavigation/>
+            {/* <AuthorNavigation/> */}
             
             
         </NavigationContainer>

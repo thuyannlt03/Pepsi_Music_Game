@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, FlatList, Dimensions, Image, ImageBackground, TouchableOpacity  } from 'react-native'
 import React from 'react'
-import { AVT_1, BACKGROUND_RANK, IMAGE_BUC, IMAGE_RANK_1, IMAGE_RANK_2, IMAGE_RANK_3, IMAGE_RANK_4 } from '../../../../../assets'
+import { AVT_1, BACKGROUND_RANK, ICON_HOME, ICON_NOTIFICATION, IMAGE_BUC, IMAGE_RANK_1, IMAGE_RANK_2, IMAGE_RANK_3, IMAGE_RANK_4 } from '../../../../../assets'
 import Background from '../../../component/background/Background';
 import Header from '../../../component/header/Header'
 import { Colors } from '../../../resource/value/Colors';
@@ -16,12 +16,12 @@ interface Item {
 
 const DATA: Item[] = [
     { id: 1, name:'Janne', rank: 4 , image: require("../../../../../assets/Avt_Profile.png"), view: 1000, imageEye: require("../../../../../assets/Icon-Eye.png")  },
-    { id: 2, name:'Janne', rank: 4 , image: require("../../../../../assets/Avt_Profile.png"), view: 1000,imageEye: require("../../../../../assets/Icon-Eye.png") },
-    { id: 3, name:'Janne', rank: 4 , image: require("../../../../../assets/Avt_Profile.png"), view: 1000, imageEye: require("../../../../../assets/Icon-Eye.png")  },
-    { id: 4, name:'Janne', rank: 4 , image: require("../../../../../assets/Avt_Profile.png"), view: 1000, imageEye: require("../../../../../assets/Icon-Eye.png")  },
-    { id: 5, name:'Janne', rank: 4 , image: require("../../../../../assets/Avt_Profile.png"), view: 1000, imageEye: require("../../../../../assets/Icon-Eye.png")  },
-    { id: 6, name:'Janne', rank: 4 , image: require("../../../../../assets/Avt_Profile.png"), view: 1000, imageEye: require("../../../../../assets/Icon-Eye.png")  },
-    { id: 7, name:'Janne', rank: 4 , image: require("../../../../../assets/Avt_Profile.png"), view: 1000, imageEye: require("../../../../../assets/Icon-Eye.png")  },
+    { id: 2, name:'Janne', rank: 5 , image: require("../../../../../assets/Avt_Profile.png"), view: 1000,imageEye: require("../../../../../assets/Icon-Eye.png") },
+    { id: 3, name:'Janne', rank: 6 , image: require("../../../../../assets/Avt_Profile.png"), view: 1000, imageEye: require("../../../../../assets/Icon-Eye.png")  },
+    { id: 4, name:'Janne', rank: 7 , image: require("../../../../../assets/Avt_Profile.png"), view: 1000, imageEye: require("../../../../../assets/Icon-Eye.png")  },
+    { id: 5, name:'Janne', rank: 8 , image: require("../../../../../assets/Avt_Profile.png"), view: 1000, imageEye: require("../../../../../assets/Icon-Eye.png")  },
+    { id: 6, name:'Janne', rank: 9 , image: require("../../../../../assets/Avt_Profile.png"), view: 1000, imageEye: require("../../../../../assets/Icon-Eye.png")  },
+    { id: 7, name:'Janne', rank: 10 , image: require("../../../../../assets/Avt_Profile.png"), view: 1000, imageEye: require("../../../../../assets/Icon-Eye.png")  },
   
   
   ];
@@ -47,10 +47,28 @@ const DATA: Item[] = [
     </View> 
   );
 
+  const goBack = () => {
+    // navigation.navigate('Record');
+  }
+  const Notification = () => {
+    // navigation.navigate('Record');
+  }
+  const centerHeader = () => {
+    return (
+      <Text style={styles.textHeader}>Nhạc thịnh hành</Text>
+    )
+  };
 
 const Top = () => {
     return (
         <Background>
+            <Header
+                iconLeft={ICON_HOME}
+                leftHeader={goBack}
+                centerHeader={centerHeader()}
+                iconRight={ICON_NOTIFICATION}
+                rightHeader={Notification}
+            />
             <View style={styles.container}>
                 <ImageBackground style= {{width: Dimensions.get('screen').width, paddingHorizontal: 22}} source={BACKGROUND_RANK}>
                     <View style={styles.boxTop}>
@@ -94,6 +112,12 @@ const Top = () => {
 export default Top
 
 const styles = StyleSheet.create({
+    textHeader: {
+        fontSize: 18,
+        fontWeight: '600',
+        lineHeight: 27,
+        color: Colors.WHITE
+      },
     container: {
         justifyContent: 'center',
         alignItems: 'center',
