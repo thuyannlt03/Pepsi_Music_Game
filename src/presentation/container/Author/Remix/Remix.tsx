@@ -7,6 +7,7 @@ import { Colors } from '../../../resource/value/Colors'
 import { RemixStackScreenProps } from '../../../navigation/stack/RemixNavigation'
 import Slider from '@react-native-community/slider';
 import DialogNotification from '../../../component/dialog/DialogNotification';
+import DialogProgress from '../../../component/dialog/DialogProgress'
 import Header from '../../../component/header/Header';
 
 
@@ -24,11 +25,16 @@ const Remix: React.FC<RemixStackScreenProps<'Remix'>> = ({navigation, route}) =>
     const [onBack, setonBack] = useState(false);
     const [onSubmit, setonSubmit] = useState(false);
     const [isExit, setisExit] = useState(false);
+    const [onProgree, setonProgree] = useState(false);
+    const [onStart, setonStart] = useState(false);
 
-  
+
+    const clickStart = () => {
+        setonStart(true);
+    };
     const onClick = (type: string) => {
         if (type === "cancel") {
-            setTitle("Bạn có chắc muốn xóa bản thu âm này ?");
+            setTitle("Bạn có chắc muốn hủy bản thu âm này ?");
             setBtnLeft("Không");
             setBtnRight("Có");
             setonHuy(true);
@@ -49,6 +55,9 @@ const Remix: React.FC<RemixStackScreenProps<'Remix'>> = ({navigation, route}) =>
             setisExit(true);
             setModalVisible(true);
         }
+      
+
+
     };
 
     const onDelete = () => {
@@ -68,8 +77,10 @@ const Remix: React.FC<RemixStackScreenProps<'Remix'>> = ({navigation, route}) =>
             setonSubmit(false);
             setisExit(false);
             setModalVisible(false);
+            setonProgree(true);
             navigation.navigate('AnimationOne')
         }
+        
     };
 
     const onCancel = () => {
@@ -84,6 +95,7 @@ const Remix: React.FC<RemixStackScreenProps<'Remix'>> = ({navigation, route}) =>
         setisExit(false);
         setModalVisible(false);
     }
+    
 
     
 
@@ -150,11 +162,13 @@ const Remix: React.FC<RemixStackScreenProps<'Remix'>> = ({navigation, route}) =>
 
 
             <View style={styles.boxButton}>
+         
                 <Button
                     containerStyle={styles.buttonXem}
                     title='Tiếp theo'
                     onPress={() =>onClick("submit")}
                 />
+             
                 <Button
                     containerStyle={styles.buttonPass}
                     title='Hủy Bỏ'
@@ -171,10 +185,23 @@ const Remix: React.FC<RemixStackScreenProps<'Remix'>> = ({navigation, route}) =>
                         onPressR={onDelete}
                         isExit={isExit}
                         onPressE={onExit}
+                        
                     />
                         :
                         <View></View>
                 }
+                 {
+                    onProgree ? <DialogProgress
+                    title="Video đang được tải lên"
+                    
+                    isVisibile={onProgree}
+                       
+                        
+                    />
+                        :
+                        <View></View>
+                }
+
 
         </Background>
     )
@@ -325,6 +352,7 @@ const styles = StyleSheet.create({
     buttonXem: {
         width: Dimensions.get('window').width * 0.8,
         height: Dimensions.get('window').height * 0.075,
+       
 
     },
     buttonPass: {

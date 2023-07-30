@@ -119,6 +119,7 @@ const styles = StyleSheet.create({
         marginBottom:Dimensions.get('window').height *0.05,
     },
     imgCover:{
+        marginHorizontal:Dimensions.get("window").width * 0.03,
         marginBottom:Dimensions.get('window').height *0.015,
         borderRadius:12,
         borderWidth:2,

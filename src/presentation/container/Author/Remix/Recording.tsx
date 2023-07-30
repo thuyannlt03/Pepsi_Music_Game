@@ -51,6 +51,8 @@ const Recording: React.FC<RemixStackScreenProps<'Recording'>> = ({ navigation, r
     const [title, setTitle] = useState<string>();
     const [btnLeft, setBtnLeft] = useState<string>();
     const [btnRight, setBtnRight] = useState<string>();
+    
+
 
 
 

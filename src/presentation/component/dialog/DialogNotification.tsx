@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Modal, Alert, Dimensions, TouchableOpacity, Image } from 'react-native'
+import { StyleSheet, Text, View, Modal, Dimensions, TouchableOpacity, Image } from 'react-native'
 import React from 'react'
 import { Colors } from '../../resource/value/Colors';
 import { CANCEL } from '../../../../assets';

@@ -74,8 +74,8 @@ export const AuthenNavigation = () => {
                 <Stack.Screen name='Use' component={Use} />
                 <Stack.Screen name='Recorded' component={Recorded} />
                 <Stack.Screen name='Recommen' component={Recommen} /> */}
-                {/* <Stack.Screen name='Recording' component={Recording} />
-                <Stack.Screen name='Record' component={Record} /> */}
+                <Stack.Screen name='Recording' component={Recording} />
+                <Stack.Screen name='Record' component={Record} />
                
                 <Stack.Screen name='Remix' component={Remix} />
                 <Stack.Screen name='AnimationOne' component={AnimationOne} />

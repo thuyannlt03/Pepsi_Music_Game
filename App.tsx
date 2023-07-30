@@ -37,7 +37,11 @@ import Search from './src/presentation/container/Author/Remix/Search';
 import ProfileA from './src/presentation/container/Author/LeaderBoard/ProfileA';
 
 import Profile from './src/presentation/container/Author/Home/Profile';
-
+import DialogReport from './src/presentation/component/dialog/DialogReport';
+import DialogNotification from './src/presentation/component/dialog/DialogNotification';
+import DialogProgress from './src/presentation/component/dialog/DialogProgress';
+import ThankYou from './src/presentation/container/Author/Remix/ThankYou';
+import VideoList from './src/presentation/container/Author/Home/VideoList';
 
 import { AuthorNavigation } from './src/presentation/navigation/tab/AuthorNavigation';
 import { NavigationContainer } from '@react-navigation/native'
@@ -67,7 +71,6 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import ThankYou from './src/presentation/container/Author/Remix/ThankYou';
 
 
 type SectionProps = PropsWithChildren<{
@@ -186,9 +189,14 @@ function App(): JSX.Element {
       
     //   </Stack.Navigator>
     // </NavigationContainer>
-  //<Top></Top>
+  <Top></Top>
+  //<VideoList></VideoList>
     
-     <AppNavigation></AppNavigation>
+    //<AppNavigation></AppNavigation>
+    //<DialogNotification></DialogNotification>
+    //<DialogReport/>
+   //<VideoList/>
+   //<DialogProgress></DialogProgress>
     
   );
 }

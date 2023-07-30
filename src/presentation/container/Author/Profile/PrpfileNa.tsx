@@ -117,7 +117,7 @@ const ProfileNa: React.FC<RemixStackScreenProps<'ProfileNa'>> = ({ navigation, r
         leftHeader={goBack}
         centerHeader={centerHeader()}
         iconRight={NOTIFICATION_2}
-      rightHeader={() => onClick("submit")}
+        rightHeader={() => onClick("submit")}
       />
       <ScrollView style={styles.container}>
         <View style={styles.group}>
