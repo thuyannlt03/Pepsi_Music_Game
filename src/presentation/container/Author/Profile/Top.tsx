@@ -281,6 +281,7 @@ const styles = StyleSheet.create({
     item: {
         width: Dimensions.get('screen').width,
         height: Dimensions.get('screen').height * 0.1,
+        marginLeft:  Dimensions.get('screen').width * 0.03,
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center',
@@ -381,6 +382,7 @@ const styles = StyleSheet.create({
         height: Dimensions.get('screen').height * 0.25,
         marginHorizontal: Dimensions.get('screen').width * 0.01,
         marginBottom: Dimensions.get('screen').height * 0.015,
+       
     },
     txtID: {
         fontFamily: 'Monterrat',

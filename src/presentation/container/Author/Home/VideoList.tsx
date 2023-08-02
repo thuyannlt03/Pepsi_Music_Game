@@ -17,7 +17,7 @@ const VideoList = () => {
     const [onChoose, setonChoose] = React.useState(1)
 
     const [checked, setChecked] = React.useState('');
- 
+
     const [modalVisible, setModalVisible] = useState(false);
 
 
@@ -32,7 +32,7 @@ const VideoList = () => {
     const [isExit, setisExit] = useState(false);
     const [onReport, setonReport] = useState(false);
     const [value, setvalue] = useState("Video spam");
-  
+
 
     const onClick = (type: string) => {
 
@@ -48,7 +48,7 @@ const VideoList = () => {
         }
     };
 
-   
+
 
     const onCancel = () => {
         setonHuy(false);
@@ -65,42 +65,42 @@ const VideoList = () => {
 
     const onCancelReport = () => {
         setonReport(false);
-       // navigation.navigate('')
+        // navigation.navigate('')
     };
 
     const onDeleteReport = () => {
         setonReport(false);
         //navigation.navigate('')
     };
-    
+
 
     const onDelete = () => {
         if (onHuy) {
             setonHuy(false);
             setModalVisible(false);
             //navigation
-           // navigation.navigate('Recording')
+            // navigation.navigate('Recording')
         }
         if (onBack) {
             setonBack(false);
             setModalVisible(false);
             //navigation
-           // navigation.navigate('Recording')
+            // navigation.navigate('Recording')
         }
         if (onSubmit) {
             setonSubmit(false);
             setisExit(false);
             setModalVisible(false);
             setonReport(true);
-            
-           // navigation.navigate('AnimationOne')
+
+            // navigation.navigate('AnimationOne')
         }
         if (onReport) {
             setonReport(false);
             setisExit(false);
-         
-           
-           // navigation.navigate('AnimationOne')
+
+
+            // navigation.navigate('AnimationOne')
         }
 
     };
@@ -211,7 +211,7 @@ const VideoList = () => {
                             <Image source={taive} />
                             <Text style={styles.textIcon}>Tải về</Text>
                         </TouchableOpacity>
-                       
+
                         <TouchableOpacity style={styles.boxReact_1} onPress={() => onClick("submit")}>
                             <Image source={REPORT} />
                             <Text style={styles.textIcon}>Báo cáo</Text>
@@ -306,7 +306,20 @@ const VideoList = () => {
                     keyExtractor={(item) => item.id.toString()}
                 />
             </View>
-            
+            :
+            <FlatList
+                data={DATA}
+                renderItem={renderItem}
+                keyExtractor={(item) => item.id.toString()}
+            />
+            :
+            <FlatList
+                data={DATA}
+                renderItem={renderItem}
+                keyExtractor={(item) => item.id.toString()}
+            />
+
+
 
             {
                 modalVisible ?
@@ -329,7 +342,7 @@ const VideoList = () => {
                 onReport ?
                     <DialogThanks
                         title="Cảm ơn bạn đã báo cáo bình luận này"
-                        isValue ={value}
+                        isValue={value}
                         btnLeft="Quay lại"
                         btnRight="Xác nhận"
                         isVisibile={onReport}

@@ -8,11 +8,15 @@ type SignInScreenProps = {
 };
 
 type SignInProps = {
-    id: number;
+    
+    name: string;
 };
 
 type SignInOTPProps = {
-    id: number;
+  
+    phone: string;
+    name?: string;
+    type:  boolean;
 };
 type SignUpScreenProps = {
     id: number;
@@ -23,7 +27,9 @@ type SignUpProps = {
 };
 
 type SignUpOTPProps = {
-    id: number;
+    name?: string;
+    phone: string;
+    type:  boolean;
 };
 type OnBoardingProps = {
     id: number;
@@ -32,6 +38,9 @@ type RulesProps = {
     id: number;
 };
 type BeatProps = {
+    id: number;
+};
+type HomeProps = {
     id: number;
 };
 
@@ -56,14 +65,7 @@ export type MainStackParamList = {
     OnBoarding: OnBoardingProps | undefined;
     Rules: RulesProps | undefined;
     Beat: BeatProps | undefined;
-  
-    
-  
-  
-
-
-
-   
+    Home: HomeProps | undefined;
     
     
 };

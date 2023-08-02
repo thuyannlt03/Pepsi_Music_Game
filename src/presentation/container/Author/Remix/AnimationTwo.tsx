@@ -114,12 +114,13 @@ const styles = StyleSheet.create({
         color: Colors.BLUE_CASI,
     },
     banner:{
-        marginHorizontal:Dimensions.get("window").width * 0.07,
+       
+        marginHorizontal:Dimensions.get("window").width * 0.06,
         marginTop:Dimensions.get('window').height *0.03,
         marginBottom:Dimensions.get('window').height *0.05,
     },
     imgCover:{
-        marginHorizontal:Dimensions.get("window").width * 0.03,
+        width:Dimensions.get("window").width * 0.88,
         marginBottom:Dimensions.get('window').height *0.015,
         borderRadius:12,
         borderWidth:2,

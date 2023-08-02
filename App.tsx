@@ -43,11 +43,11 @@ import DialogProgress from './src/presentation/component/dialog/DialogProgress';
 import ThankYou from './src/presentation/container/Author/Remix/ThankYou';
 import VideoList from './src/presentation/container/Author/Home/VideoList';
 
-import { AuthorNavigation } from './src/presentation/navigation/tab/AuthorNavigation';
+import { AuthorNavigation } from './src/presentation/navigation/Author/AuthorNavigation';
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack';
 import { MainStackParamList } from './src/presentation/navigation/stack/Navigation'
-import { AuthenNavigation } from './src/presentation/navigation/stack/AuthenNavigation';
+import { AuthenNavigation } from './src/presentation/navigation/Authen/AuthenNavigation';
 import { AppNavigation } from './src/presentation/navigation/AppNavigation';
 import Top from './src/presentation/container/Author/Profile/Top';
 const Stack = createStackNavigator<MainStackParamList>();
@@ -103,6 +103,20 @@ function Section({ children, title }: SectionProps): JSX.Element {
   );
 }
 
+import firestore from '@react-native-firebase/firestore';
+import database, { firebase } from '@react-native-firebase/database';
+import { rtdb } from './src/core/api/url/RealTime'
+import { User } from './src/core/model/User'
+import { UserRespone } from './src/core/model/UserRespone'
+
+const user = {
+  name: 'abc',
+  phone: '123',
+  image: 'unknow',
+  video: 0,
+  react: 0,
+}
+
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
 
@@ -134,7 +148,7 @@ function App(): JSX.Element {
    //<NewBeat></NewBeat>
    // <Remix></Remix>
    //<AnimationOne></AnimationOne>
-   //<AnimationTwo></AnimationTwo>
+   
    //<AnimationThree></AnimationThree>
    //<Search></Search>
    //<Thanks></Thanks>
@@ -189,10 +203,11 @@ function App(): JSX.Element {
       
     //   </Stack.Navigator>
     // </NavigationContainer>
-  <Top></Top>
+ //<Top></Top>
+ //<AnimationTwo></AnimationTwo>
   //<VideoList></VideoList>
     
-    //<AppNavigation></AppNavigation>
+    <AppNavigation></AppNavigation>
     //<DialogNotification></DialogNotification>
     //<DialogReport/>
    //<VideoList/>

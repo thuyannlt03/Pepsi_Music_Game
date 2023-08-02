@@ -1,6 +1,6 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import {MainStackParamList} from "../stack/Navigation";
-import { MainTabNavigation, MainTabParamList } from "./TabNavigation";
+import { MainTabNavigation, MainTabParamList } from "../tab/TabNavigation";
 import { Dimensions, Image, StyleSheet, Text, View } from "react-native";
 import { BACKGROUND_TAB, CENTER_BUTTON, VIDEO_SQUARE, VIDEO_SQUARE_FOCUS, CHART, CHART_FOCUS, PROFILE, PROFILE_FOCUS, MUSIC, MUSIC_FOCUS, ICON_HOME } from "../../../../assets";
 

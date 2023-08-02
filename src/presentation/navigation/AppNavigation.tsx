@@ -1,6 +1,6 @@
 import { NavigationContainer } from "@react-navigation/native"
-import { AuthenNavigation } from "../navigation/stack/AuthenNavigation"
-import { AuthorNavigation } from "../navigation/tab/AuthorNavigation"
+import { AuthenNavigation } from "./Authen/AuthenNavigation"
+import { AuthorNavigation } from "./Author/AuthorNavigation"
 
 
 

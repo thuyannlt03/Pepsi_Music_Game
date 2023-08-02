@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1072553634940",
+    "project_id": "pepsimusicgame-7f57b",
+    "storage_bucket": "pepsimusicgame-7f57b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1072553634940:android:43c3a6276250d80a896df9",
+        "android_client_info": {
+          "package_name": "com.pepsimusicgame"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1072553634940-bml9atv3bdnj5hpikevq4kqoc4cjdaml.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHGgSi88r4myjItzJlpTOFDn0HSTjPayM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1072553634940-bml9atv3bdnj5hpikevq4kqoc4cjdaml.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

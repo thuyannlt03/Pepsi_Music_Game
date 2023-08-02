@@ -1,5 +1,5 @@
-import { Dimensions, Image, ScrollView, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { Dimensions, Image, ScrollView, StyleSheet, Text, View, Alert } from 'react-native'
+import React , { useState, useEffect } from 'react'
 import Button from '../../../component/button/Button'
 import Background from '../../../component/background/Background'
 import { Colors } from '../../../resource/value/Colors'
@@ -8,7 +8,8 @@ import {LOGO_PEPSI } from '../../../../../assets'
 import {SignUpField} from '../../../component/input/TextField'
 import Form from '../../../component/form/Form'
 import { MainStackScreenProps } from '../../../navigation/stack/Navigation'
-import SignIn from '../SignIn/SignIn'
+import { User } from '../../../../core/model/User'
+import { rtdb } from '../../../../core/api/url/RealTime'
 
 
 
@@ -24,6 +25,75 @@ const SignUp: React.FC<MainStackScreenProps<'SignUp'>>= ({navigation,route}) => 
   const SignUpOTP = () => {
     navigation.navigate('SignUpOTP');
   }
+
+  const [phone, setPhone] = useState('');
+  const [name, setName] = useState('');
+  const [listUser, setlistUser] = useState<User[]>([]);
+
+
+  const [isHas, setIsHas] = useState(false);
+
+  useEffect(() => {
+
+    const getUser = async () => {
+      const getUser = rtdb.ref('users').once('value');
+      let list: User[] = [];
+      await getUser.then((snapshot: any) => {
+        snapshot.forEach((item: any) => {
+          list.push(item.val());
+        })
+        // console.log(list);
+        setlistUser(list);
+      });
+    }
+
+    getUser();
+    return () => { }
+  }, [])
+
+
+    const complete = () => {
+      console.log(phone + name);
+      setIsHas(false);
+      if (!phone) {
+        Alert.alert('Please enter your phone');
+      }
+      else if (!name) {
+        Alert.alert('Please enter your name');
+      }
+      else {
+        console.log("okkk")
+        console.log(listUser)
+        
+        for (let i = 0; i < listUser.length; i++) {
+          if (listUser.at(i)?.phone === phone) {
+            console.log("111")
+            setIsHas(true);
+            Alert.alert('This number is already in use');
+            setPhone('')
+            return;
+          }
+          else if (listUser.at(i)?.name === name) {
+            console.log("2222")
+            setIsHas(true);
+            Alert.alert('This name is already in use');
+            setName('')
+            return;
+          }
+        }
+        if (!isHas) {
+          navigation.navigate('SignUpOTP', {
+            phone,
+            name,
+            type: false
+          });
+        }
+      }
+    }
+  
+
+
+
 
   const headerCenter = () => {
     return (
@@ -41,12 +111,26 @@ const SignUp: React.FC<MainStackScreenProps<'SignUp'>>= ({navigation,route}) => 
             centerHeader={headerCenter()} 
             containerStyle = {styles.header}/>
           <Form>
-            <SignUpField/>
+            <SignUpField
+              inputProps_1={{
+                onChangeText(text) {
+                  setPhone(text)
+                },
+                value: phone
+              }}
+              inputProps_2={{
+                onChangeText(text) {
+                  setName(text)
+                },
+                value: name
+              }}
+               />
           </Form>
           <Button 
             containerStyle = {styles.buttonLogIn}
             title='Lấy mã OTP'
-            onPress={SignUpOTP}/>
+            //onPress={complete}
+            />
           <View style = {styles.viewOr}>
             <View style = {styles.line}/>
             <Text style = {styles.textOr}>hoặc</Text>
