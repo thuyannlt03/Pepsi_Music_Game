@@ -110,8 +110,8 @@ import { User } from './src/core/model/User'
 import { UserRespone } from './src/core/model/UserRespone'
 
 const user = {
-  name: 'abc',
-  phone: '123',
+  name: 'nguyen',
+  phone: '09090909',
   image: 'unknow',
   video: 0,
   react: 0,
