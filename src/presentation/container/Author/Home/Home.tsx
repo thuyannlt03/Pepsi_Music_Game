@@ -3,8 +3,7 @@ import React from 'react'
 import Background from '../../../component/background/Background'
 import { CENTER_BUTTON, HEADLINE_2, LEFT_BUTTON_HOME, RIGHT_BUTTON_HOME, TALEN } from '../../../../../assets'
 import { Colors } from '../../../resource/value/Colors'
-import { MainStackScreenProps } from '../../../navigation/stack/Navigation'
-import { JumpingTransition } from 'react-native-reanimated'
+
 
 
 

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image, Dimensions, ImageBackground } from 'react-native'
+import { StyleSheet, Text, View, Image, Dimensions, TouchableOpacity } from 'react-native'
 import React from 'react'
 import Button from '../../../component/button/Button'
 import Background from '../../../component/background/Background'
@@ -8,13 +8,13 @@ import Header from '../../../component/header/Header';
 import { RemixStackScreenProps } from '../../../navigation/stack/RemixNavigation'
 
 
-const AnimationTwo : React.FC<RemixStackScreenProps<'AnimationTwo'>> = ({ navigation, route }) => {
+const AnimationTwo: React.FC<RemixStackScreenProps<'AnimationTwo'>> = ({ navigation, route }) => {
 
     const [edt, setedt] = React.useState<string>('');
     console.log(edt)
-  
-    
-   
+
+
+
     const AnimationThree = () => {
         navigation.navigate('AnimationThree');
     }
@@ -35,27 +35,33 @@ const AnimationTwo : React.FC<RemixStackScreenProps<'AnimationTwo'>> = ({ naviga
     return (
         <Background>
             <View style={styles.container}>
-            <Header
+                <Header
                     iconLeft={BACK}
                     leftHeader={goBack}
                     centerHeader={centerHeader()}
                 />
 
                 <View style={styles.banner}>
-                    <Image source={COVER_2} style={styles.imgCover}/>
+                    <Image source={COVER_2} style={styles.imgCover} />
                 </View>
                 <View style={styles.grbox}>
                     <View style={styles.box}>
-                        <Image source={OLD_SCHOOL} style={styles.round}/>
-                        <Text style={styles.text_round}>Old School</Text>
+                        <TouchableOpacity>
+                            <Image source={OLD_SCHOOL} style={styles.round} />
+                            <Text style={styles.text_round}>Old School</Text>
+                        </TouchableOpacity>
                     </View>
                     <View style={styles.box}>
-                        <Image source={MODERN}/>
-                        <Text style={styles.text_round}>Modern</Text>
+                        <TouchableOpacity>
+                            <Image source={MODERN} />
+                            <Text style={styles.text_round}>Modern</Text>
+                        </TouchableOpacity>
                     </View>
                     <View style={styles.box}>
-                        <Image source={FREESTYLE}/>
-                        <Text style={styles.text_round}>Free Style</Text>
+                        <TouchableOpacity>
+                            <Image source={FREESTYLE} />
+                            <Text style={styles.text_round}>Free Style</Text>
+                        </TouchableOpacity>
                     </View>
                 </View>
                 <View style={styles.boxButton}>
@@ -63,13 +69,13 @@ const AnimationTwo : React.FC<RemixStackScreenProps<'AnimationTwo'>> = ({ naviga
                         containerStyle={styles.buttonTao}
                         title='Bỏ qua'
                         titleStyle={styles.title}
-                        
+
                     />
                     <Button
                         containerStyle={styles.buttonBo}
                         title='Xác nhận'
                         onPress={AnimationThree}
-                       
+
                         titleStyle={styles.title1} />
                 </View>
             </View>
@@ -99,8 +105,8 @@ const styles = StyleSheet.create({
         color: Colors.WHITE,
         textAlign: 'center',
     },
-    
-   
+
+
     rule: {
         fontSize: 14,
         fontWeight: '600',
@@ -113,51 +119,51 @@ const styles = StyleSheet.create({
         lineHeight: 18,
         color: Colors.BLUE_CASI,
     },
-    banner:{
-       
-        marginHorizontal:Dimensions.get("window").width * 0.06,
-        marginTop:Dimensions.get('window').height *0.03,
-        marginBottom:Dimensions.get('window').height *0.05,
+    banner: {
+
+        marginHorizontal: Dimensions.get("window").width * 0.06,
+        marginTop: Dimensions.get('window').height * 0.03,
+        marginBottom: Dimensions.get('window').height * 0.05,
     },
-    imgCover:{
-        width:Dimensions.get("window").width * 0.88,
-        marginBottom:Dimensions.get('window').height *0.015,
-        borderRadius:12,
-        borderWidth:2,
-        borderColor:Colors.BORDER,
+    imgCover: {
+        width: Dimensions.get("window").width * 0.88,
+        marginBottom: Dimensions.get('window').height * 0.015,
+        borderRadius: 12,
+        borderWidth: 2,
+        borderColor: Colors.BORDER,
         height: Dimensions.get('window').height * 0.6,
 
     },
-    textCover:{
+    textCover: {
         fontFamily: 'Montserrat',
         fontSize: 16,
         fontWeight: '500',
         lineHeight: 24,
         color: Colors.WHITE,
-        textAlign:'center',
+        textAlign: 'center',
     },
-    grbox:{
-        flexDirection:'row',
-        justifyContent:'space-evenly',
-        alignItems:'center',
-        marginTop:-Dimensions.get('window').height *0.05,
-        marginHorizontal: -Dimensions.get('window').width *0.1,
+    grbox: {
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
+        marginTop: -Dimensions.get('window').height * 0.05,
+        marginHorizontal: -Dimensions.get('window').width * 0.1,
     },
-    box:{
-        alignItems:'center',
+    box: {
+        alignItems: 'center',
     },
-    round:{
-        borderRadius:50,
-        borderWidth:2,
-        borderColor:Colors.WHITE,
+    round: {
+        borderRadius: 50,
+        borderWidth: 2,
+        borderColor: Colors.WHITE,
     },
-    text_round:{
+    text_round: {
         fontFamily: 'Montserrat',
         fontSize: 12,
         fontWeight: '500',
         lineHeight: 18,
         color: Colors.WHITE,
-        textAlign:'center',
+        textAlign: 'center',
     },
     boxButton: {
         flexDirection: 'row',
@@ -165,7 +171,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         marginTop: -Dimensions.get('window').height * 0.13,
         alignItems: 'center',
-        marginHorizontal:Dimensions.get("window").width * 0.055,
+        marginHorizontal: Dimensions.get("window").width * 0.055,
     },
     buttonTao: {
         width: Dimensions.get('window').width * 0.4,
@@ -186,5 +192,5 @@ const styles = StyleSheet.create({
     title1: {
         color: Colors.BLUE_PEPSI,
     },
-   
+
 })

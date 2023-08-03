@@ -4,6 +4,7 @@ import Background from '../../../component/background/Background'
 import { BACK, BACKGROUND_TAB, LOA } from '../../../../../assets'
 import { Colors } from '../../../resource/value/Colors'
 import { MainStackScreenProps } from '../../../navigation/stack/Navigation'
+import Header from '../../../component/header/Header';
 
 
 const Rules: React.FC<MainStackScreenProps<'Rules'>> = ({ navigation, route }) => {
@@ -11,7 +12,7 @@ const Rules: React.FC<MainStackScreenProps<'Rules'>> = ({ navigation, route }) =
     const [edt, setedt] = React.useState<string>('');
     console.log(edt)
 
-    const SigInScreen = () => {
+    const goBack = () => {
         navigation.navigate('SignInScreen');
     }
 
@@ -197,16 +198,20 @@ const Rules: React.FC<MainStackScreenProps<'Rules'>> = ({ navigation, route }) =
             );
         });
     };
+    const centerHeader = () => {
+        return (
+            <View style={styles.header_1}>
+                <Text style={styles.textHeader}>Thể lệ chương trình</Text>
+            </View>
+        )
+    }
     return (
         <Background>
             <View style={styles.container}>
-                <ImageBackground source={BACKGROUND_TAB} style={styles.headline}>
-                    <Pressable  onPress={SigInScreen}>
-                        <Image source={BACK} style={styles.iconBack} />
-                    </Pressable>
-                        <Text style={styles.thele}>Thể lệ chương trình</Text>
-                   
-                </ImageBackground>
+            <Header
+                     iconLeft={BACK}
+                     leftHeader={goBack}
+                    centerHeader={centerHeader()} />
                 <ScrollView style={styles.scrollV}>
                     <View style={styles.para1}>
                         <Text style={styles.title1}>SẢNG KHOÁI PEPSI – BUNG NHẠC CỰC CHẤT</Text>
@@ -297,6 +302,16 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
     },
+    header_1: {
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+    textHeader: {
+        fontWeight: '600',
+        fontSize: 18,
+        color: Colors.WHITE,
+        textAlign: 'center',
+      },
     headline: {
         height: Dimensions.get('window').height * 0.12,
         width: '100%',
