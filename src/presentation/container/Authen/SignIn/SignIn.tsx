@@ -101,7 +101,7 @@ const SignIn: React.FC<MainStackScreenProps<'SignIn'>> = ({ navigation, route })
           <Button
             containerStyle={styles.buttonSignIn}
             title='Đăng nhập'
-            //onPress={signin}
+            onPress={signin}
             />
           <View style={styles.viewOr}>
             <View style={styles.line} />

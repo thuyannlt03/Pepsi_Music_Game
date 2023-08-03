@@ -18,7 +18,7 @@ const SignInOTP: React.FC<MainStackScreenProps<'SignInOTP'>>= ({navigation,route
   console.log(edt)
 
   const Home = () => {
-    navigation.navigate('Home');
+    navigation.navigate('Record');
   }
   const name = route?.params?.name;
   const phone = route?.params?.phone;
@@ -50,13 +50,13 @@ const SignInOTP: React.FC<MainStackScreenProps<'SignInOTP'>>= ({navigation,route
         })
       }).then(() => {
         ToastAndroid.show("Complete", ToastAndroid.SHORT);
-        navigation.navigate('Home');
+        navigation.navigate('Record');
         console.log(user)
       });
 
   }
 
-  const clickRegister = async () => {
+  const clickSignIn = async () => {
     const code = code_1.toString() + code_2.toString() + code_3.toString() + code_4.toString();
     console.log(code);
     if (code != '1912') {
@@ -79,7 +79,7 @@ const SignInOTP: React.FC<MainStackScreenProps<'SignInOTP'>>= ({navigation,route
         await newUser.set(userNew)
           .then(complete);
 
-        //key user
+        
         console.log('New record key:', newUser.key);
       }
     }
@@ -130,7 +130,7 @@ const SignInOTP: React.FC<MainStackScreenProps<'SignInOTP'>>= ({navigation,route
           <Button
             containerStyle={styles.buttonSignIn}
             title='Xác nhận'
-           onPress={clickRegister} 
+           onPress={clickSignIn} 
              />
         </View>
       </Background>

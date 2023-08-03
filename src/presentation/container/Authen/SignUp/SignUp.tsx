@@ -52,7 +52,7 @@ const SignUp: React.FC<MainStackScreenProps<'SignUp'>>= ({navigation,route}) => 
   }, [])
 
 
-    const complete = () => {
+    const completeSignUp = () => {
       console.log(phone + name);
       setIsHas(false);
       if (!phone) {
@@ -129,7 +129,7 @@ const SignUp: React.FC<MainStackScreenProps<'SignUp'>>= ({navigation,route}) => 
           <Button 
             containerStyle = {styles.buttonLogIn}
             title='Lấy mã OTP'
-            //onPress={complete}
+            onPress={completeSignUp}
             />
           <View style = {styles.viewOr}>
             <View style = {styles.line}/>

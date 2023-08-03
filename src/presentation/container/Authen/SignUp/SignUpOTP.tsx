@@ -52,7 +52,7 @@ const SignUpOTP: React.FC<MainStackScreenProps<'SignUpOTP'>>= ({navigation,route
         })
       }).then(() => {
         ToastAndroid.show("Complete", ToastAndroid.SHORT);
-        navigation.navigate('Home');
+        navigation.navigate('Record');
         console.log(user)
       });
 
@@ -81,7 +81,7 @@ const SignUpOTP: React.FC<MainStackScreenProps<'SignUpOTP'>>= ({navigation,route
         await newUser.set(userNew)
           .then(complete);
 
-        //key user
+        
         console.log('New record key:', newUser.key);
       }
     }

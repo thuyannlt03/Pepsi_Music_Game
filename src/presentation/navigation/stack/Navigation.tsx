@@ -40,7 +40,7 @@ type RulesProps = {
 type BeatProps = {
     id: number;
 };
-type HomeProps = {
+type RecordProps = {
     id: number;
 };
 
@@ -65,7 +65,7 @@ export type MainStackParamList = {
     OnBoarding: OnBoardingProps | undefined;
     Rules: RulesProps | undefined;
     Beat: BeatProps | undefined;
-    Home: HomeProps | undefined;
+    Record: RecordProps | undefined;
     
     
 };
