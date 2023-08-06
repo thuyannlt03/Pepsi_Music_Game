@@ -1,13 +1,17 @@
-import { StyleSheet, Text, View, ImageBackground, Image, Dimensions, FlatList, ScrollView } from 'react-native'
+import { StyleSheet, Text, View, ImageBackground, Image, Dimensions, FlatList, ScrollView, TouchableOpacity } from 'react-native'
 import React from 'react'
 import Background from '../../../component/background/Background'
 import { AVT, AVT_1, BACK, BACKGROUND_TAB, NOTIFICATION_2 } from '../../../../../assets'
 import { Colors } from '../../../resource/value/Colors'
+import { ProfileScreenProps} from '../../../navigation/stack/ProfileNavigation';
 
 
-const Profile = () => {
+const Profile :React.FC<ProfileScreenProps<'Profile'>> = ({navigation, route}) => {
 
 
+  const VideoList = () => {
+    navigation.navigate('VideoList');
+}
 
 interface Item {
   id: number,
@@ -37,6 +41,7 @@ const DATA: Item[] = [
 ];
 const renderItem = ({ item }: { item: Item }) => (
   <View style={styles.item}>
+    <TouchableOpacity onPress={VideoList}>
     <View style={styles.card}>
       <View>
         <Image source={item.image} style={styles.image} />
@@ -58,6 +63,7 @@ const renderItem = ({ item }: { item: Item }) => (
       <Image source={item.imageShare} style={styles.imageShare} />
       <Image source={item.imageDown} style={styles.imageDown} />
     </View>
+    </TouchableOpacity>
   </View>
 );
 

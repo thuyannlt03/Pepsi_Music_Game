@@ -12,7 +12,7 @@ import OnBoarding from '../../container/Authen/Intro/OnBoarding';
 import Beat from '../../container/Author/BeatList/Beat';
 import { AuthorNavigation } from "../Author/AuthorNavigation";
 
-import BeatList from '../../container/Author/Home/BeatList';
+
 import New from '../../container/Author/BeatList/New';
 import Recommen from '../../container/Author/BeatList/Recommen'
 import Recorded from '../../container/Author/BeatList/Recorded';

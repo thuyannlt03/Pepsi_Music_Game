@@ -1,18 +1,18 @@
 import { StyleSheet, Text, View, FlatList, Dimensions, TouchableOpacity, Image, ScrollView } from 'react-native'
 import React, { useState } from 'react'
 import Background from '../../../component/background/Background'
-import { ICON_HOME, ICON_NOTIFICATION, PLAY, REPORT, share, taive, yeuthich } from '../../../../../assets'
+import { BACK,  PLAY, REPORT, share, taive, yeuthich } from '../../../../../assets'
 import { Colors } from '../../../resource/value/Colors'
 import LinearGradient from 'react-native-linear-gradient'
 import Header from '../../../component/header/Header'
 import DialogReport from '../../../component/dialog/DialogReport'
 import DialogThanks from '../../../component/dialog/DialogThanks'
-import { VideoListStackScreenProps } from '../../../navigation/stack/VideoListNavigation';
+import {  ChartStackScreenProps} from '../../../navigation/stack/ChartNavigation'
 
 
 
+const VideoList: React.FC< ChartStackScreenProps<'Video'>> = ({ navigation, route }) => {
 
-const VideoList: React.FC<VideoListStackScreenProps<'VideoList'>> = ({navigation, route}) => {
 
     const [onChoose, setonChoose] = React.useState(1)
 
@@ -264,11 +264,9 @@ const VideoList: React.FC<VideoListStackScreenProps<'VideoList'>> = ({navigation
     };
 
     const goBack = () => {
-        // navigation.navigate('Record');
+        navigation.navigate('ProfileN');
     }
-    const Notification = () => {
-        // navigation.navigate('Notification');
-    }
+ 
     const centerHeader = () => {
         return (
             <Text style={styles.textHeader}>Video list</Text>
@@ -280,25 +278,12 @@ const VideoList: React.FC<VideoListStackScreenProps<'VideoList'>> = ({navigation
 
 
             <Header
-                iconLeft={ICON_HOME}
+                iconLeft={BACK}
                 leftHeader={goBack}
                 centerHeader={centerHeader()}
-                iconRight={ICON_NOTIFICATION}
-                rightHeader={Notification}
+             
             />
-            <View style={styles.boxButton}>
-                <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                    <TouchableOpacity style={onChoose == 1 ? [styles.btn, styles.btnChoose] : styles.btn} onPress={() => setonChoose(1)}>
-                        <Text style={onChoose == 1 ? [styles.txtButton, styles.txtButtonChoose] : styles.txtButton}>Video mới</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={onChoose == 2 ? [styles.btn, styles.btnChoose] : styles.btn} onPress={() => setonChoose(2)}>
-                        <Text style={onChoose == 2 ? [styles.txtButton, styles.txtButtonChoose] : styles.txtButton}>Yêu thích</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={onChoose == 3 ? [styles.btn, styles.btnChoose] : styles.btn} onPress={() => setonChoose(3)}>
-                        <Text style={onChoose == 3 ? [styles.txtButton, styles.txtButtonChoose] : styles.txtButton}>Xem nhiều</Text>
-                    </TouchableOpacity>
-                </ScrollView>
-            </View>
+           
             <View style={styles.container}>
                 <FlatList
                     data={DATA}
@@ -306,18 +291,7 @@ const VideoList: React.FC<VideoListStackScreenProps<'VideoList'>> = ({navigation
                     keyExtractor={(item) => item.id.toString()}
                 />
             </View>
-            :
-            <FlatList
-                data={DATA}
-                renderItem={renderItem}
-                keyExtractor={(item) => item.id.toString()}
-            />
-            :
-            <FlatList
-                data={DATA}
-                renderItem={renderItem}
-                keyExtractor={(item) => item.id.toString()}
-            />
+          
 
 
 

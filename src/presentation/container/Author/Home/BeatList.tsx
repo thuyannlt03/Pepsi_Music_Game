@@ -36,10 +36,7 @@ const BeatList : React.FC<BeatListStackScreenProps<'BeatList'>> = ({ navigation,
   const goBack = () => {
   };
 
-  const goNotification = () => {
-    navigation.navigate('Notification');
-  };
-
+  
 interface Item {
   id: number,
   title: string,
@@ -139,7 +136,7 @@ const centerHeader = () => {
         leftHeader={goBack}
         centerHeader={centerHeader()}
         iconRight={ICON_NOTIFICATION}
-        rightHeader={goNotification}
+        rightHeader={Notification}
       />
       <ScrollView style={styles.container}>
         <Image source={BANER} style={styles.imageBanner} />

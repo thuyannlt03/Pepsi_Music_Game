@@ -9,9 +9,12 @@ import Header from '../../../component/header/Header'
 
 
 const Search : React.FC<RemixStackScreenProps<'Search'>> = ({ navigation, route }) => {
+
+   
     const [edt, setedt] = React.useState<string>('');
     console.log(edt)
   
+    const [text, setText] = React.useState('')
     
     const goBack = () => {
       navigation.navigate('AnimationThree');
@@ -36,11 +39,13 @@ const Search : React.FC<RemixStackScreenProps<'Search'>> = ({ navigation, route 
                   
                 <View style={styles.beat}>
                 <TextInput
+                  value={text}
+                  onChangeText={(text) => setText(text)}
                     style={styles.text}
                     placeholder='Tiền nhiều để làm gì' />
                      <Image source={CANCEL} style={styles.iconC} />
                  </View>
-                <Text  style={styles.text1}>22/40 ký tự</Text>
+                 <Text style={styles.text1}>{text.length}/40 ký tự</Text>
             </View>
         </Background>
     )

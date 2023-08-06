@@ -4,11 +4,24 @@ import { BACKGROUND_RANK, ICON_HOME, ICON_NOTIFICATION, IMAGE_BUC, IMAGE_RANK_1,
 import Background from '../../../component/background/Background';
 import Header from '../../../component/header/Header'
 import { Colors } from '../../../resource/value/Colors';
+import {  ChartStackScreenProps} from '../../../navigation/stack/ChartNavigation'
 
 
 
-const Top = () => {
 
+const Top : React.FC< ChartStackScreenProps<'Top'>> = ({ navigation, route }) => {
+
+
+    const onProfileN = () => {
+        navigation.navigate('ProfileN');
+        
+    }
+    const goBack = () => {
+       // navigation.navigate('Chart');
+    }
+      const Notification = () => {
+        navigation.navigate('Notification');
+    }
     interface Item {
         id: number,
         name: string,
@@ -34,7 +47,7 @@ const Top = () => {
 
     const renderItem = ({ item }: { item: Item }) => (
         <View style={{}}>
-            <TouchableOpacity style={styles.item}>
+            <TouchableOpacity style={styles.item} onPress={onProfileN}>
                 <View style={styles.borderRank} >
                     <Text style={styles.txt} >{item.rank}</Text>
                     <Image source={IMAGE_RANK_4} style={styles.imgBorderRank} />
@@ -53,12 +66,8 @@ const Top = () => {
         </View>
     );
 
-    const goBack = () => {
-        // navigation.navigate('Record');
-    }
-    const Notification = () => {
-        // navigation.navigate('Notification');
-    }
+   
+   
     const centerHeader = () => {
         return (
             <Text style={styles.textHeader}>Nhạc thịnh hành</Text>
