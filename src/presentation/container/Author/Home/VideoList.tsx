@@ -1,14 +1,15 @@
 import { StyleSheet, Text, View, FlatList, Dimensions, TouchableOpacity, Image, ScrollView } from 'react-native'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Background from '../../../component/background/Background'
-import { ICON_HOME, ICON_NOTIFICATION, PLAY, REPORT, share, taive, yeuthich } from '../../../../../assets'
+import { EYE, HEART, ICON_HOME, ICON_NOTIFICATION, LICH, PLAY, REPORT, share, taive, yeuthich } from '../../../../../assets'
 import { Colors } from '../../../resource/value/Colors'
 import LinearGradient from 'react-native-linear-gradient'
 import Header from '../../../component/header/Header'
 import DialogReport from '../../../component/dialog/DialogReport'
 import DialogThanks from '../../../component/dialog/DialogThanks'
 import { VideoListStackScreenProps } from '../../../navigation/stack/VideoListNavigation';
-
+import { Video } from '../../../../core/model/Video'
+import { rtdb } from '../../../../core/api/url/RealTime'
 
 
 
@@ -113,26 +114,46 @@ const VideoList: React.FC<VideoListStackScreenProps<'VideoList'>> = ({navigation
     interface Item {
         id: number,
         title: string,
-        titleMini: string,
+        author: string,
         image: any,
-        imagelich: any,
         createAt: string,
-        imageEye: any,
         view: number,
-        imageHeart: any,
         like: number,
     }
 
-    const DATA: Item[] = [
-        { id: 1, title: 'Tiền nhiều để làm gì', titleMini: 'GDucky ft.Lưu Hiền Trinh', image: require("../../../../../assets/Frame-1_1x.png"), imagelich: require("../../../../../assets/lich.png"), createAt: '19.02.2021', imageEye: require("../../../../../assets/Icon-Eye.png"), view: 9203, imageHeart: require("../../../../../assets/Icon-Heart.png"), like: 10203 },
-        { id: 2, title: 'Tiền nhiều để làm gì', titleMini: 'GDucky ft.Lưu Hiền Trinh', image: require("../../../../../assets/Frame-2_1x.png"), imagelich: require("../../../../../assets/lich.png"), createAt: '19.02.2021', imageEye: require("../../../../../assets/Icon-Eye.png"), view: 9203, imageHeart: require("../../../../../assets/Icon-Heart.png"), like: 10203 },
-        { id: 3, title: 'Tiền nhiều để làm gì', titleMini: 'GDucky ft.Lưu Hiền Trinh', image: require("../../../../../assets/Frame-3_1x.png"), imagelich: require("../../../../../assets/lich.png"), createAt: '19.02.2021', imageEye: require("../../../../../assets/Icon-Eye.png"), view: 9203, imageHeart: require("../../../../../assets/Icon-Heart.png"), like: 10203 },
-        { id: 4, title: 'Tiền nhiều để làm gì', titleMini: 'GDucky ft.Lưu Hiền Trinh', image: require("../../../../../assets/Frame-4_1x.png"), imagelich: require("../../../../../assets/lich.png"), createAt: '19.02.2021', imageEye: require("../../../../../assets/Icon-Eye.png"), view: 9203, imageHeart: require("../../../../../assets/Icon-Heart.png"), like: 10203 },
-        { id: 5, title: 'Tiền nhiều để làm gì', titleMini: 'GDucky ft.Lưu Hiền Trinh', image: require("../../../../../assets/Frame-5_1x.png"), imagelich: require("../../../../../assets/lich.png"), createAt: '19.02.2021', imageEye: require("../../../../../assets/Icon-Eye.png"), view: 9203, imageHeart: require("../../../../../assets/Icon-Heart.png"), like: 10203 },
-        { id: 6, title: 'Tiền nhiều để làm gì', titleMini: 'GDucky ft.Lưu Hiền Trinh', image: require("../../../../../assets/Frame-6_1x.png"), imagelich: require("../../../../../assets/lich.png"), createAt: '19.02.2021', imageEye: require("../../../../../assets/Icon-Eye.png"), view: 9203, imageHeart: require("../../../../../assets/Icon-Heart.png"), like: 10203 },
+
+    const [list_Video, setlist_Video] = useState<Video[]>([]);
 
 
-    ];
+
+    let listVideo: Video[] = [];
+    useEffect(() => {
+
+        const getVideo = async () => {
+            const get = rtdb.ref('/Video')
+                .once('value', (value: any) => {
+                    value.forEach((item: any) => {
+                        let video: Video = {
+                            keyVideo: "1"
+                        };
+                        video.keyVideo = item.key;
+                        video.createAt = item.val().createAt;
+                        video.image = item.val().image;
+                        video.like = item.val().like;
+                        video.title = item.val().title;
+                        video.userKey = item.val().userKey;
+                        video.view = item.val().view;
+                        listVideo.push(video);
+                        console.log();
+                    })
+                    setlist_Video(listVideo);
+                });
+        }
+
+        getVideo();
+
+        return () => { }
+    }, []);
 
 
     const renderItem = ({ item }: { item: Item }) => (
@@ -158,7 +179,7 @@ const VideoList: React.FC<VideoListStackScreenProps<'VideoList'>> = ({navigation
                         <TouchableOpacity style={styles.btnPlay}>
                             <Image source={PLAY} />
                         </TouchableOpacity>
-                        <Image style={styles.img} source={item.image} />
+                        <Image source={{uri: item.image}} style={styles.img} />
 
                     </View>
 
@@ -224,15 +245,15 @@ const VideoList: React.FC<VideoListStackScreenProps<'VideoList'>> = ({navigation
                     </View>
                     <View style={styles.boxRed}>
                         <View style={styles.boxRed_1} >
-                            <Image source={item.imagelich} />
+                            <Image source={LICH} />
                             <Text style={styles.txtRed}>{item.createAt}</Text>
                         </View>
                         <View style={styles.boxRed_1} >
-                            <Image source={item.imageEye} />
+                            <Image source={EYE} />
                             <Text style={styles.txtRed}>{item.view}</Text>
                         </View>
                         <View style={styles.boxRed_1} >
-                            <Image source={item.imageHeart} />
+                            <Image source={HEART} />
                             <Text style={styles.txtRed}>{item.like}</Text>
                         </View>
                     </View>
@@ -301,22 +322,22 @@ const VideoList: React.FC<VideoListStackScreenProps<'VideoList'>> = ({navigation
             </View>
             <View style={styles.container}>
                 <FlatList
-                    data={DATA}
+                    data={list_Video}
                     renderItem={renderItem}
-                    keyExtractor={(item) => item.id.toString()}
+                    keyExtractor={(item) => item.keyVideo.toString()}
                 />
             </View>
             :
             <FlatList
-                data={DATA}
-                renderItem={renderItem}
-                keyExtractor={(item) => item.id.toString()}
+                 data={list_Video}
+                 renderItem={renderItem}
+                 keyExtractor={(item) => item.keyVideo.toString()}
             />
             :
             <FlatList
-                data={DATA}
-                renderItem={renderItem}
-                keyExtractor={(item) => item.id.toString()}
+                   data={list_Video}
+                   renderItem={renderItem}
+                   keyExtractor={(item) => item.keyVideo.toString()}
             />
 
 

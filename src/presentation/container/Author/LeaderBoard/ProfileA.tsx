@@ -1,69 +1,132 @@
 import { StyleSheet, Text, View, ImageBackground, Image, Dimensions, FlatList, ScrollView } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import Background from '../../../component/background/Background'
-import { AVT, BACK, BACKGROUND_TAB } from '../../../../../assets'
+import { AVT, BACK, BACKGROUND_TAB, ICON_HOME, NOTIFICATION_2 } from '../../../../../assets'
 import { Colors } from '../../../resource/value/Colors'
-
-interface Item {
-  id: number,
-  title: string,
-  view: string,
-  like: string,
-  image: any,
-  imageEye: any,
-  imageHeart: any,
-  imageShare: any,
-  imageDown: any,
-}
-
-const DATA: Item[] = [
-  { id: 1, title: 'Tiền nhiều để làm gì', imageEye: require("../../../../../assets/Icon-Eye.png"), imageHeart: require("../../../../../assets/Icon-Heart.png"), view: '11.8k', like: '10203', image: require("../../../../../assets/Pepsi_Card.png"), imageShare: require("../../../../../assets/Img_share.png"), imageDown: require("../../../../../assets/Download.png") },
-  { id: 2, title: 'Tiền nhiều để làm gì', imageEye: require("../../../../../assets/Icon-Eye.png"), imageHeart: require("../../../../../assets/Icon-Heart.png"), view: '11.8k', like: '10203', image: require("../../../../../assets/Pepsi_Black_Card.png"), imageShare: require("../../../../../assets/Img_share.png"), imageDown: require("../../../../../assets/Download.png") },
-  { id: 3, title: 'Tiền nhiều để làm gì', imageEye: require("../../../../../assets/Icon-Eye.png"), imageHeart: require("../../../../../assets/Icon-Heart.png"), view: '11.8k', like: '10203', image: require("../../../../../assets/pepsi.png"), imageShare: require("../../../../../assets/Img_share.png"), imageDown: require("../../../../../assets/Download.png") },
-  { id: 4, title: 'Tiền nhiều để làm gì', imageEye: require("../../../../../assets/Icon-Eye.png"), imageHeart: require("../../../../../assets/Icon-Heart.png"), view: '11000', like: '10203', image: require("../../../../../assets/Pepsi_Card.png"), imageShare: require("../../../../../assets/Img_share.png"), imageDown: require("../../../../../assets/Download.png") },
-  { id: 5, title: 'Tiền nhiều để làm gì', imageEye: require("../../../../../assets/Icon-Eye.png"), imageHeart: require("../../../../../assets/Icon-Heart.png"), view: '11000', like: '10203', image: require("../../../../../assets/pepsi.png"), imageShare: require("../../../../../assets/Img_share.png"), imageDown: require("../../../../../assets/Download.png") },
-  { id: 6, title: 'Tiền nhiều để làm gì', imageEye: require("../../../../../assets/Icon-Eye.png"), imageHeart: require("../../../../../assets/Icon-Heart.png"), view: '11000', like: '10203', image: require("../../../../../assets/Pepsi_Black_Card.png"), imageShare: require("../../../../../assets/Img_share.png"), imageDown: require("../../../../../assets/Download.png") },
-  { id: 7, title: 'Tiền nhiều để làm gì', imageEye: require("../../../../../assets/Icon-Eye.png"), imageHeart: require("../../../../../assets/Icon-Heart.png"), view: '11000', like: '10203', image: require("../../../../../assets/pepsi.png"), imageShare: require("../../../../../assets/Img_share.png"), imageDown: require("../../../../../assets/Download.png") },
-  { id: 8, title: 'Tiền nhiều để làm gì', imageEye: require("../../../../../assets/Icon-Eye.png"), imageHeart: require("../../../../../assets/Icon-Heart.png"), view: '11000', like: '10203', image: require("../../../../../assets/Pepsi_Card.png"), imageShare: require("../../../../../assets/Img_share.png"), imageDown: require("../../../../../assets/Download.png") },
-  { id: 9, title: 'Tiền nhiều để làm gì', imageEye: require("../../../../../assets/Icon-Eye.png"), imageHeart: require("../../../../../assets/Icon-Heart.png"), view: '11000', like: '10203', image: require("../../../../../assets/Pepsi_Black_Card.png"), imageShare: require("../../../../../assets/Img_share.png"), imageDown: require("../../../../../assets/Download.png") },
-  { id: 10, title: 'Tiền nhiều để làm gì', imageEye: require("../../../../../assets/Icon-Eye.png"), imageHeart: require("../../../../../assets/Icon-Heart.png"), view: '11000', like: '10203', image: require("../../../../../assets/pepsi.png"), imageShare: require("../../../../../assets/Img_share.png"), imageDown: require("../../../../../assets/Download.png") },
-
-
-];
-const renderItem = ({ item }: { item: Item }) => (
-  <View style={styles.item}>
-    <View style={styles.card}>
-      <View>
-        <Image source={item.image} style={styles.image} />
-
-        <Text style={styles.text}>{item.title}</Text>
-      </View>
-
-    </View>
-    <View style={styles.gr}>
-      <View style={styles.gr1}>
-        <Image source={item.imageEye} style={styles.imageEye} />
-        <Text style={styles.view}>{item.view}</Text>
-      </View >
-      <View style={styles.gr2}>
-        <Image source={item.imageHeart} style={styles.imageHeart} />
-        <Text style={styles.like}>{item.like}</Text>
-      </View>
-
-      <Image source={item.imageShare} style={styles.imageShare} />
-      <Image source={item.imageDown} style={styles.imageDown} />
-    </View>
-  </View>
-);
+import DialogNotification from '../../../component/dialog/DialogNotification';
+import Header from '../../../component/header/Header';
+import { ChartStackScreenProps } from '../../../navigation/stack/ChartNavigation'
+import { useDispatch } from 'react-redux';
+import { addStatus } from '../../../share-state/redux/reducers/statusReducer';
 
 const ProfileA = () => {
+
+  const dispatch = useDispatch();
+
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const [title, setTitle] = useState<string>();
+  const [btnLeft, setBtnLeft] = useState<string>();
+  const [btnRight, setBtnRight] = useState<string>();
+  const [onHuy, setonHuy] = useState(false);
+  const [onBack, setonBack] = useState(false);
+  const [onSubmit, setonSubmit] = useState(false);
+  const [isExit, setisExit] = useState(false);
+
+
+  const onClick = (type: string) => {
+
+    if (type === "submit") {
+      setTitle("Bạn có chắc chắn muốn đăng xuất không?");
+      setBtnLeft("Quay lại");
+      setBtnRight("Xác nhận");
+      setonSubmit(true);
+      setisExit(true);
+      setModalVisible(true);
+
+      //navigation.navigate('SignInScreen')
+    }
+  };
+  const onCancel = () => {
+    setonHuy(false);
+    setonBack(false);
+    setonSubmit(false);
+    setisExit(false);
+    setModalVisible(false);
+  };
+
+  const onExit = () => {
+    setisExit(false);
+    setModalVisible(false);
+  }
+  const logOut = () => {
+    const logout = dispatch(addStatus({
+      status: false
+    }))
+  }
+  interface Item {
+    id: number,
+    title: string,
+    view: string,
+    like: string,
+    image: any,
+    imageEye: any,
+    imageHeart: any,
+    imageShare: any,
+    imageDown: any,
+  }
+
+  const DATA: Item[] = [
+    { id: 1, title: 'Tiền nhiều để làm gì', imageEye: require("../../../../../assets/Icon-Eye.png"), imageHeart: require("../../../../../assets/Icon-Heart.png"), view: '11.8k', like: '10203', image: require("../../../../../assets/Pepsi_Card.png"), imageShare: require("../../../../../assets/Img_share.png"), imageDown: require("../../../../../assets/Download.png") },
+    { id: 2, title: 'Tiền nhiều để làm gì', imageEye: require("../../../../../assets/Icon-Eye.png"), imageHeart: require("../../../../../assets/Icon-Heart.png"), view: '11.8k', like: '10203', image: require("../../../../../assets/Pepsi_Black_Card.png"), imageShare: require("../../../../../assets/Img_share.png"), imageDown: require("../../../../../assets/Download.png") },
+    { id: 3, title: 'Tiền nhiều để làm gì', imageEye: require("../../../../../assets/Icon-Eye.png"), imageHeart: require("../../../../../assets/Icon-Heart.png"), view: '11.8k', like: '10203', image: require("../../../../../assets/pepsi.png"), imageShare: require("../../../../../assets/Img_share.png"), imageDown: require("../../../../../assets/Download.png") },
+    { id: 4, title: 'Tiền nhiều để làm gì', imageEye: require("../../../../../assets/Icon-Eye.png"), imageHeart: require("../../../../../assets/Icon-Heart.png"), view: '11000', like: '10203', image: require("../../../../../assets/Pepsi_Card.png"), imageShare: require("../../../../../assets/Img_share.png"), imageDown: require("../../../../../assets/Download.png") },
+    { id: 5, title: 'Tiền nhiều để làm gì', imageEye: require("../../../../../assets/Icon-Eye.png"), imageHeart: require("../../../../../assets/Icon-Heart.png"), view: '11000', like: '10203', image: require("../../../../../assets/pepsi.png"), imageShare: require("../../../../../assets/Img_share.png"), imageDown: require("../../../../../assets/Download.png") },
+    { id: 6, title: 'Tiền nhiều để làm gì', imageEye: require("../../../../../assets/Icon-Eye.png"), imageHeart: require("../../../../../assets/Icon-Heart.png"), view: '11000', like: '10203', image: require("../../../../../assets/Pepsi_Black_Card.png"), imageShare: require("../../../../../assets/Img_share.png"), imageDown: require("../../../../../assets/Download.png") },
+    { id: 7, title: 'Tiền nhiều để làm gì', imageEye: require("../../../../../assets/Icon-Eye.png"), imageHeart: require("../../../../../assets/Icon-Heart.png"), view: '11000', like: '10203', image: require("../../../../../assets/pepsi.png"), imageShare: require("../../../../../assets/Img_share.png"), imageDown: require("../../../../../assets/Download.png") },
+    { id: 8, title: 'Tiền nhiều để làm gì', imageEye: require("../../../../../assets/Icon-Eye.png"), imageHeart: require("../../../../../assets/Icon-Heart.png"), view: '11000', like: '10203', image: require("../../../../../assets/Pepsi_Card.png"), imageShare: require("../../../../../assets/Img_share.png"), imageDown: require("../../../../../assets/Download.png") },
+    { id: 9, title: 'Tiền nhiều để làm gì', imageEye: require("../../../../../assets/Icon-Eye.png"), imageHeart: require("../../../../../assets/Icon-Heart.png"), view: '11000', like: '10203', image: require("../../../../../assets/Pepsi_Black_Card.png"), imageShare: require("../../../../../assets/Img_share.png"), imageDown: require("../../../../../assets/Download.png") },
+    { id: 10, title: 'Tiền nhiều để làm gì', imageEye: require("../../../../../assets/Icon-Eye.png"), imageHeart: require("../../../../../assets/Icon-Heart.png"), view: '11000', like: '10203', image: require("../../../../../assets/pepsi.png"), imageShare: require("../../../../../assets/Img_share.png"), imageDown: require("../../../../../assets/Download.png") },
+
+
+  ];
+  const renderItem = ({ item }: { item: Item }) => (
+    <View style={styles.item}>
+      <View style={styles.card}>
+        <View>
+          <Image source={item.image} style={styles.image} />
+
+          <Text style={styles.text}>{item.title}</Text>
+        </View>
+
+      </View>
+      <View style={styles.gr}>
+        <View style={styles.gr1}>
+          <Image source={item.imageEye} style={styles.imageEye} />
+          <Text style={styles.view}>{item.view}</Text>
+        </View >
+        <View style={styles.gr2}>
+          <Image source={item.imageHeart} style={styles.imageHeart} />
+          <Text style={styles.like}>{item.like}</Text>
+        </View>
+
+        <Image source={item.imageShare} style={styles.imageShare} />
+        <Image source={item.imageDown} style={styles.imageDown} />
+      </View>
+    </View>
+  );
+
+  
+  const centerHeader = () => {
+    return (
+      <View style={styles.header_1}>
+        <Text style={styles.textHeader}>Thông tin cá nhân</Text>
+      </View>
+    )
+  }
+
+
+
   return (
     <Background>
 
-      <ImageBackground source={BACKGROUND_TAB} style={styles.headline}>
-        <Image source={BACK} style={styles.iconBack} />
-        <Text style={styles.Profile}>Thông tin cá nhân</Text>
-      </ImageBackground>
+      <Header
+        iconLeft={ICON_HOME}
+        
+        centerHeader={centerHeader()}
+        iconRight={NOTIFICATION_2}
+        rightHeader={() => onClick("submit")}
+      />
       <ScrollView style={styles.container}>
         <View style={styles.group}>
           <View style={styles.group1}>
@@ -96,12 +159,25 @@ const ProfileA = () => {
             data={DATA}
             renderItem={renderItem}
             keyExtractor={(item) => item.id.toString()}
-           
+
             numColumns={2}
           />
         </View>
       </ScrollView>
+      {
+        modalVisible ? <DialogNotification
+          title={title}
+          btnLeft={btnLeft}
+          btnRight={btnRight}
+          isVisibile={modalVisible}
+          onPressL={onCancel}
 
+          isExit={isExit}
+          onPressE={onExit}
+        />
+          :
+          <View></View>
+      }
     </Background>
   )
 }
@@ -119,6 +195,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
   },
+  header_1: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  textHeader: {
+    fontWeight: '600',
+    fontSize: 18,
+    color: Colors.WHITE,
+    textAlign: 'center',
+  },
+
   iconBack: {
     marginTop: Dimensions.get('window').height * 0.04,
     marginLeft: Dimensions.get('window').width * 0.03,
@@ -137,7 +224,7 @@ const styles = StyleSheet.create({
     height: Dimensions.get('window').height * 0.16,
     marginHorizontal: -Dimensions.get('window').height * 0.03,
     marginTop: - Dimensions.get('window').height * 0.02,
-    backgroundColor: Colors.BLUE_DARK, 
+    backgroundColor: Colors.BLUE_DARK,
   },
   group1: {
     flexDirection: 'row',
@@ -178,7 +265,7 @@ const styles = StyleSheet.create({
     fontSize: 10,
     fontWeight: '400',
     lineHeight: 15,
-    color: Colors.TEXT_TONG, 
+    color: Colors.TEXT_TONG,
     alignItems: 'center',
 
   },
@@ -290,7 +377,7 @@ const styles = StyleSheet.create({
     marginLeft: - Dimensions.get('window').height * 0.024,
     width: '30%',
     flexDirection: 'row',
-    backgroundColor: Colors.BACKGROUND_HEART, 
+    backgroundColor: Colors.BACKGROUND_HEART,
     borderTopEndRadius: 4,
     borderBottomEndRadius: 4,
     justifyContent: 'center',

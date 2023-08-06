@@ -5,10 +5,13 @@ type ProfileProps = {
 
 type VideoListProps = {
 };
+type HomeProps = {
+};
 
 export type ProfileParamList = {
     Profile: ProfileProps | undefined;
     VideoList: VideoListProps | undefined;
+    Home: HomeProps | undefined;
 };
 
 export type ProfileNavigation = StackNavigationProp<ProfileParamList>;

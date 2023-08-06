@@ -2,7 +2,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import {MainStackParamList} from "../stack/Navigation";
 import { MainTabNavigation, MainTabParamList } from "../tab/TabNavigation";
 import { Dimensions, Image, StyleSheet, Text, View } from "react-native";
-import { BACKGROUND_TAB, CENTER_BUTTON, VIDEO_SQUARE, VIDEO_SQUARE_FOCUS, CHART, CHART_FOCUS, PROFILE, PROFILE_FOCUS, MUSIC, MUSIC_FOCUS, ICON_HOME } from "../../../../assets";
+import { CENTER_BUTTON, VIDEO_SQUARE, VIDEO_SQUARE_FOCUS, CHART, CHART_FOCUS, PROFILE, PROFILE_FOCUS, MUSIC, MUSIC_FOCUS, ICON_HOME } from "../../../../assets";
 
 import { Colors } from "../../resource/value/Colors";
 
@@ -16,6 +16,12 @@ import Recording from "../../container/Author/Remix/Recording";
 
 import { useSelector } from "react-redux";
 import { userSelecter } from "../../share-state/redux/reducers/userReducer";
+import { VideoListNavigation } from "./VideoListNavigation";
+import { BeatNavigation } from "./BeatNavigation";
+import { RemixNavigation } from "./RemixNavigation";
+import { ChartNavigation } from "./ChartNavigation";
+import { ProfileNavigation } from "./ProfileNavigation";
+import Home from "../../container/Author/Home/Home";
 
 
 const Tab = createBottomTabNavigator();
@@ -54,11 +60,11 @@ export const AuthorNavigation = () => {
                 ),
                 title: 'Video List',
             }} />
-        <Tab.Screen name="Home" component={Home}
+        <Tab.Screen name="Recording" component={Recording}
             options={{
                 tabBarButton: () => undefined
         }} />
-        <Tab.Screen name="BestList" component= {BeatNavigation}
+        <Tab.Screen name="BeatList" component= {BeatNavigation}
             options={{
                 tabBarIcon: ({ focused }) => (
                     <View>
@@ -84,7 +90,7 @@ export const AuthorNavigation = () => {
                     display: 'none',
                 }
             }} />
-        <Tab.Screen name="Rating" component={RankingNavigation}
+        <Tab.Screen name="Chart" component={ChartNavigation}
             options={{
                 tabBarIcon: ({ focused }) => (
                     <View>

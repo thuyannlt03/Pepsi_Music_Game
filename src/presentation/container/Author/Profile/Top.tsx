@@ -1,12 +1,13 @@
 import { StyleSheet, Text, View, FlatList, Dimensions, Image, ImageBackground, TouchableOpacity, ScrollView } from 'react-native'
-import React from 'react'
-import { BACKGROUND_RANK, ICON_HOME, ICON_NOTIFICATION, IMAGE_BUC, IMAGE_RANK_1, IMAGE_RANK_2, IMAGE_RANK_3, IMAGE_RANK_4 } from '../../../../../assets'
+import React, {useEffect, useState} from 'react'
+import { BACKGROUND_RANK, EYE, HEART, ICON_HOME, ICON_NOTIFICATION, IMAGE_BUC, IMAGE_RANK_1, IMAGE_RANK_2, IMAGE_RANK_3, IMAGE_RANK_4 } from '../../../../../assets'
 import Background from '../../../component/background/Background';
 import Header from '../../../component/header/Header'
 import { Colors } from '../../../resource/value/Colors';
 import {  ChartStackScreenProps} from '../../../navigation/stack/ChartNavigation'
-
-
+import { Rank } from '../../../../core/model/Rank';
+import { Video } from '../../../../core/model/Video';
+import { rtdb } from '../../../../core/api/url/RealTime';
 
 
 const Top : React.FC< ChartStackScreenProps<'Top'>> = ({ navigation, route }) => {
@@ -17,8 +18,9 @@ const Top : React.FC< ChartStackScreenProps<'Top'>> = ({ navigation, route }) =>
         
     }
     const goBack = () => {
-       // navigation.navigate('Chart');
+        navigation.goBack();
     }
+   
       const Notification = () => {
         navigation.navigate('Notification');
     }
@@ -28,20 +30,66 @@ const Top : React.FC< ChartStackScreenProps<'Top'>> = ({ navigation, route }) =>
         rank: number,
         image: any,
         view: number,
-        imageEye: any,
+       
     }
 
-    const DATA: Item[] = [
-        { id: 1, name: 'Janne', rank: 4, image: require("../../../../../assets/Avt_Profile.png"), view: 1000, imageEye: require("../../../../../assets/Icon-Eye.png") },
-        { id: 2, name: 'Janne', rank: 5, image: require("../../../../../assets/Avt_Profile.png"), view: 1000, imageEye: require("../../../../../assets/Icon-Eye.png") },
-        { id: 3, name: 'Janne', rank: 6, image: require("../../../../../assets/Avt_Profile.png"), view: 1000, imageEye: require("../../../../../assets/Icon-Eye.png") },
-        { id: 4, name: 'Janne', rank: 7, image: require("../../../../../assets/Avt_Profile.png"), view: 1000, imageEye: require("../../../../../assets/Icon-Eye.png") },
-        { id: 5, name: 'Janne', rank: 8, image: require("../../../../../assets/Avt_Profile.png"), view: 1000, imageEye: require("../../../../../assets/Icon-Eye.png") },
-        { id: 6, name: 'Janne', rank: 9, image: require("../../../../../assets/Avt_Profile.png"), view: 1000, imageEye: require("../../../../../assets/Icon-Eye.png") },
-        { id: 7, name: 'Janne', rank: 10, image: require("../../../../../assets/Avt_Profile.png"), view: 1000, imageEye: require("../../../../../assets/Icon-Eye.png") },
+    let listVideo: Video[] = [];
+    let listRank: Rank[] = [];
 
+    const [list_Video, setlist_Video] = useState<Video[]>([]);
+    const [list_Rank, setlist_Rank] = useState<Rank[]>([])
 
-    ];
+    useEffect(() => {
+        const getVideo = async () => {
+            const get = await rtdb.ref('/Video')
+                .once('value', (snapshot: any) => {
+                    snapshot.forEach((item: any) => {
+                        let video: Video = {
+                            keyVideo: "1"
+                        };
+                        video.keyVideo = item.key;
+                        video.createAt = item.val().createAt;
+                        video.image = item.val().image;
+                        video.like = item.val().like;
+                        video.title = item.val().title;
+                        video.userKey = item.val().userKey;
+                        video.view = item.val().view;
+                        listVideo.push(video);
+                    })
+                    console.log(listVideo);
+                    setlist_Video(listVideo);
+                });
+        }
+
+        getVideo();
+
+        const getRank = async () => {
+            const get = await rtdb.ref('/Rank')
+                .once('value', (snapshot: any) => {
+                    snapshot.forEach((item: any) => {
+                        let rank: Rank = {
+                            keyRank: "1"
+                        };
+                        rank.keyRank = item.key;
+                        rank.name = item.val().name;
+                        rank.image = item.val().image;
+                        rank.view = item.val().view;
+                        rank.rank = item.val().rank;
+                        listRank.push(rank);
+                    })
+                    // console.log(listRank);
+                    setlist_Rank(listRank);
+                });
+        }
+
+        getRank();
+
+        return () => { }
+    }, [])
+
+ 
+
+   
 
 
 
@@ -57,7 +105,7 @@ const Top : React.FC< ChartStackScreenProps<'Top'>> = ({ navigation, route }) =>
                     <View style={styles.boxInfor}>
                         <Text style={styles.txtName}>{item.name}</Text>
                         <View style={styles.boxView}>
-                            <Image source={item.imageEye} />
+                            <Image source={EYE} />
                             <Text style={styles.txtView}>{item.view}</Text>
                         </View>
                     </View>
@@ -77,44 +125,33 @@ const Top : React.FC< ChartStackScreenProps<'Top'>> = ({ navigation, route }) =>
     interface ItemChart {
         id: number;
         title: string;
-        titleTime: string;
+        author: string;
         image: any;
         imagegoc: any;
-        imageWatch: any;
-        imageLike: any;
         textWatch: string;
         textLike: string;
-        borderColor: string;
+        
     }
 
-    const DATAChart: ItemChart[] = [
-        { id: 1, title: "Đom Đóm", titleTime: "Jack", image: require("../../../../../assets/Banner_like_1.png"), imagegoc: require("../../../../../assets/Icon_1.png"), imageWatch: require("../../../../../assets/Icon-Eye.png"), imageLike: require("../../../../../assets/Icon_like.png"), textWatch: "11.8K", textLike: "10.203", borderColor: '#1D4FD6' },
-        { id: 2, title: "Đom Đóm", titleTime: "Jack", image: require("../../../../../assets/Banner_like_2.png"), imagegoc: require("../../../../../assets/Icon_2.png"), imageWatch: require("../../../../../assets/Icon-Eye.png"), imageLike: require("../../../../../assets/Icon_like.png"), textWatch: "11.8K", textLike: "10.203", borderColor: '#40AFFF' },
-        { id: 3, title: "Đom Đóm", titleTime: "Jack", image: require("../../../../../assets/Banner_like_3.png"), imagegoc: require("../../../../../assets/Icon_3.png"), imageWatch: require("../../../../../assets/Icon-Eye.png"), imageLike: require("../../../../../assets/Icon_like.png"), textWatch: "11.8K", textLike: "10.203", borderColor: '#40AFFF' },
-        { id: 4, title: "Đom Đóm", titleTime: "Jack", image: require("../../../../../assets/Banner_like_1.png"), imagegoc: require("../../../../../assets/Icon_4.png"), imageWatch: require("../../../../../assets/Icon-Eye.png"), imageLike: require("../../../../../assets/Icon_like.png"), textWatch: "11.8K", textLike: "10.203", borderColor: '#215EAC' },
-        { id: 5, title: "Đom Đóm", titleTime: "Jack", image: require("../../../../../assets/Banner_like_2.png"), imagegoc: require("../../../../../assets/Icon_4.png"), imageWatch: require("../../../../../assets/Icon-Eye.png"), imageLike: require("../../../../../assets/Icon_like.png"), textWatch: "11.8K", textLike: "10.203", borderColor: '#40AFFF' },
-        { id: 6, title: "Đom Đóm", titleTime: "Jack", image: require("../../../../../assets/Banner_like_3.png"), imagegoc: require("../../../../../assets/Icon_4.png"), imageWatch: require("../../../../../assets/Icon-Eye.png"), imageLike: require("../../../../../assets/Icon_like.png"), textWatch: "11.8K", textLike: "10.203", borderColor: '#40AFFF' },
-        { id: 7, title: "Đom Đóm", titleTime: "Jack", image: require("../../../../../assets/Banner_like_1.png"), imagegoc: require("../../../../../assets/Icon_4.png"), imageWatch: require("../../../../../assets/Icon-Eye.png"), imageLike: require("../../../../../assets/Icon_like.png"), textWatch: "11.8K", textLike: "10.203", borderColor: '#1D4FD6' },
-        { id: 8, title: "Đom Đóm", titleTime: "Jack", image: require("../../../../../assets/Banner_like_2.png"), imagegoc: require("../../../../../assets/Icon_4.png"), imageWatch: require("../../../../../assets/Icon-Eye.png"), imageLike: require("../../../../../assets/Icon_like.png"), textWatch: "11.8K", textLike: "10.203", borderColor: '#40AFFF' },
-    ];
+   
 
     const renderItemChart = ({ item }: { item: ItemChart }) => (
-        <View style={[styles.gr, { borderColor: item.borderColor }]}>
+        <View style={styles.gr}>
             <Image style={styles.img1} source={item.image} />
             <Image source={item.imagegoc} style={styles.imgGoc} />
             <Text style={styles.txtID}>{item.id}</Text>
             <View style={styles.grbottom}>
                 <View style={styles.grleft}>
                     <Text style={styles.text1}>{item.title}</Text>
-                    <Text style={styles.text2}>{item.titleTime}</Text>
+                    <Text style={styles.text2}>{item.author}</Text>
                 </View>
                 <View style={styles.grright}>
                     <View style={styles.grWatch}>
-                        <Image style={styles.eye} source={item.imageWatch} />
+                        <Image style={styles.eye} source={EYE} />
                         <Text style={styles.txt1}>{item.textWatch}</Text>
                     </View>
                     <View style={styles.grLike}>
-                        <Image style={styles.eye} source={item.imageLike} />
+                        <Image style={styles.eye} source={HEART} />
                         <Text style={styles.txt1}>{item.textLike}</Text>
                     </View>
                 </View>
@@ -177,19 +214,19 @@ const Top : React.FC< ChartStackScreenProps<'Top'>> = ({ navigation, route }) =>
                     </View>
                 </ImageBackground>
                 <FlatList
-                    data={DATA}
+                    data={list_Rank}
                     renderItem={renderItem}
                   
-                    keyExtractor={(item) => item.id.toString()}
+                    keyExtractor={(item) => item.keyRank.toString()}
                 />
               
              </View>
             :
             <FlatList
-                data={DATAChart}
+                 data={list_Video}
                 renderItem = { renderItemChart }
               
-                keyExtractor={(item) => item.id.toString()}
+                keyExtractor={(item) => item.keyVideo.toString()}
             />
 }
         </View>

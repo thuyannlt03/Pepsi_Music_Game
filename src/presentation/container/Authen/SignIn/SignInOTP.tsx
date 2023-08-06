@@ -9,6 +9,9 @@ import { LOGO_PEPSI } from '../../../../../assets'
 import { MainStackScreenProps } from '../../../navigation/stack/Navigation'
 import { rtdb } from '../../../../core/api/url/RealTime'
 import { User } from '../../../../core/model/User'
+import { useDispatch } from 'react-redux'
+import { addUser } from '../../../share-state/redux/reducers/userReducer'
+import { addStatus } from '../../../share-state/redux/reducers/statusReducer'
 
 
 
@@ -20,11 +23,15 @@ const SignInOTP: React.FC<MainStackScreenProps<'SignInOTP'>>= ({navigation,route
   const Home = () => {
     navigation.navigate('Record');
   }
+  const dispatch = useDispatch();
   const name = route?.params?.name;
   const phone = route?.params?.phone;
   const type = route?.params?.type;
 
   console.log(type)
+  const [status, setStatus] = useState(type);
+
+  const [phoneA, setphoneA] = useState(phone)
 
   const [falseOTP, setFalseOTP] = useState(false);
 
@@ -36,25 +43,37 @@ const SignInOTP: React.FC<MainStackScreenProps<'SignInOTP'>>= ({navigation,route
   let user: User = {};
 
   const complete = async () => {
-    const getUserKey = await rtdb.ref('users')
-      .once('value', (value: any) => {
-        value.forEach((data: any) => {
-          if (data.val().phone == phone) {
-            user.key = data.key;
-            user.name = data.val().name;
-            user.phone = data.val().phone;
-            user.react = data.val().react;
-            user.video = data.val().video;
-            user.image = data.val().image;
+    const getUserKey = await rtdb.ref('/User')
+    .once('value', (value: any) => {
+      value.forEach((data: any) => {
+        if (data.val() != null) {
+         
+          if (data.val().phone == phoneA) {
+            dispatch(addUser({
+              keyUser: data.key,
+              phone: data.val().phone,
+              name: data.val().name,
+              image: data.val().image,
+              react: data.val().react,
+              video: data.val().video,
+            }))
           }
-        })
-      }).then(() => {
-        ToastAndroid.show("Complete", ToastAndroid.SHORT);
-        navigation.navigate('Record');
-        console.log(user)
-      });
+        }
+      })
+    }).then(() => {
+      if (!type) {
+        ToastAndroid.show("SignUp", ToastAndroid.SHORT);
+        navigation.navigate('OnBoarding');
+      }
+      else {
+        ToastAndroid.show("SignIn", ToastAndroid.SHORT);
+        dispatch(addStatus({
+          status: type,
+        }))
+      }
+    });
+}
 
-  }
 
   const clickSignIn = async () => {
     const code = code_1.toString() + code_2.toString() + code_3.toString() + code_4.toString();
@@ -63,7 +82,7 @@ const SignInOTP: React.FC<MainStackScreenProps<'SignInOTP'>>= ({navigation,route
       setFalseOTP(true);
     }
     else {
-      console.log('haha')
+      console.log('kkk')
       if (type) {
         complete();
       }
@@ -71,8 +90,8 @@ const SignInOTP: React.FC<MainStackScreenProps<'SignInOTP'>>= ({navigation,route
         const newUser  = rtdb.ref('user').push();
         const userNew: User = {
           name: name ?? 'User',
-          phone: phone ?? '0000',
-          image: '123',
+          phone: phone ?? '9999',
+          image: '456',
           react: 0,
           video: 0,
         }
@@ -84,7 +103,7 @@ const SignInOTP: React.FC<MainStackScreenProps<'SignInOTP'>>= ({navigation,route
       }
     }
 
-   };
+  };
 
   
   const headerCenter = () => {

@@ -1,7 +1,10 @@
-import {createSlice} from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { Dispatch } from 'react';
+import { rtdb } from '../../../../core/api/url/RealTime';
+import { User } from '../../../../core/model/User';
 
 const userSlice = createSlice({
-    name: 'addUser',
+    name: 'user',
     initialState: {
         userData: {
             keyUser: '',
@@ -12,18 +15,15 @@ const userSlice = createSlice({
             video: 0,
         }
     },
-    reducers : {
-        addUser : (state, action) => {
+    reducers: {
+        addUser: (state, action) => {
             state.userData = action.payload;
         },
-    }
+    },
 })
 
+
 export const userReducer = userSlice.reducer;
-export const {addUser} = userSlice.actions;
+export const { addUser } = userSlice.actions;
 
-export const userSelecter = (state : any) => state.userReducer.userData;
-
-
-
-
+export const userSelecter = (state: any) => state.userReducer.userData;

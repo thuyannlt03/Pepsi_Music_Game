@@ -16,27 +16,19 @@ import { rtdb } from '../../../../core/api/url/RealTime'
 
 const SignUp: React.FC<MainStackScreenProps<'SignUp'>>= ({navigation,route}) => {
 
-  const [edt, setedt] = React.useState<string>('');
-  console.log(edt)
-
-  const SignIn = () => {
-    navigation.navigate('SignIn');
-  }
-  const SignUpOTP = () => {
-    navigation.navigate('SignUpOTP');
-  }
-
   const [phone, setPhone] = useState('');
   const [name, setName] = useState('');
   const [listUser, setlistUser] = useState<User[]>([]);
-
+  const SignIn = () => {
+    navigation.navigate('SignIn');
+  }
 
   const [isHas, setIsHas] = useState(false);
 
   useEffect(() => {
 
     const getUser = async () => {
-      const getUser = rtdb.ref('users').once('value');
+      const getUser = rtdb.ref('/User').once('value');
       let list: User[] = [];
       await getUser.then((snapshot: any) => {
         snapshot.forEach((item: any) => {
@@ -48,51 +40,50 @@ const SignUp: React.FC<MainStackScreenProps<'SignUp'>>= ({navigation,route}) => 
     }
 
     getUser();
+
     return () => { }
   }, [])
 
 
-    const completeSignUp = () => {
-      console.log(phone + name);
-      setIsHas(false);
-      if (!phone) {
-        Alert.alert('Please enter your phone');
-      }
-      else if (!name) {
-        Alert.alert('Please enter your name');
-      }
-      else {
-        console.log("okkk")
-        console.log(listUser)
-        
-        for (let i = 0; i < listUser.length; i++) {
-          if (listUser.at(i)?.phone === phone) {
-            console.log("111")
-            setIsHas(true);
-            Alert.alert('This number is already in use');
-            setPhone('')
-            return;
-          }
-          else if (listUser.at(i)?.name === name) {
-            console.log("2222")
-            setIsHas(true);
-            Alert.alert('This name is already in use');
-            setName('')
-            return;
-          }
+
+  const complete = () => {
+    console.log(phone + name);
+    setIsHas(false);
+    if (!phone) {
+      Alert.alert('Please enter your phone');
+    }
+    else if (!name) {
+      Alert.alert('Please enter your name');
+    }
+    else {
+      console.log("okkk")
+      console.log(listUser)
+      
+      for (let i = 0; i < listUser.length; i++) {
+        if (listUser.at(i)?.phone === phone) {
+          console.log("111")
+          setIsHas(true);
+          Alert.alert('This number is already in use');
+          setPhone('')
+          return;
         }
-        if (!isHas) {
-          navigation.navigate('SignUpOTP', {
-            phone,
-            name,
-            type: false
-          });
+        else if (listUser.at(i)?.name === name) {
+          console.log("2222")
+          setIsHas(true);
+          Alert.alert('This name is already in use');
+          setName('')
+          return;
         }
+      }
+      if (!isHas) {
+        navigation.navigate('SignUpOTP', {
+          phone,
+          name,
+          type: false
+        });
       }
     }
-  
-
-
+  }
 
 
   const headerCenter = () => {
@@ -112,7 +103,7 @@ const SignUp: React.FC<MainStackScreenProps<'SignUp'>>= ({navigation,route}) => 
             containerStyle = {styles.header}/>
           <Form>
             <SignUpField
-              inputProps_1={{
+               inputProps_1={{
                 onChangeText(text) {
                   setPhone(text)
                 },
@@ -123,13 +114,14 @@ const SignUp: React.FC<MainStackScreenProps<'SignUp'>>= ({navigation,route}) => 
                   setName(text)
                 },
                 value: name
-              }}
-               />
+              }} />
+          
+               
           </Form>
-          <Button 
+          <Button
             containerStyle = {styles.buttonLogIn}
             title='Lấy mã OTP'
-            onPress={completeSignUp}
+            onPress={complete}
             />
           <View style = {styles.viewOr}>
             <View style = {styles.line}/>

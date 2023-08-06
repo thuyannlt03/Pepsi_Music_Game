@@ -1,10 +1,12 @@
-import React from 'react';
-import { FlatList, Image, StyleSheet, Text, View, ImageBackground, Dimensions, TouchableOpacity  } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { FlatList, Image, StyleSheet, Text, View, ImageBackground, Dimensions, TouchableOpacity } from 'react-native';
 import Background from '../../../component/background/Background'
-import { BACK, BACKGROUND_TAB } from '../../../../../assets'
+import { BACK, ICON_MIC, MIC } from '../../../../../assets'
 import { Colors } from '../../../resource/value/Colors'
-import {  BeatListStackScreenProps} from '../../../navigation/stack/BeatNavigation'
+import { BeatListStackScreenProps } from '../../../navigation/stack/BeatNavigation'
 import Header from '../../../component/header/Header';
+import { Music } from '../../../../core/model/Music'
+import { rtdb } from '../../../../core/api/url/RealTime'
 
 
 const Use : React.FC< BeatListStackScreenProps<'Use'>> = ({ navigation, route }) => {
@@ -20,55 +22,66 @@ const Use : React.FC< BeatListStackScreenProps<'Use'>> = ({ navigation, route })
     navigation.navigate('BeatList');
   }
 
-interface Item {
-  id: number;
-  title: string;
-  titleWatch: string;
-  titleMini: string;
-  image: any;
-  imageMiniMicro: any;
-  imageMic: any;
-}
+  interface Item {
+    id: number,
+    name: string,
+    des: string,
+    image: any,
+  }
+  
+  let listMusic: Music[] = [];
 
-const DATA: Item[] = [
-  { id: 1, title: 'Tiền nhiều để làm gì', titleMini: 'GDucky ft.Lưu Hiền Trinh', titleWatch: ' 9.023 lượt cover', image: require("../../../../../assets/pepsi.png"), imageMic: require("../../../../../assets/Mic.png"), imageMiniMicro: require("../../../../../assets/Icon-Mic.png") },
-  { id: 2, title: 'Tiền nhiều để làm gì', titleMini: 'GDucky ft.Lưu Hiền Trinh', titleWatch: ' 9.023 lượt cover', image: require("../../../../../assets/Pepsi_Black_Card.png"), imageMic: require("../../../../../assets/Mic.png"), imageMiniMicro: require("../../../../../assets/Icon-Mic.png") },
-  { id: 3, title: 'Tiền nhiều để làm gì', titleMini: 'GDucky ft.Lưu Hiền Trinh', titleWatch: ' 9.023 lượt cover', image: require("../../../../../assets/Pepsi_Card.png"), imageMic: require("../../../../../assets/Mic.png"), imageMiniMicro: require("../../../../../assets/Icon-Mic.png") },
-  { id: 4, title: 'Tiền nhiều để làm gì', titleMini: 'GDucky ft.Lưu Hiền Trinh', titleWatch: ' 9.023 lượt cover', image: require("../../../../../assets/pepsi.png"), imageMic: require("../../../../../assets/Mic.png"), imageMiniMicro: require("../../../../../assets/Icon-Mic.png") },
-  { id: 5, title: 'Tiền nhiều để làm gì', titleMini: 'GDucky ft.Lưu Hiền Trinh', titleWatch: ' 9.023 lượt cover', image: require("../../../../../assets/Pepsi_Black.png"), imageMic: require("../../../../../assets/Mic.png"), imageMiniMicro: require("../../../../../assets/Icon-Mic.png") },
-  { id: 6, title: 'Tiền nhiều để làm gì', titleMini: 'GDucky ft.Lưu Hiền Trinh', titleWatch: ' 9.023 lượt cover', image: require("../../../../../assets/pepsi.png"), imageMic: require("../../../../../assets/Mic.png"), imageMiniMicro: require("../../../../../assets/Icon-Mic.png") },
-  { id: 7, title: 'Tiền nhiều để làm gì', titleMini: 'GDucky ft.Lưu Hiền Trinh', titleWatch: ' 9.023 lượt cover', image: require("../../../../../assets/pepsi.png"), imageMic: require("../../../../../assets/Mic.png"), imageMiniMicro: require("../../../../../assets/Icon-Mic.png") },
-  { id: 8, title: 'Tiền nhiều để làm gì', titleMini: 'GDucky ft.Lưu Hiền Trinh', titleWatch: ' 9.023 lượt cover', image: require("../../../../../assets/pepsi.png"), imageMic: require("../../../../../assets/Mic.png"), imageMiniMicro: require("../../../../../assets/Icon-Mic.png") },
-  { id: 9, title: 'Tiền nhiều để làm gì', titleMini: 'GDucky ft.Lưu Hiền Trinh', titleWatch: ' 9.023 lượt cover', image: require("../../../../../assets/pepsi.png"), imageMic: require("../../../../../assets/Mic.png"), imageMiniMicro: require("../../../../../assets/Icon-Mic.png") },
-  { id: 10, title: 'Tiền nhiều để làm gì', titleMini: 'GDucky ft.Lưu Hiền Trinh', titleWatch: ' 9.023 lượt cover', image: require("../../../../../assets/pepsi.png"), imageMic: require("../../../../../assets/Mic.png"), imageMiniMicro: require("../../../../../assets/Icon-Mic.png") },
-  { id: 11, title: 'Tiền nhiều để làm gì', titleMini: 'GDucky ft.Lưu Hiền Trinh', titleWatch: ' 9.023 lượt cover', image: require("../../../../../assets/pepsi.png"), imageMic: require("../../../../../assets/Mic.png"), imageMiniMicro: require("../../../../../assets/Icon-Mic.png") },
-  { id: 12, title: 'Tiền nhiều để làm gì', titleMini: 'GDucky ft.Lưu Hiền Trinh', titleWatch: ' 9.023 lượt cover', image: require("../../../../../assets/pepsi.png"), imageMic: require("../../../../../assets/Mic.png"), imageMiniMicro: require("../../../../../assets/Icon-Mic.png") },
-  { id: 13, title: 'Tiền nhiều để làm gì', titleMini: 'GDucky ft.Lưu Hiền Trinh', titleWatch: ' 9.023 lượt cover', image: require("../../../../../assets/pepsi.png"), imageMic: require("../../../../../assets/Mic.png"), imageMiniMicro: require("../../../../../assets/Icon-Mic.png") },
-  { id: 14, title: 'Tiền nhiều để làm gì', titleMini: 'GDucky ft.Lưu Hiền Trinh', titleWatch: ' 9.023 lượt cover', image: require("../../../../../assets/pepsi.png"), imageMic: require("../../../../../assets/Mic.png"), imageMiniMicro: require("../../../../../assets/Icon-Mic.png") },
+  const [list_Music, setlist_Music] = useState<Music[]>([])
+
+  useEffect(() => {
+
+    const getMusic = async () => {
+      const get = rtdb.ref('/Music')
+        .once('value', (snapshot: any) => {
+          snapshot.forEach((item: any) => {
+            let music: Music = {
+              keyMusic: "1"
+            };
+            music.keyMusic = item.key;
+            music.author = item.val().author;
+            music.image = item.val().image;
+            music.name = item.val().name;
+            listMusic.push(music);
+          })
+          setlist_Music(listMusic);
+          console.log(list_Music);
+        });
+    }
+
+    getMusic();
+
+    return () => { }
+  }, [])
 
 
-];
 
 
 
-const renderItem = ({ item }: { item: Item }) => (
-  <View style={styles.item}>
-    <View style={styles.card}>
-      <Image source={item.image} style={styles.image} />
-      <View style={styles.card1}>
-        <Text style={styles.title}>{item.title}</Text>
-        <Text style={styles.titleMini}>{item.titleMini}</Text>
-        <View style={styles.card2}>
-          <Image source={item.imageMiniMicro}/>
-          <Text style={styles.titleWatch}>{item.titleWatch}</Text>
+  const renderItem = ({ item }: { item: Item }) => (
+    <View style={styles.item}>
+      <View style={styles.card}>
+      <Image source={{uri: item.image}} style={styles.image} />
+        <View style={styles.card1}>
+          <Text style={styles.title}>{item.name}</Text>
+          <Text style={styles.titleMini}>{item.des}</Text>
+          <View style={styles.card2}>
+            <Image source={ICON_MIC} />
+            <Text style={styles.titleWatch}> 9.023 lượt cover</Text>
+          </View>
         </View>
       </View>
+      <TouchableOpacity onPress={Recording}>
+        <Image source={MIC} style={styles.imageMic} />
+      </TouchableOpacity>
     </View>
-    <TouchableOpacity onPress={Recording}>
-    <Image source={item.imageMic} style={styles.imageMic} />
-    </TouchableOpacity>
-  </View>
-);
+  );
+
+
 
 const centerHeader = () => {
   return (
@@ -85,9 +98,9 @@ const centerHeader = () => {
           leftHeader={goBack}
           centerHeader={centerHeader()} />
         <FlatList
-          data={DATA}
+          data={list_Music}
           renderItem={renderItem}
-          keyExtractor={(item) => item.id.toString()}
+          keyExtractor={(item) => item.keyMusic.toString()}
         />
       </View>
     </Background>

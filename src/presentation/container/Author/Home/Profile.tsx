@@ -1,81 +1,164 @@
 import { StyleSheet, Text, View, ImageBackground, Image, Dimensions, FlatList, ScrollView, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Background from '../../../component/background/Background'
-import { AVT, AVT_1, BACK, BACKGROUND_TAB, NOTIFICATION_2 } from '../../../../../assets'
+import {  AVT_1,  DOWN, EYE, HEART, ICON_HOME, NOTIFICATION_2, PLAY, SHARE } from '../../../../../assets'
 import { Colors } from '../../../resource/value/Colors'
-import { ProfileScreenProps} from '../../../navigation/stack/ProfileNavigation';
+import { ProfileScreenProps } from '../../../navigation/stack/ProfileNavigation';
+import { useDispatch } from 'react-redux';
+import { addStatus } from '../../../share-state/redux/reducers/statusReducer';
+import Header from '../../../component/header/Header'
+import { Video } from '../../../../core/model/Video';
+import { rtdb } from '../../../../core/api/url/RealTime';
 
-
-const Profile :React.FC<ProfileScreenProps<'Profile'>> = ({navigation, route}) => {
+const Profile: React.FC<ProfileScreenProps<'Profile'>> = ({ navigation, route }) => {
 
 
   const VideoList = () => {
     navigation.navigate('VideoList');
-}
-
-interface Item {
-  id: number,
-  title: string,
-  view: string,
-  like: string,
-  image: any,
-  imageEye: any,
-  imageHeart: any,
-  imageShare: any,
-  imageDown: any,
-}
-
-const DATA: Item[] = [
-  { id: 1, title: 'Tiền nhiều để làm gì', imageEye: require("../../../../../assets/Icon-Eye.png"), imageHeart: require("../../../../../assets/Icon-Heart.png"), view: '11.8k', like: '10203', image: require("../../../../../assets/Pepsi_Card.png"), imageShare: require("../../../../../assets/Img_share.png"), imageDown: require("../../../../../assets/Download.png") },
-  { id: 2, title: 'Tiền nhiều để làm gì', imageEye: require("../../../../../assets/Icon-Eye.png"), imageHeart: require("../../../../../assets/Icon-Heart.png"), view: '11.8k', like: '10203', image: require("../../../../../assets/Pepsi_Black_Card.png"), imageShare: require("../../../../../assets/Img_share.png"), imageDown: require("../../../../../assets/Download.png") },
-  { id: 3, title: 'Tiền nhiều để làm gì', imageEye: require("../../../../../assets/Icon-Eye.png"), imageHeart: require("../../../../../assets/Icon-Heart.png"), view: '11.8k', like: '10203', image: require("../../../../../assets/pepsi.png"), imageShare: require("../../../../../assets/Img_share.png"), imageDown: require("../../../../../assets/Download.png") },
-  { id: 4, title: 'Tiền nhiều để làm gì', imageEye: require("../../../../../assets/Icon-Eye.png"), imageHeart: require("../../../../../assets/Icon-Heart.png"), view: '11000', like: '10203', image: require("../../../../../assets/Pepsi_Card.png"), imageShare: require("../../../../../assets/Img_share.png"), imageDown: require("../../../../../assets/Download.png") },
-  { id: 5, title: 'Tiền nhiều để làm gì', imageEye: require("../../../../../assets/Icon-Eye.png"), imageHeart: require("../../../../../assets/Icon-Heart.png"), view: '11000', like: '10203', image: require("../../../../../assets/pepsi.png"), imageShare: require("../../../../../assets/Img_share.png"), imageDown: require("../../../../../assets/Download.png") },
-  { id: 6, title: 'Tiền nhiều để làm gì', imageEye: require("../../../../../assets/Icon-Eye.png"), imageHeart: require("../../../../../assets/Icon-Heart.png"), view: '11000', like: '10203', image: require("../../../../../assets/Pepsi_Black_Card.png"), imageShare: require("../../../../../assets/Img_share.png"), imageDown: require("../../../../../assets/Download.png") },
-  { id: 7, title: 'Tiền nhiều để làm gì', imageEye: require("../../../../../assets/Icon-Eye.png"), imageHeart: require("../../../../../assets/Icon-Heart.png"), view: '11000', like: '10203', image: require("../../../../../assets/pepsi.png"), imageShare: require("../../../../../assets/Img_share.png"), imageDown: require("../../../../../assets/Download.png") },
-  { id: 8, title: 'Tiền nhiều để làm gì', imageEye: require("../../../../../assets/Icon-Eye.png"), imageHeart: require("../../../../../assets/Icon-Heart.png"), view: '11000', like: '10203', image: require("../../../../../assets/Pepsi_Card.png"), imageShare: require("../../../../../assets/Img_share.png"), imageDown: require("../../../../../assets/Download.png") },
-  { id: 9, title: 'Tiền nhiều để làm gì', imageEye: require("../../../../../assets/Icon-Eye.png"), imageHeart: require("../../../../../assets/Icon-Heart.png"), view: '11000', like: '10203', image: require("../../../../../assets/Pepsi_Black_Card.png"), imageShare: require("../../../../../assets/Img_share.png"), imageDown: require("../../../../../assets/Download.png") },
-  { id: 10, title: 'Tiền nhiều để làm gì', imageEye: require("../../../../../assets/Icon-Eye.png"), imageHeart: require("../../../../../assets/Icon-Heart.png"), view: '11000', like: '10203', image: require("../../../../../assets/pepsi.png"), imageShare: require("../../../../../assets/Img_share.png"), imageDown: require("../../../../../assets/Download.png") },
 
 
-];
-const renderItem = ({ item }: { item: Item }) => (
-  <View style={styles.item}>
-    <TouchableOpacity onPress={VideoList}>
-    <View style={styles.card}>
-      <View>
-        <Image source={item.image} style={styles.image} />
+  }
+  const goHome = () => {
+    navigation.navigate('Home');
+  }
 
-        <Text style={styles.text}>{item.title}</Text>
-      </View>
+  const dispatch = useDispatch();
 
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const [title, setTitle] = useState<string>();
+  const [btnLeft, setBtnLeft] = useState<string>();
+  const [btnRight, setBtnRight] = useState<string>();
+  const [onHuy, setonHuy] = useState(false);
+  const [onBack, setonBack] = useState(false);
+  const [onSubmit, setonSubmit] = useState(false);
+  const [isExit, setisExit] = useState(false);
+
+
+  const onClick = (type: string) => {
+
+    if (type === "submit") {
+      setTitle("Bạn có chắc chắn muốn đăng xuất không?");
+      setBtnLeft("Quay lại");
+      setBtnRight("Xác nhận");
+      setonSubmit(true);
+      setisExit(true);
+      setModalVisible(true);
+      logOut
+
+      //navigation.navigate('SignInScreen')
+    }
+  };
+  const onCancel = () => {
+    setonHuy(false);
+    setonBack(false);
+    setonSubmit(false);
+    setisExit(false);
+    setModalVisible(false);
+  };
+
+  const onExit = () => {
+    setisExit(false);
+    setModalVisible(false);
+  }
+  const logOut = () => {
+    const logout = dispatch(addStatus({
+      status: false
+    }))
+  }
+
+  interface Item {
+
+    id: number,
+    title: string,
+    view: string,
+    like: string,
+    image: any,
+  }
+  const [list_Video, setlist_Video] = useState<Video[]>([])
+
+  let listVideo: Video[] = [];
+
+ 
+
+  useEffect(() => {
+      const getVideo = async () => {
+          const get = rtdb.ref('/Video').once('value');
+          await get.then((snapshot: any) => {
+              snapshot.forEach((item: any) => {
+                  let video: Video = {
+                      keyVideo: "1"
+                  };
+                  video.keyVideo = item.key;
+                  video.createAt = item.val().createAt;
+                  video.image = item.val().image;
+                  video.like = item.val().like;
+                  video.title = item.val().title;
+                  video.userKey = item.val().userKey;
+                  video.view = item.val().view;
+                  listVideo.push(video);
+              })
+              // console.log(list);
+              setlist_Video(listVideo);
+          });
+      }
+
+      getVideo();
+
+      return () => { }
+  }, [])
+  const renderItem = ({ item }: { item: Item }) => (
+    <View style={styles.item}>
+      <TouchableOpacity onPress={VideoList}>
+      <View style={styles.boxNew}>
+                    <Text style={styles.new}>Mới</Text>
+                </View>
+                <View style={styles.boxPlay}>
+                  <Image source={PLAY}/>
+                </View>
+        <View style={styles.card}>
+          <View>
+          <Image source={{uri: item.image}} style={styles.image} />
+
+            <Text style={styles.text}>{item.title}</Text>
+          </View>
+
+        </View>
+        <View style={styles.gr}>
+          <View style={styles.gr1}>
+            <Image source={EYE} style={styles.imageEye} />
+            <Text style={styles.view}>{item.view}</Text>
+          </View >
+          <View style={styles.gr2}>
+            <Image source={HEART} style={styles.imageHeart} />
+            <Text style={styles.like}>{item.like}</Text>
+          </View>
+
+          <Image source={SHARE} style={styles.imageShare} />
+          <Image source={DOWN} style={styles.imageDown} />
+        </View>
+      </TouchableOpacity>
     </View>
-    <View style={styles.gr}>
-      <View style={styles.gr1}>
-        <Image source={item.imageEye} style={styles.imageEye} />
-        <Text style={styles.view}>{item.view}</Text>
-      </View >
-      <View style={styles.gr2}>
-        <Image source={item.imageHeart} style={styles.imageHeart} />
-        <Text style={styles.like}>{item.like}</Text>
+  );
+
+  const centerHeader = () => {
+    return (
+      <View style={styles.header_1}>
+        <Text style={styles.textHeader}>Thông tin cá nhân</Text>
       </View>
-
-      <Image source={item.imageShare} style={styles.imageShare} />
-      <Image source={item.imageDown} style={styles.imageDown} />
-    </View>
-    </TouchableOpacity>
-  </View>
-);
-
+    )
+  }
 
   return (
     <Background>
 
-      <ImageBackground source={BACKGROUND_TAB} style={styles.headline}>
-      <Image source={BACK} style={styles.iconBack} />
-        <Text style={styles.Profile}>Thông tin cá nhân</Text>
-        <Image source={NOTIFICATION_2} style={styles.iconNo} />
-      </ImageBackground>
+      <Header
+        iconLeft={ICON_HOME}
+        leftHeader={goHome}
+        centerHeader={centerHeader()}
+        iconRight={NOTIFICATION_2}
+        rightHeader={() => onClick("submit")}
+      />
       <ScrollView style={styles.container}>
         <View style={styles.group}>
           <View style={styles.group1}>
@@ -105,10 +188,9 @@ const renderItem = ({ item }: { item: Item }) => (
 
           <FlatList
 
-            data={DATA}
+            data={list_Video}
             renderItem={renderItem}
-            keyExtractor={(item) => item.id.toString()}
-            
+            keyExtractor={(item) => item.keyVideo.toString()}
             numColumns={2}
           />
         </View>
@@ -131,6 +213,39 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
   },
+  textHeader: {
+    fontWeight: '600',
+    fontSize: 18,
+    color: Colors.WHITE,
+    textAlign: 'center',
+  },
+  header_1: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  boxNew: {
+    position: 'absolute',
+    zIndex: 1,
+    width: 40,
+    height: 15,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: Colors.BAR_RED,
+    borderRadius: 2,
+    margin: 10
+},
+new: {
+    fontSize: 10,
+    fontWeight: '700',
+    color: Colors.WHITE,
+},
+boxPlay: {
+    position: 'absolute',
+    zIndex: 1,
+    alignSelf: 'center',
+    top: "40%",
+    
+},
   iconBack: {
     marginTop: Dimensions.get('window').height * 0.04,
     marginLeft: Dimensions.get('window').width * 0.03,
@@ -153,7 +268,7 @@ const styles = StyleSheet.create({
     height: Dimensions.get('window').height * 0.16,
     marginHorizontal: -Dimensions.get('window').height * 0.03,
     marginTop: - Dimensions.get('window').height * 0.02,
-    backgroundColor: Colors.BLUE_DARK, 
+    backgroundColor: Colors.BLUE_DARK,
   },
   group1: {
     flexDirection: 'row',
@@ -194,7 +309,7 @@ const styles = StyleSheet.create({
     fontSize: 10,
     fontWeight: '400',
     lineHeight: 15,
-    color: Colors.TEXT_TONG, 
+    color: Colors.TEXT_TONG,
     alignItems: 'center',
 
   },
@@ -306,7 +421,7 @@ const styles = StyleSheet.create({
     marginLeft: - Dimensions.get('window').height * 0.024,
     width: '30%',
     flexDirection: 'row',
-    backgroundColor: Colors.BACKGROUND_HEART, 
+    backgroundColor: Colors.BACKGROUND_HEART,
     borderTopEndRadius: 4,
     borderBottomEndRadius: 4,
     justifyContent: 'center',

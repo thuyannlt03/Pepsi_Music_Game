@@ -12,7 +12,7 @@ import GiftChart from "../../container/Author/Home/GiftChart";
 
 const Stack = createStackNavigator<ChartStackParamList>();
 
-export const RankingNavigation = () => {
+export const  ChartNavigation = () => {
     return (
         <Stack.Navigator screenOptions={{ headerShown: false }}>
             <Stack.Screen name='Top' component={Top} />

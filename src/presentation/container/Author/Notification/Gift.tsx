@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { FlatList, Image, StyleSheet, Text, View, ImageBackground, Dimensions, TouchableOpacity, Pressable } from 'react-native';
 import Background from '../../../component/background/Background'
 import { BACK, BACKGROUND_TAB} from '../../../../../assets'
 import { Colors } from '../../../resource/value/Colors'
 import { BeatListStackScreenProps } from '../../../navigation/stack/BeatNavigation'
 import Header from '../../../component/header/Header';
-
+import { Gift } from '../../../../core/model/Gift';
+import { rtdb } from '../../../../core/api/url/RealTime';
 
 const Gift  : React.FC< BeatListStackScreenProps<'Gift'>> = ({ navigation, route }) => {
 
@@ -18,15 +19,14 @@ const Gift  : React.FC< BeatListStackScreenProps<'Gift'>> = ({ navigation, route
     }
 
 interface Item {
-    id: number;
+    id: string;
     title: string;
-    titlelitle: string;
-    button: string;
+    des: string;
     image: any;
 }
 
 
-function ItemColor({ id, title, titlelitle, button, image }: Item) {
+function ItemColor({  title, des,  image }: Item) {
     const [buttonColor, setButtonColor] = useState('#004A98');
     const [buttonText, setButtonText] = useState('Chưa nhận');
 
@@ -39,21 +39,47 @@ function ItemColor({ id, title, titlelitle, button, image }: Item) {
             setButtonColor('#004A98');
         };
     };
+   
+    let listGift: Gift[] = [];
+
+    const [list_Gift, setlist_Gift] = useState<Gift[]>([])
+
+    useEffect(() => {
+    
+        const getGift = async () => {
+            let gift : Gift = {
+                keyGift: "1"
+            };
+            const get = rtdb.ref('/Gifts').once('value');
+            await get.then((snapshot: any) => {
+              snapshot.forEach((item: any) => {
+                gift.keyGift = item.key;
+                gift.des = item.val().des;
+                gift.image = item.val().image;
+                gift.title = item.val().title;
+                listGift.push(gift);
+              })
+              // console.log(list);
+              setlist_Gift(listGift)
+            });
+          }
+      
+          getGift();
+      return () => {}
+    }, [])
+    
+    
     return (
         <View style={styles.item}>
             <Image source={image} style={styles.image} />
             <Text style={styles.title}>{title}</Text>
-            <Text style={styles.titlelitle}>{titlelitle}</Text>
+            <Text style={styles.titlelitle}>{des}</Text>
             <TouchableOpacity style={[styles.button, { backgroundColor: buttonColor }]} onPress={onPressButton}>
                 <Text style={[styles.textbtn, { color: buttonText === 'Chưa nhận' ? '#fff' : '#fff' }]}>{buttonText}</Text>
             </TouchableOpacity>
         </View>
     );
 }
-const DATA: Item[] = [
-    { id: 1, title: "Iphone 13 Promax", titlelitle: "Top 1 tuần - 28/11/2021", button: "Chưa nhận", image: require("../../../../../assets/Iphone_13ProMax.png") },
-    { id: 2, title: "Samsung Galaxy Tab S7+", titlelitle: "Top 2 tuần - 21/11/2021", button: "Đã nhận", image: require("../../../../../assets/Samsung_Galaxy_TabS7+.png") },
-];
 
 const centerHeader = () => {
     return (
@@ -71,10 +97,10 @@ const centerHeader = () => {
                     centerHeader={centerHeader()} />
                 <FlatList
                     style={{ marginHorizontal: Dimensions.get('window').width * 0.02 }}
-                    horizontal={true}
-                    data={DATA}
-                    renderItem={({ item }) => <ItemColor id={item.id} title={item.title} titlelitle={item.titlelitle} button={item.button} image={item.image} />}
-                    keyExtractor={(item) => item.id.toString()}
+                    numColumns={2}
+                    data={list_Gift}
+                    renderItem={({ item }) => <ItemColor title={item.title} des={item.des}  image={item.image} />}
+                    keyExtractor={(item) => item.keyGift.toString()}
                 />
             </View>
         </Background>

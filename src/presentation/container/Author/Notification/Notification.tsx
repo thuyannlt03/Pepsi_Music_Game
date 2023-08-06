@@ -1,11 +1,12 @@
-import React from 'react';
+import React, {useEffect, useState}  from 'react';
 import { FlatList, Image, StyleSheet, Text, View, ImageBackground, Dimensions, Pressable, TouchableOpacity } from 'react-native';
 import Background from '../../../component/background/Background'
 import { BACK, BACKGROUND_TAB } from '../../../../../assets'
 import { Colors } from '../../../resource/value/Colors'
 import {  BeatListStackScreenProps} from '../../../navigation/stack/BeatNavigation'
 import Header from '../../../component/header/Header';
-
+import { rtdb } from '../../../../core/api/url/RealTime';
+import { Notification } from '../../../../core/model/Notification';
 
 const Notification  : React.FC< BeatListStackScreenProps<'Notification'>> = ({ navigation, route }) => {
 
@@ -25,29 +26,46 @@ interface Item {
     title: string;
     titleTime: string;
     image: any;
+    role: number;
 }
 
-const DATA: Item[] = [
-    { id: 1, title: "Bạn đã đăng tải video mới", titleTime: "21 giờ trước", image: require("../../../../../assets/Card_Notification.png") },
-    { id: 2, title: "Bạn đã nhận được IPHONE 13 ProMax\nGiải thưởng cho quán quân tuần" ,titleTime: "28/11/2021", image: require("../../../../../assets/Card_Notification.png") },
-    { id: 3, title: "Bạn đã đạt TOP 1 người có lượt\nyêu thích cao nhất tuần",titleTime: "26/11/2021", image: require("../../../../../assets/Card_Notification.png") },
-    { id: 4, title: "Bạn đã đăng tải video mới", titleTime: "26/11/2021", image: require("../../../../../assets/Card_Notification.png") },
-    { id: 5, title: "Bạn đã nhận được Samsung Tab S7+\nGiải thưởng cho quán quân tuần", titleTime: "26/11/2021", image: require("../../../../../assets/Card_Notification.png") },
-    { id: 6, title: "Bạn đã đạt TOP 1 người có lượt\nyêu thích cao nhất tuần", titleTime: "21/11/2021", image: require("../../../../../assets/Card_Notification.png") },
-    { id: 7, title: "Bạn đã đăng tải video mới", titleTime: "21/11/2021", image: require("../../../../../assets/Card_Notification.png") },
-    { id: 8, title: "Bạn đã nhận được IPHONE 13 ProMax\nGiải thưởng cho quán quân tuần",  titleTime: "26/11/2021", image: require("../../../../../assets/Card_Notification.png") },
-    { id: 9, title: "Bạn đã đạt TOP 1 người có lượt\nyêu thích cao nhất tuần",  titleTime: "21/11/2021", image: require("../../../../../assets/Card_Notification.png") },
-    { id: 10, title: "Bạn đã đăng tải video mới",  titleTime: "21/11/2021", image: require("../../../../../assets/Card_Notification.png") },
-    { id: 11, title: "Bạn đã nhận được Samsung Tab S7+\nGiải thưởng cho quán quân tuần",  titleTime: "26/11/2021", image: require("../../../../../assets/Card_Notification.png") },
-    { id: 12, title: "Bạn đã đạt TOP 1 người có lượt\nyêu thích cao nhất tuần", titleTime: "21/11/2021", image: require("../../../../../assets/Card_Notification.png") },
-];
+let listNotif: Notification[] = [];
+
+const [list_Notif, setlist_Notif] = useState<Notification[]>([])
+
+useEffect(() => {
+  
+    const getGift = async () => {
+        
+        const get = rtdb.ref('/Notification').once('value');
+        await get.then((snapshot: any) => {
+          snapshot.forEach((item: any) => {
+            let notifi : Notification = {
+                keyNotification: "1"
+            };
+            notifi.keyNotification = item.key;
+            notifi.image = item.val().image;
+            notifi.role = item.val().role;
+            notifi.time = item.val().time;
+            notifi.title = item.val().title;
+            listNotif.push(notifi);
+          })
+          setlist_Notif(listNotif)
+        });
+      }
+  
+      getGift();
+
+  return () => {}
+}, [])
+
 
 
 
 const renderItem = ({ item }: { item: Item }) => (
     <TouchableOpacity onPress={Gift}>
     <View style={styles.item}>
-        <Image source={item.image} style={styles.image} />
+    <Image source={{uri: item.image}} style={styles.image} />
         <View style={styles.card} >
             <Text style={styles.title}>{item.title}</Text>
             <Text style={styles.titleTime}>{item.titleTime}</Text>
@@ -72,9 +90,10 @@ const centerHeader = () => {
                     leftHeader={goBack}
                     centerHeader={centerHeader()} />
                 <FlatList
-                    data={DATA}
+                     
+                    data={list_Notif}
                     renderItem={renderItem}
-                    keyExtractor={(item) => item.id.toString()}
+                    keyExtractor={(item) => item.keyNotification.toString()}
                 />
             </View>
         </Background>
