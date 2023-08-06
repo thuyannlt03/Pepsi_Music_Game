@@ -39,7 +39,7 @@ import ProfileA from './src/presentation/container/Author/LeaderBoard/ProfileA';
 import Profile from './src/presentation/container/Author/Home/Profile';
 import DialogReport from './src/presentation/component/dialog/DialogReport';
 import DialogNotification from './src/presentation/component/dialog/DialogNotification';
-import DialogProgress from './src/presentation/component/dialog/DialogProgress';
+
 import ThankYou from './src/presentation/container/Author/Remix/ThankYou';
 import VideoList from './src/presentation/container/Author/Home/VideoList';
 
@@ -50,6 +50,8 @@ import { MainStackParamList } from './src/presentation/navigation/stack/Navigati
 import { AuthenNavigation } from './src/presentation/navigation/Authen/AuthenNavigation';
 import { AppNavigation } from './src/presentation/navigation/AppNavigation';
 import Top from './src/presentation/container/Author/Profile/Top';
+import { Provider, useDispatch, useSelector } from 'react-redux'
+import store from './src/presentation/share-state/redux/store'
 const Stack = createStackNavigator<MainStackParamList>();
 
 
@@ -103,19 +105,10 @@ function Section({ children, title }: SectionProps): JSX.Element {
   );
 }
 
-import firestore from '@react-native-firebase/firestore';
-import database, { firebase } from '@react-native-firebase/database';
-import { rtdb } from './src/core/api/url/RealTime'
-import { User } from './src/core/model/User'
-import { UserRespone } from './src/core/model/UserRespone'
 
-const user = {
-  name: 'nguyen',
-  phone: '09090909',
-  image: 'unknow',
-  video: 0,
-  react: 0,
-}
+
+
+
 
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -126,41 +119,41 @@ function App(): JSX.Element {
 
   return (
 
-   // <Intro></Intro>
-    
+    // <Intro></Intro>
+
     //<SplashScreen></SplashScreen>
     //<Splash></Splash>
     //<Rules></Rules>
-    
-    
-   
+
+
+
     // <NavigationContainer>
     //   <AuthorNavigation/>
     // </NavigationContainer>
-     //<Beat></Beat>
-   // <BeatList></BeatList>
-   //<New></New>
-   //<Use></Use>
-  //<Recorded></Recorded>
-   //<Recommen></Recommen>
+    //<Beat></Beat>
+    // <BeatList></BeatList>
+    //<New></New>
+    //<Use></Use>
+    //<Recorded></Recorded>
+    //<Recommen></Recommen>
     //<Recording></Recording>
-   // <Recording2></Recording2>
-   //<NewBeat></NewBeat>
-   // <Remix></Remix>
-   //<AnimationOne></AnimationOne>
-   
-   //<AnimationThree></AnimationThree>
-   //<Search></Search>
-   //<Thanks></Thanks>
+    // <Recording2></Recording2>
+    //<NewBeat></NewBeat>
+    // <Remix></Remix>
+    //<AnimationOne></AnimationOne>
+
+    //<AnimationThree></AnimationThree>
+    //<Search></Search>
+    //<Thanks></Thanks>
     //<Notification></Notification>
-     //<Gift></Gift>
+    //<Gift></Gift>
 
     //<ProfileA></ProfileA>
     //<ProfileN></ProfileN>
-   //<Profile></Profile>
-   
+    //<Profile></Profile>
+
     // <NavigationContainer> 
-      
+
     //   <Stack.Navigator screenOptions={{ headerShown: false }}>
 
     //     <Stack.Screen name='SplashScreen' component={SplashScreen} />
@@ -174,12 +167,12 @@ function App(): JSX.Element {
     //     <Stack.Screen name='Rules' component={Rules}/>
     //     <Stack.Screen name='Beat' component={Beat}/>
     //     <Stack.Screen name='Record' component={Record}/>
-      
+
     //   </Stack.Navigator>
     // </NavigationContainer>
 
     //   <NavigationContainer> 
-      
+
     //   <Stack.Navigator screenOptions={{ headerShown: false }}>
 
     //     <Stack.Screen name='BeatList' component={BeatList} />
@@ -189,7 +182,7 @@ function App(): JSX.Element {
     //     <Stack.Screen name='Use' component={Use} />
     //     <Stack.Screen name='Recorded' component={Recorded} />
     //     <Stack.Screen name='Recommen' component={Recommen} />
-        
+
     //     <Stack.Screen name='Recording' component={Recording}/>
     //     <Stack.Screen name='Recording2' component={Recording2}/>
     //     <Stack.Screen name='NewBeat' component={NewBeat}/>
@@ -200,19 +193,21 @@ function App(): JSX.Element {
     //     <Stack.Screen name='Search' component={Search}/>
     //     <Stack.Screen name='ThankYou' component={ThankYou}/>
     //     <Stack.Screen name='Recorded' component={Recorded} />
-      
+
     //   </Stack.Navigator>
     // </NavigationContainer>
- //<Top></Top>
- //<AnimationTwo></AnimationTwo>
-  //<VideoList></VideoList>
-    
-    <AppNavigation></AppNavigation>
+    //<Top></Top>
+    //<AnimationTwo></AnimationTwo>
+    //<VideoList></VideoList>
+
+    <Provider store={store}>
+      <AppNavigation />
+    </Provider>
     //<DialogNotification></DialogNotification>
     //<DialogReport/>
-   //<VideoList/>
-   //<DialogProgress></DialogProgress>
-    
+    //<VideoList/>
+    //<DialogProgress></DialogProgress>
+
   );
 }
 // npx react-native run-android

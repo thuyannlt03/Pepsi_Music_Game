@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, Image, Dimensions, TouchableOpacity, ImageBackground } from 'react-native'
 import React from 'react'
 import Background from '../../../component/background/Background'
-import { CENTER_BUTTON, HEADLINE_2, LEFT_BUTTON_HOME, RIGHT_BUTTON_HOME, TALEN } from '../../../../../assets'
+import {  HEADLINE_2, LEFT_BUTTON_HOME, RIGHT_BUTTON_HOME, TALEN } from '../../../../../assets'
 import { Colors } from '../../../resource/value/Colors'
 
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FlatList, Image, StyleSheet, Text, View, ImageBackground, Dimensions, TouchableOpacity } from 'react-native';
+import { FlatList, Image, StyleSheet, Text, View,  Dimensions, TouchableOpacity } from 'react-native';
 import Background from '../../../component/background/Background'
 import { BACK, ICON_MIC, MIC } from '../../../../../assets'
 import { Colors } from '../../../resource/value/Colors'

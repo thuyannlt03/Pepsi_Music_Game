@@ -1,7 +1,7 @@
-import { StyleSheet, Text, View, ScrollView, Dimensions, Image, ImageBackground, Pressable } from 'react-native'
+import { StyleSheet, Text, View, ScrollView, Dimensions, Image } from 'react-native'
 import React from 'react'
 import Background from '../../../component/background/Background'
-import { BACK, BACKGROUND_TAB, LOA } from '../../../../../assets'
+import { BACK, LOA } from '../../../../../assets'
 import { Colors } from '../../../resource/value/Colors'
 import { MainStackScreenProps } from '../../../navigation/stack/Navigation'
 import Header from '../../../component/header/Header';

@@ -1,12 +1,13 @@
 import { StyleSheet, Text, View, Image, Dimensions, ImageBackground, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import Background from '../../../component/background/Background'
 import { BACKGROUND_TAB, BACK, COVER_1, TIME_RED, PEN, SHARE } from '../../../../../assets'
 import { Colors } from '../../../resource/value/Colors'
 import Button from '../../../component/button/Button'
 import Header from '../../../component/header/Header';
 import { RemixStackScreenProps } from '../../../navigation/stack/RemixNavigation'
-
+import DialogLoad from '../../../component/dialog/DialogLoad'
+import DialogNotification from '../../../component/dialog/DialogNotification'
 
 const AnimationThree : React.FC<RemixStackScreenProps<'AnimationThree'>> = ({ navigation, route }) => {
 
@@ -24,6 +25,35 @@ const AnimationThree : React.FC<RemixStackScreenProps<'AnimationThree'>> = ({ na
     const goBack = () => {
         navigation.navigate('AnimationTwo');
       }
+
+
+     
+     
+       
+       const [isStart, setisStart] = useState(false);
+       const [isVisibile, setisVisibile] = useState(false);
+       const [isDelete, setisDelete] = useState(false)
+   
+       const goForward = () => {
+        console.log(123)
+        setisVisibile(true);
+        setisStart(true);
+    };
+
+    const doCancel = () => {
+        setisDelete(true)
+    };
+
+
+    const deleteRecord = () => {
+        setisDelete(false)
+        navigation.navigate('Recording');
+    };
+
+    const noDelete = () => {
+        setisDelete(false);
+    };
+
       
     const centerHeader = () => {
         return (
@@ -63,14 +93,38 @@ const AnimationThree : React.FC<RemixStackScreenProps<'AnimationThree'>> = ({ na
                     <Button
                         containerStyle={styles.buttonTao}
                         title='Xong'
-                        onPress={ThankYou}
+                        onPress={goForward}
                     />
                     <Button
                         containerStyle={styles.buttonBo}
                         title='Hủy Bỏ'
+                        onPress={doCancel}
                         titleStyle={styles.title} />
                 </View>
             </View>
+            {
+                isVisibile ?
+                    <DialogLoad
+                        isStart={isStart}
+                        isVisibile={isVisibile}
+                        navigation={navigation}
+                    />
+                    : <View></View>
+            }
+            {
+                isDelete ?
+                <DialogNotification
+                title='Bạn có muốn hủy bản ghi âm này không'
+                btnLeft='Không'
+                btnRight='Có'
+                isVisibile={isDelete}
+                onPressL={noDelete}
+                onPressR={deleteRecord}
+                />
+                :
+                <View></View>
+            }
+
         </Background>
 
     )

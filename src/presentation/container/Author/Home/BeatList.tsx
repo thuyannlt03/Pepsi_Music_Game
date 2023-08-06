@@ -1,12 +1,14 @@
-import { StyleSheet, Text, View, ScrollView, Image, FlatList, Dimensions, TouchableOpacity, ImageBackground, Pressable } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View, ScrollView, Image, FlatList, Dimensions, TouchableOpacity} from 'react-native'
+import React, {useEffect, useState} from 'react'
 import Background from '../../../component/background/Background'
 import { BeatListStackScreenProps } from '../../../navigation/stack/BeatNavigation'
-import { BANER, ICON_HOME, ICON_MUSIC, VOLUME_HIGH, ICON_NOTIFICATION,  BACKGROUND_TAB } from '../../../../../assets'
+import { BANER, ICON_HOME, ICON_MUSIC, VOLUME_HIGH, ICON_NOTIFICATION, EYE, HEART, MIC, ICON_MIC } from '../../../../../assets'
 import { Colors } from '../../../resource/value/Colors'
 import Button from '../../../component/button/Button'
 import Header from '../../../component/header/Header'
-
+import { Video } from '../../../../core/model/Video'
+import { Music } from '../../../../core/model/Music'
+import { rtdb } from '../../../../core/api/url/RealTime'
 
 
 
@@ -40,51 +42,27 @@ const BeatList : React.FC<BeatListStackScreenProps<'BeatList'>> = ({ navigation,
 interface Item {
   id: number,
   title: string,
-  view: string,
-  like: string,
-  image: any,
-  imageMic: any,
-  imageEye: any,
-  imageHeart: any,
+  view: number,
+  like: number,
+  image: any
 }
 interface ItemList {
-  id: number;
-  title: string;
-  titleWatch: string;
-  titleMini: string;
-  image: any;
-  imageMiniMicro: any;
-  imageMic: any;
+  id: number,
+  title: string,
+  author: string,
+  view: number,
+  like: number,
+  image: any
 }
-const DATA: Item[] = [
-  { id: 1, title: 'Tiền nhiều để làm gì', imageEye: require("../../../../../assets/Icon-Eye.png"), imageHeart: require("../../../../../assets/Icon-Heart.png"), view: '11.8k', like: '10203', image: require("../../../../../assets/Pepsi_Card.png"), imageMic: require("../../../../../assets/Mic.png") },
-  { id: 2, title: 'Tiền nhiều để làm gì', imageEye: require("../../../../../assets/Icon-Eye.png"), imageHeart: require("../../../../../assets/Icon-Heart.png"), view: '11.8k', like: '10203', image: require("../../../../../assets/Pepsi_Black_Card.png"), imageMic: require("../../../../../assets/Mic.png") },
-  { id: 3, title: 'Tiền nhiều để làm gì', imageEye: require("../../../../../assets/Icon-Eye.png"), imageHeart: require("../../../../../assets/Icon-Heart.png"), view: '11.8k', like: '10203', image: require("../../../../../assets/pepsi.png"), imageMic: require("../../../../../assets/Mic.png") },
-  { id: 4, title: 'Tiền nhiều để làm gì', imageEye: require("../../../../../assets/Icon-Eye.png"), imageHeart: require("../../../../../assets/Icon-Heart.png"), view: '11.8k', like: '10203', image: require("../../../../../assets/Pepsi_Card.png"), imageMic: require("../../../../../assets/Mic.png") },
-  { id: 5, title: 'Tiền nhiều để làm gì', imageEye: require("../../../../../assets/Icon-Eye.png"), imageHeart: require("../../../../../assets/Icon-Heart.png"), view: '11.8k', like: '10203', image: require("../../../../../assets/pepsi.png"), imageMic: require("../../../../../assets/Mic.png") },
-  { id: 6, title: 'Tiền nhiều để làm gì', imageEye: require("../../../../../assets/Icon-Eye.png"), imageHeart: require("../../../../../assets/Icon-Heart.png"), view: '11.8k', like: '10203', image: require("../../../../../assets/Pepsi_Black_Card.png"), imageMic: require("../../../../../assets/Mic.png") },
-  { id: 7, title: 'Tiền nhiều để làm gì', imageEye: require("../../../../../assets/Icon-Eye.png"), imageHeart: require("../../../../../assets/Icon-Heart.png"), view: '11.8k', like: '10203', image: require("../../../../../assets/pepsi.png"), imageMic: require("../../../../../assets/Mic.png") },
-  { id: 8, title: 'Tiền nhiều để làm gì', imageEye: require("../../../../../assets/Icon-Eye.png"), imageHeart: require("../../../../../assets/Icon-Heart.png"), view: '11.8k', like: '10203', image: require("../../../../../assets/Pepsi_Card.png"), imageMic: require("../../../../../assets/Mic.png") },
-  { id: 9, title: 'Tiền nhiều để làm gì', imageEye: require("../../../../../assets/Icon-Eye.png"), imageHeart: require("../../../../../assets/Icon-Heart.png"), view: '11.8k', like: '10203', image: require("../../../../../assets/Pepsi_Black_Card.png"), imageMic: require("../../../../../assets/Mic.png") },
-  { id: 10, title: 'Tiền nhiều để làm gì', imageEye: require("../../../../../assets/Icon-Eye.png"), imageHeart: require("../../../../../assets/Icon-Heart.png"), view: '11.8k', like: '10203', image: require("../../../../../assets/pepsi.png"), imageMic: require("../../../../../assets/Mic.png") },
 
 
-];
-
-const DATALIST: ItemList[] = [
-  { id: 1, title: 'Tiền nhiều để làm gì', titleMini: 'GDucky ft.Lưu Hiền Trinh', titleWatch: ' 9.023 lượt cover', image: require("../../../../../assets/pepsi.png"), imageMic: require("../../../../../assets/Mic.png"), imageMiniMicro: require("../../../../../assets/Icon-Mic.png") },
-  { id: 2, title: 'Tiền nhiều để làm gì', titleMini: 'GDucky ft.Lưu Hiền Trinh', titleWatch: ' 9.023 lượt cover', image: require("../../../../../assets/pepsi.png"), imageMic: require("../../../../../assets/Mic.png"), imageMiniMicro: require("../../../../../assets/Icon-Mic.png") },
-  { id: 3, title: 'Tiền nhiều để làm gì', titleMini: 'GDucky ft.Lưu Hiền Trinh', titleWatch: ' 9.023 lượt cover', image: require("../../../../../assets/pepsi.png"), imageMic: require("../../../../../assets/Mic.png"), imageMiniMicro: require("../../../../../assets/Icon-Mic.png") },
-
-
-];
 
 
 const renderItem = ({ item }: { item: Item }) => (
   <View style={styles.item}>
     <View style={styles.card}>
       <View>
-        <Image source={item.image} style={styles.image} />
+        <Image source={{uri : item.image}} style={styles.image} />
 
         <Text style={styles.text}>{item.title}</Text>
       </View>
@@ -92,15 +70,15 @@ const renderItem = ({ item }: { item: Item }) => (
     </View>
     <View style={styles.gr}>
       <View style={styles.group}>
-        <Image source={item.imageEye} style={styles.imageEye} />
+        <Image source={EYE} style={styles.imageEye} />
         <Text style={styles.view}>{item.view}</Text>
       </View >
       <View style={styles.group1}>
-        <Image source={item.imageHeart} style={styles.imageHeart} />
+        <Image source={HEART} style={styles.imageHeart} />
         <Text style={styles.like}>{item.like}</Text>
       </View>
 
-      <Image source={item.imageMic} style={styles.imageMic} />
+      <Image source={ICON_MIC} style={styles.imageMic} />
     </View>
   </View>
 );
@@ -111,17 +89,70 @@ const Item = ({ item }: { item: ItemList }) => (
       <Image source={item.image} style={styles.image1} />
       <View style={styles.card2}>
         <Text style={styles.title1}>{item.title}</Text>
-        <Text style={styles.titleMini}>{item.titleMini}</Text>
+        <Text style={styles.titleMini}>{item.author}</Text>
         <View style={styles.card3}>
-          <Image source={item.imageMiniMicro} />
-          <Text style={styles.titleWatch}>{item.titleWatch}</Text>
+          <Image source={ICON_MIC} />
+          <Text style={styles.titleWatch}>{EYE}</Text>
         </View>
       </View>
     </View>
-    <Image source={item.imageMic} style={styles.imageMic1} />
+    <Image source={MIC} style={styles.imageMic1} />
   </View>
 );
  
+const [list_Video, setlist_Video] = useState<Video[]>([])
+const [list_Music, setlist_Music] = useState<Music[]>([])
+
+useEffect(() => {
+  const getVideo = async () => {
+    const get = rtdb.ref('/Videos')
+      .once('value', (snapshot: any) => {
+        snapshot.forEach((item: any) => {
+          let video: Video = {
+            keyVideo: "1"
+          };
+          video.keyVideo = item.key;
+          video.createAt = item.val().createAt;
+          video.image = item.val().image;
+          video.like = item.val().like;
+          video.title = item.val().title;
+          video.userKey = item.val().userKey;
+          video.view = item.val().view;
+          listVideo.push(video);
+        })
+        // console.log(listVideo);
+        setlist_Video(listVideo)
+      });
+  }
+
+  getVideo();
+
+  const getMusic = async () => {
+
+    const get = rtdb.ref('/Musics')
+      .once('value', (snapshot: any) => {
+        snapshot.forEach((item: any) => {
+          let music: Music = {
+            keyMusic: "1"
+          };
+          music.keyMusic = item.key;
+          music.author = item.val().author;
+          music.image = item.val().image;
+          music.name = item.val().name;
+          listMusic.push(music);
+        })
+        console.log(listMusic);
+        setlist_Music(listMusic);
+      });
+  }
+
+  getMusic();
+  return () => {}
+}, [])
+
+
+let listVideo: Video[] = [];
+let listMusic: Music[] = [];
 const centerHeader = () => {
   return (
     <View style={styles.header_1}>
@@ -164,9 +195,9 @@ const centerHeader = () => {
           </View>
 
           <FlatList
-            data={DATA}
+            data={list_Video}
             renderItem={renderItem}
-            keyExtractor={(item) => item.id.toString()}
+            keyExtractor={(item) => item.keyVideo.toString()}
             horizontal
             showsHorizontalScrollIndicator={false} />
         </View>
@@ -179,9 +210,9 @@ const centerHeader = () => {
           </View>
           <View style={styles.listPropose}>
             <FlatList
-              data={DATALIST}
+              data={list_Music}
               renderItem={Item}
-              keyExtractor={(item) => item.id.toString()}
+              keyExtractor={(item) => item.keyMusic.toString()}
             />
           </View>
         </View>

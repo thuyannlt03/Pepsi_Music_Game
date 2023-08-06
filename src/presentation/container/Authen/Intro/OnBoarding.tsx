@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, Dimensions, Image } from 'react-native'
 import React from 'react'
 import Swiper from 'react-native-swiper'
-import { HUONGDAN1, HUONGDAN2, HUONGDAN3, GHI, XEPHANG, GIFT, TALEN } from '../../../../../assets'
+import { HUONGDAN1, HUONGDAN2, HUONGDAN3, GHI, XEPHANG, GIFT} from '../../../../../assets'
 import Background from '../../../component/background/Background'
 import { Colors } from '../../../resource/value/Colors'
 

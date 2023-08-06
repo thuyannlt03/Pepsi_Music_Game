@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { FlatList, Image, StyleSheet, Text, View, ImageBackground, Dimensions, TouchableOpacity, Pressable } from 'react-native';
+import { FlatList, Image, StyleSheet, Text, View,  Dimensions, TouchableOpacity, Pressable } from 'react-native';
 import Background from '../../../component/background/Background'
-import { BACK, BACKGROUND_TAB} from '../../../../../assets'
+import { BACK} from '../../../../../assets'
 import { Colors } from '../../../resource/value/Colors'
 import {  ChartStackScreenProps} from '../../../navigation/stack/ChartNavigation'
 import Header from '../../../component/header/Header';

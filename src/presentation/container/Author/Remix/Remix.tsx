@@ -7,7 +7,7 @@ import { Colors } from '../../../resource/value/Colors'
 import { RemixStackScreenProps } from '../../../navigation/stack/RemixNavigation'
 import Slider from '@react-native-community/slider';
 import DialogNotification from '../../../component/dialog/DialogNotification';
-import DialogProgress from '../../../component/dialog/DialogProgress'
+
 import Header from '../../../component/header/Header';
 
 
@@ -190,17 +190,7 @@ const Remix: React.FC<RemixStackScreenProps<'Remix'>> = ({navigation, route}) =>
                         :
                         <View></View>
                 }
-                 {
-                    onProgree ? <DialogProgress
-                    title="Video đang được tải lên"
-                    
-                    isVisibile={onProgree}
-                       
-                        
-                    />
-                        :
-                        <View></View>
-                }
+                
 
 
         </Background>
