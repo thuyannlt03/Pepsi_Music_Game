@@ -65,14 +65,10 @@ const SignUpOTP: React.FC<MainStackScreenProps<'SignUpOTP'>>= ({navigation,route
     }).then(() => {
       if (!type) {
         ToastAndroid.show("SignUp", ToastAndroid.SHORT);
-        navigation.navigate('OnBoarding');
+        navigation.navigate('SignIn');
       }
-      else {
-        ToastAndroid.show("SignIn", ToastAndroid.SHORT);
-        dispatch(addStatus({
-          status: type,
-        }))
-      }
+      
+    
     });
 }
 
